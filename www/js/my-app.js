@@ -172,7 +172,9 @@ function extrato(){
             var selectCidade = "";
             var contExtrato = "";
             if (response!=null) {
-                    contExtrato += '<p><h3>Últimas transações</h3></p>'+
+                    contExtrato += '<div class="headerImgLogin no-padding">'+
+                                        '<img src="images/logo-anuidadezero.jpg">'+
+                                    '</div>'+
                                     '<div class="data-table card">'+
                                       '<table>'+
                                         '<thead>'+
