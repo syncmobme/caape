@@ -102,7 +102,7 @@ $.ajax({
 
                   {
 
-                    duration: 200,
+                    duration: 5000,
                     easing:'linear',
                     step: function() {
                       $this.text(Math.floor(this.countNum));
@@ -156,7 +156,7 @@ if (!localStorage.getItem("tokenAnuidade")) {
 
                   {
 
-                    duration: 200,
+                    duration: 5000,
                     easing:'linear',
                     step: function() {
                       $this.text(Math.floor(this.countNum));
@@ -215,7 +215,32 @@ function extrato(){
 
                       {
 
-                        duration: 200,
+                        duration: 5000,
+                        easing:'linear',
+                        step: function() {
+                          $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                          $this.text(this.countNum);
+                          //alert('finished');
+                        }
+
+                      });  
+                    });
+                }
+
+                if ($(".tab-pontos span").attr('data-count',parseInt(response))!="00") {
+                    $('.tab-pontos .counting').each(function() {
+                      var $this = $(this),
+                          countTo = $this.attr('data-count');
+                      
+                      $({ countNum: $this.text()}).animate({
+                        countNum: countTo
+                      },
+
+                      {
+
+                        duration: 5000,
                         easing:'linear',
                         step: function() {
                           $this.text(Math.floor(this.countNum));
@@ -330,6 +355,32 @@ $$('.button-login').on('click', function(){
             $.ajax(settings).done(function (response) {
                 localStorage.setItem("pontosAnuidade",response);
                 $(".tab-pontos").html('<span class="counting" data-count="'+parseInt(response)+'">'+parseInt(response)+'</span>pontos');
+
+                if ($(".tab-pontos span").attr('data-count',parseInt(response))!="00") {
+                    $('.tab-pontos .counting').each(function() {
+                      var $this = $(this),
+                          countTo = $this.attr('data-count');
+                      
+                      $({ countNum: $this.text()}).animate({
+                        countNum: countTo
+                      },
+
+                      {
+
+                        duration: 5000,
+                        easing:'linear',
+                        step: function() {
+                          $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                          $this.text(this.countNum);
+                          //alert('finished');
+                        }
+
+                      });  
+                    });
+                }
+                
                 console.log(response);
                 myApp.alert('Login realizado com sucesso!', function () { extrato();});
             }); 
@@ -2376,7 +2427,7 @@ function instagram(){
 function myCallbackFunc(argument) {
     
     setTimeout(function () {
-        $("#fotos-cont li a").addClass("link external");
+        $("#fotos-cont li a").attr("target","_system");
         console.log("sai");
         myApp.hideIndicator();
     }, 3000);
