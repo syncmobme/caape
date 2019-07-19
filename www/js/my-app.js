@@ -2427,12 +2427,20 @@ function instagram(){
 function myCallbackFunc(argument) {
     
     setTimeout(function () {
-        $("#fotos-cont li a").attr("target","_system");
+        //$("#fotos-cont li a").attr("target","_system");
         console.log("sai");
         myApp.hideIndicator();
+
+        $$('#fotos-cont li a').on('click', function (e) {
+            console.log($(this).attr("href"));
+            cordova.InAppBrowser.open($(this).attr("href"),"_system");
+        });
+
     }, 3000);
     
 }
+
+
 
 /*
  Limpa os arquivos selecionados
