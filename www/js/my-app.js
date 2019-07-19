@@ -125,7 +125,7 @@ if (!localStorage.getItem("tokenAnuidade")) {
       "async": true,
       "crossDomain": true,
       "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
-      "method": "POST",
+      "method": "GET",
       "headers": {
         "Content-Type": "application/json",
         "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade"),
@@ -163,7 +163,7 @@ $.ajax(settings).done(function (response) {
       "async": true,
       "crossDomain": true,
       "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
-      "method": "POST",
+      "method": "GET",
       "headers": {
         "Content-Type": "application/json",
         "Authorization": "Bearer "+response.token,
