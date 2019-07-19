@@ -118,6 +118,28 @@ $.ajax({
     }
 });
 
+if (!localStorage.getItem("tokenAnuidade")) {
+    $(".tab-pontos").html('<span class="counting" data-count="">LOGIN</span>anuidade zero');
+}else{
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade");
+        "Accept": "*/*",
+        "cache-control": "no-cache"
+      },
+      "processData": false
+    }
+
+    $.ajax(settings).done(function (response) {
+        //localStorage.setItem("tokenAnuidade",response.token);
+        console.log(response);
+    }); 
+}
 
 var settings = {
   "async": true,
@@ -127,9 +149,6 @@ var settings = {
   "headers": {
     "Content-Type": "application/json",
     "Accept": "*/*",
-    "Cache-Control": "no-cache",
-    "Host": "anuidadezero.oabpe.org.br",
-    "accept-encoding": "gzip, deflate",
     "cache-control": "no-cache"
   },
   "processData": false,
@@ -137,7 +156,29 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-  console.log(response);
+    localStorage.setItem("tokenAnuidade",response.token);
+    console.log(response);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+response.token;
+        "Accept": "*/*",
+        "cache-control": "no-cache"
+      },
+      "processData": false
+    }
+
+    $.ajax(settings).done(function (response) {
+        localStorage.setItem("tokenAnuidade",response);
+        $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
+        console.log(response);
+    }); 
+
 });
 
 // menu 2 niveis
@@ -691,6 +732,7 @@ function ofertas(idCategoria){
                             opcoes = true;
                         }
                         data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
+                        data.oferta[i].ImgEmpresa[0] = data.oferta[i].ImgEmpresa[0].replace("http://","https://");
                         //imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"><div class="validade">Válido até: '+formatDate(data.oferta[i].dataValidade)+'</div><div class="desconto '+bgThemeLight+' color-white">'+Math.round(data.oferta[i].Desconto)+'%</div></div>';
                         imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"></div>';
                         /*dataOferta += '<li data-index="'+i+'" class="'+bgThemeTrans+'">'+
