@@ -146,7 +146,7 @@ if (!localStorage.getItem("tokenAnuidade")) {
 }
 
 myApp.onPageReinit('extrato', function (page) {
-    extrato();
+    //extrato();
 });
 function extrato(){
     if (localStorage.getItem("tokenAnuidade")) {
@@ -192,7 +192,7 @@ function extrato(){
                                             '<td>'+response.items[i].nomeEstabelecimento+'</td>'+
                                             '<td>'+response.items[i].descricaoCompra+'</td>'+
                                             '<td>('+response.items[i].quantidadeParcelas+'/'+response.items[i].numeroParcela+')</td>'+
-                                            '<td>R$ '+formatReal(getMoney(response.items[i].valorParcela))+'</td>'+
+                                            '<td>R$ '+formatReal(response.items[i].valorParcela)+'</td>'+
                                             '<td>'+response.items[i].estabelecimento.taxaDesconto+'</td>'+
                                             '<td>'+response.items[i].pontuacao+'</td>'+
                                           '</tr>';
@@ -207,16 +207,19 @@ function extrato(){
 
     }else{
         myApp.modal({
-            title:  'Opss',
+            title:  'Opps!',
             text: 'Para visualizar seu extrato, você precisa fazer o seu login.',
             buttons: [
               {
                 text: 'Fechar',
+                onClick: function() {
+                    mainView.router.back();
+                }
               },
               {
-                text: 'Logar',
+                text: 'Login',
                 onClick: function() {
-                  mainView.router.load({pageName: "login"});
+                    mainView.router.load({pageName: "login"});
                 }
               },
             ]
@@ -272,7 +275,8 @@ $$('.button-login').on('click', function(){
             }); 
 
         }).fail(function(response) {
-                 myApp.alert("Opps! "+response.message);
+            console.log(response);
+                 myApp.alert("Opps! CPF e/ou senha inválidos.");
         });
     }else{
         myApp.alert("Opps! Favor preencher todos os campos.");
