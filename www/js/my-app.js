@@ -128,7 +128,7 @@ if (!localStorage.getItem("tokenAnuidade")) {
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade");
+        "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade"),
         "Accept": "*/*",
         "cache-control": "no-cache"
       },
@@ -166,7 +166,7 @@ $.ajax(settings).done(function (response) {
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer "+response.token;
+        "Authorization": "Bearer "+response.token,
         "Accept": "*/*",
         "cache-control": "no-cache"
       },
