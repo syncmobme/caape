@@ -153,7 +153,7 @@ function extrato(){
           "method": "GET",
           "headers": {
             "Content-Type": "application/json",
-            "Authorization": "Bearer "+response.token,
+            "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade"),
             "Accept": "*/*",
             "cache-control": "no-cache"
           },
@@ -241,33 +241,32 @@ $$('.button-login').on('click', function(){
         }
         localStorage.setItem("cpfAnuidade",$$cpf);
         $.ajax(settings).done(function (response) {
-            if (response.message) {
-                myApp.alert("Opps! "+response.message);
-            }else{
 
-                localStorage.setItem("tokenAnuidade",response.token);
-                console.log(response);
+            localStorage.setItem("tokenAnuidade",response.token);
+            console.log(response);
 
-                var settings = {
-                  "async": true,
-                  "crossDomain": true,
-                  "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
-                  "method": "GET",
-                  "headers": {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer "+response.token,
-                    "Accept": "*/*",
-                    "cache-control": "no-cache"
-                  },
-                  "processData": false
-                }
-
-                $.ajax(settings).done(function (response) {
-                    localStorage.setItem("pontosAnuidade",response);
-                    $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
-                    console.log(response);
-                }); 
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
+              "method": "GET",
+              "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer "+response.token,
+                "Accept": "*/*",
+                "cache-control": "no-cache"
+              },
+              "processData": false
             }
+
+            $.ajax(settings).done(function (response) {
+                localStorage.setItem("pontosAnuidade",response);
+                $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
+                console.log(response);
+            }); 
+
+        }).fail(function(response) {
+                 myApp.alert("Opps! "+response.message);
         });
     }else{
         myApp.alert("Opps! Favor preencher todos os campos.");
