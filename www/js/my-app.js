@@ -329,7 +329,7 @@ $$('.button-login').on('click', function(){
 
             $.ajax(settings).done(function (response) {
                 localStorage.setItem("pontosAnuidade",response);
-                $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
+                $(".tab-pontos").html('<span class="counting" data-count="'+parseInt(response)+'">'+parseInt(response)+'</span>pontos');
                 console.log(response);
                 myApp.alert('Login realizado com sucesso!', function () { extrato();});
             }); 
