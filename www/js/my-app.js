@@ -117,28 +117,30 @@ $.ajax({
         }
     }
 });
+function logado(argument) {
 
-if (!localStorage.getItem("tokenAnuidade")) {
-    $(".tab-pontos").html('<span class="counting" data-count="">LOGIN</span>anuidade zero');
-}else{
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
-      "method": "GET",
-      "headers": {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade"),
-        "Accept": "*/*",
-        "cache-control": "no-cache"
-      },
-      "processData": false
+    if (!localStorage.getItem("tokenAnuidade")) {
+        $(".tab-pontos").html('<span class="counting" data-count="">LOGIN</span>anuidade zero');
+    }else{
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
+          "method": "GET",
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade"),
+            "Accept": "*/*",
+            "cache-control": "no-cache"
+          },
+          "processData": false
+        }
+
+        $.ajax(settings).done(function (response) {
+            //localStorage.setItem("tokenAnuidade",response.token);
+            console.log(response);
+        }); 
     }
-
-    $.ajax(settings).done(function (response) {
-        //localStorage.setItem("tokenAnuidade",response.token);
-        console.log(response);
-    }); 
 }
 
 function extrato(){
@@ -235,32 +237,37 @@ $$('.button-login').on('click', function(){
             "cache-control": "no-cache"
           },
           "processData": false,
-          "data": "{\n    \"username\": \""+$$cpf+"\",\n    \"password\": \""+$$cpf+"\"\n}"
+          "data": "{\n    \"username\": \""+$$cpf+"\",\n    \"password\": \""+$$senha+"\"\n}"
         }
         localStorage.setItem("cpfAnuidade",$$cpf);
         $.ajax(settings).done(function (response) {
-            localStorage.setItem("tokenAnuidade",response.token);
-            console.log(response);
+            if (response.message) {
+                myApp.alert("Opps! "+response.message);
+            }else{
 
-            var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
-              "method": "GET",
-              "headers": {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer "+response.token,
-                "Accept": "*/*",
-                "cache-control": "no-cache"
-              },
-              "processData": false
-            }
-
-            $.ajax(settings).done(function (response) {
-                localStorage.setItem("pontosAnuidade",response);
-                $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
+                localStorage.setItem("tokenAnuidade",response.token);
                 console.log(response);
-            }); 
+
+                var settings = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
+                  "method": "GET",
+                  "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer "+response.token,
+                    "Accept": "*/*",
+                    "cache-control": "no-cache"
+                  },
+                  "processData": false
+                }
+
+                $.ajax(settings).done(function (response) {
+                    localStorage.setItem("pontosAnuidade",response);
+                    $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
+                    console.log(response);
+                }); 
+            }
         });
     }else{
         myApp.alert("Opps! Favor preencher todos os campos.");
