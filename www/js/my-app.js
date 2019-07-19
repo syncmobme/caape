@@ -150,7 +150,7 @@ myApp.onPageReinit('extrato', function (page) {
 });
 function extrato(){
     if (localStorage.getItem("tokenAnuidade")) {
-
+        mainView.router.load({pageName: 'extrato'});
         var settings = {
           "async": true,
           "crossDomain": true,
@@ -172,7 +172,8 @@ function extrato(){
             var selectCidade = "";
             var contExtrato = "";
             if (response!=null) {
-                    contExtrato += '<div class="data-table card">'+
+                    contExtrato += '<p><h3>Últimas transações</h3></p>'+
+                                    '<div class="data-table card">'+
                                       '<table>'+
                                         '<thead>'+
                                           '<tr>'+
@@ -188,13 +189,13 @@ function extrato(){
                                         '<tbody>';
                 for (var i = 0; i < qtd; i++) {
                             contExtrato +='<tr>'+
-                                            '<td>'+response.items[i].dataTransacao+'</td>'+
-                                            '<td>'+response.items[i].nomeEstabelecimento+'</td>'+
-                                            '<td>'+response.items[i].descricaoCompra+'</td>'+
-                                            '<td>('+response.items[i].quantidadeParcelas+'/'+response.items[i].numeroParcela+')</td>'+
-                                            '<td>R$ '+formatReal(response.items[i].valorParcela)+'</td>'+
-                                            '<td>'+response.items[i].estabelecimento.taxaDesconto+'</td>'+
-                                            '<td>'+response.items[i].pontuacao+'</td>'+
+                                            '<td nowrap>'+response.items[i].dataTransacao+'</td>'+
+                                            '<td nowrap>'+response.items[i].nomeEstabelecimento+'</td>'+
+                                            '<td nowrap>'+response.items[i].descricaoCompra+'</td>'+
+                                            '<td nowrap>('+response.items[i].quantidadeParcelas+'/'+response.items[i].numeroParcela+')</td>'+
+                                            '<td nowrap>R$ '+formatReal(response.items[i].valorParcela)+'</td>'+
+                                            '<td nowrap>'+response.items[i].estabelecimento.taxaDesconto+'</td>'+
+                                            '<td nowrap>'+response.items[i].pontuacao+'</td>'+
                                           '</tr>';
                 }
                             contExtrato +='</tbody>'+
@@ -213,7 +214,7 @@ function extrato(){
               {
                 text: 'Fechar',
                 onClick: function() {
-                    mainView.router.back();
+                    //mainView.router.back();
                 }
               },
               {
@@ -271,12 +272,12 @@ $$('.button-login').on('click', function(){
                 localStorage.setItem("pontosAnuidade",response);
                 $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
                 console.log(response);
-                myApp.alert('Login realizado com sucesso!', function () { mainView.router.load({pageName: 'extrato'});extrato();});
+                myApp.alert('Login realizado com sucesso!', function () { extrato();});
             }); 
 
         }).fail(function(response) {
             console.log(response);
-                 myApp.alert("Opps! CPF e/ou senha inválidos.");
+                 myApp.alert("Opps! "+response.responseJSON.message);
         });
     }else{
         myApp.alert("Opps! Favor preencher todos os campos.");
