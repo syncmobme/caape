@@ -46,10 +46,12 @@ if (localStorage.getItem("email")) {
 }
 
 myApp.onPageReinit('home', function (page) {
+
+        localStorage.setItem("idCategoria","");
         $$(".profile").removeClass("bg-teal bg-red bg-green bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $$(".profile").addClass("bg-teal");
+        $$(".profile").addClass("bg-indigo");
         $$("body").removeClass("theme-teal theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
-        $$("body").addClass("theme-teal");
+        $$("body").addClass("theme-indigo");
         //ofertasHome();
     if (localStorage.getItem("email")) {
         $$(".profile_nome").html(localStorage.getItem("name"));
@@ -117,32 +119,35 @@ $.ajax({
         }
     }
 });
-function logado(argument) {
 
-    if (!localStorage.getItem("tokenAnuidade")) {
-        $(".tab-pontos").html('<span class="counting" data-count="">LOGIN</span>anuidade zero');
-    }else{
-        var settings = {
-          "async": true,
-          "crossDomain": true,
-          "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
-          "method": "GET",
-          "headers": {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade"),
-            "Accept": "*/*",
-            "cache-control": "no-cache"
-          },
-          "processData": false
-        }
-
-        $.ajax(settings).done(function (response) {
-            //localStorage.setItem("tokenAnuidade",response.token);
-            console.log(response);
-        }); 
+//verifica se esta logado
+console.log("entrei logado");
+if (!localStorage.getItem("tokenAnuidade")) {
+    $(".tab-pontos").html('<span class="counting" data-count="">LOGIN</span>anuidade zero');
+}else{
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
+      "method": "GET",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("tokenAnuidade"),
+        "Accept": "*/*",
+        "cache-control": "no-cache"
+      },
+      "processData": false
     }
+
+    $.ajax(settings).done(function (response) {
+        //localStorage.setItem("tokenAnuidade",response.token);
+        console.log(response);
+    }); 
 }
 
+myApp.onPageReinit('extrato', function (page) {
+    extrato();
+});
 function extrato(){
     if (localStorage.getItem("tokenAnuidade")) {
 
@@ -162,7 +167,7 @@ function extrato(){
 
         $.ajax(settings).done(function (response) {
 
-            var qtd = response.length;
+            var qtd = response.items.length;
             var dataCidades = "";
             var selectCidade = "";
             var contExtrato = "";
@@ -263,6 +268,7 @@ $$('.button-login').on('click', function(){
                 localStorage.setItem("pontosAnuidade",response);
                 $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
                 console.log(response);
+                myApp.alert('Login realizado com sucesso!', function () { mainView.router.load({pageName: 'extrato'});extrato();});
             }); 
 
         }).fail(function(response) {
@@ -606,9 +612,9 @@ function ofertasHome(){
     myApp.showIndicator();
     $('#ofertasHome-cont').html("");
     $(".profile").removeClass("bg-teal bg-red bg-green bg-purple bg-indigo bg-amber bg-orange");
-    $(".profile").addClass("bg-teal");
+    $(".profile").addClass("bg-indigo");
     $("body").removeClass("theme-teal theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
-    $("body").addClass("theme-teal");
+    $("body").addClass("theme-indigo");
     if (!localStorage.getItem("idCidade")) {
         localStorage.setItem("idCidade","1");
     }
@@ -2442,6 +2448,8 @@ function ofertasMaps(){
 
 document.addEventListener('app.Ready', onDeviceReady, true);
 function onDeviceReady() {
+    console.log("onDeviceReady");
+    logado();
     //navigator.splashscreen.show();
     setTimeout("getLocation()",2000);
 

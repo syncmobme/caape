@@ -9,6 +9,59 @@
 	text-align: center!important;
 	width: 100%;
 }
+/*table*/
+.data-table {
+    overflow-x: auto;
+}
+.data-table table {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    text-align: left;
+}
+.data-table thead {
+    font-size: 12px;
+}
+.data-table thead td:not(.sortable-active), .data-table thead th:not(.sortable-active) {
+    color: #8e8e93;
+}
+.data-table thead td, .data-table thead th {
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 16px;
+}
+.data-table td, .data-table th {
+    padding: 0;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 44px;
+}
+.data-table td.numeric-cell, .data-table th.numeric-cell {
+    text-align: right;
+}
+.data-table .tablet-landscape-only, .data-table .tablet-only {
+    display: none;
+}
+.data-table tbody td:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    right: auto;
+    height: 1px;
+    width: 100%;
+    background-color: #c8c7cc;
+    display: block;
+    z-index: 15;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+}
 /*contatos*/
 .infoContatos{
 	padding: 0 10px;
@@ -464,10 +517,10 @@ a.tab-link.active{
 	left: inherit!important;
 }
 .navbar-inner{
-	background: #004a73;
+	/*background: #004a73;
 	background: -moz-linear-gradient(-45deg, #004a73 0%, #1a6994 100%);
 	background: -webkit-linear-gradient(-45deg, #004a73 0%,#1a6994 100%);
-	background: linear-gradient(135deg, #004a73 0%,#1a6994 100%);
+	background: linear-gradient(135deg, #004a73 0%,#1a6994 100%);*/
 }
 .navbar .center, .subnavbar .center{
 	font-size: 15px!important;
