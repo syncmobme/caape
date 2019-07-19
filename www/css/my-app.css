@@ -217,20 +217,20 @@ display: block;
 .nameHome{
 	text-transform: uppercase;
 }
-.tab-beneficios.tab-link, .tab-pontos.tab-link{
+.tab-beneficios.tab-link, .tab-pontos.tab-link, .tab-transacoes.tab-link{
 	color: white;
 }
-.tab-beneficios.tab-link span, .tab-pontos.tab-link span {
+.tab-beneficios.tab-link span, .tab-pontos.tab-link span, .tab-transacoes.tab-link span {
     margin: 0;
     padding: 0;
     font-size: 22px;
     line-height: 17px;
     color: white;
 }
-.tab-beneficios{
+.tab-beneficios, .tab-transacoes{
 	border-right: solid 1px #ffffff54;
 }
-.tab-beneficios, .tab-pontos{
+.tab-beneficios, .tab-pontos, .tab-transacoes{
 	color: white!important;
 }
 #sub-menu-oferta-fixed{

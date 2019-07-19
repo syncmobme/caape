@@ -142,6 +142,34 @@ if (!localStorage.getItem("tokenAnuidade")) {
     $.ajax(settings).done(function (response) {
         //localStorage.setItem("tokenAnuidade",response.token);
         console.log(response);
+
+            $(".tab-pontos span").attr('data-count',parseInt(response));
+
+            if ($(".tab-pontos span").attr('data-count',parseInt(response))!="00") {
+                $('.tab-pontos .counting').each(function() {
+                  var $this = $(this),
+                      countTo = $this.attr('data-count');
+                  
+                  $({ countNum: $this.text()}).animate({
+                    countNum: countTo
+                  },
+
+                  {
+
+                    duration: 200,
+                    easing:'linear',
+                    step: function() {
+                      $this.text(Math.floor(this.countNum));
+                    },
+                    complete: function() {
+                      $this.text(this.countNum);
+                      //alert('finished');
+                    }
+
+                  });  
+                });
+            }
+
     }); 
 }
 
@@ -172,6 +200,35 @@ function extrato(){
             var selectCidade = "";
             var contExtrato = "";
             if (response!=null) {
+                $(".tab-transacoes").html();
+
+                $(".tab-transacoes span").attr('data-count',qtd);
+
+                if ($(".tab-transacoes span").attr('data-count',qtd)!="00") {
+                    $('.tab-transacoes .counting').each(function() {
+                      var $this = $(this),
+                          countTo = $this.attr('data-count');
+                      
+                      $({ countNum: $this.text()}).animate({
+                        countNum: countTo
+                      },
+
+                      {
+
+                        duration: 200,
+                        easing:'linear',
+                        step: function() {
+                          $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                          $this.text(this.countNum);
+                          //alert('finished');
+                        }
+
+                      });  
+                    });
+                }
+
                     contExtrato += '<div class="headerImgLogin no-padding">'+
                                         '<img src="images/logo-anuidadezero.jpg">'+
                                     '</div>'+
@@ -2456,7 +2513,7 @@ function ofertasMaps(){
 document.addEventListener('app.Ready', onDeviceReady, true);
 function onDeviceReady() {
     console.log("onDeviceReady");
-    logado();
+    //logado();
     //navigator.splashscreen.show();
     setTimeout("getLocation()",2000);
 
