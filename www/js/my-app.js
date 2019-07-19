@@ -141,44 +141,130 @@ if (!localStorage.getItem("tokenAnuidade")) {
     }); 
 }
 
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/auth",
-  "method": "POST",
-  "headers": {
-    "Content-Type": "application/json",
-    "Accept": "*/*",
-    "cache-control": "no-cache"
-  },
-  "processData": false,
-  "data": "{\n    \"username\": \"09145240469\",\n    \"password\": \"01onurb03\"\n}"
+function extrato(){
+    if (localStorage.getItem("tokenAnuidade")) {
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/transacao/0/30/?cpf="+localStorage.getItem("cpfAnuidade"),
+          "method": "GET",
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+response.token,
+            "Accept": "*/*",
+            "cache-control": "no-cache"
+          },
+          "processData": false
+        }
+
+        $.ajax(settings).done(function (response) {
+
+            var qtd = response.length;
+            var dataCidades = "";
+            var selectCidade = "";
+            var contExtrato = "";
+            if (response!=null) {
+                    contExtrato += '<div class="data-table card">'+
+                                      '<table>'+
+                                        '<thead>'+
+                                          '<tr>'+
+                                            '<th>Data</th>'+
+                                            '<th>Etabelecimento</th>'+
+                                            '<th>Forma de Pgto</th>'+
+                                            '<th>Nº Parcelas</th>'+
+                                            '<th>Valor</th>'+
+                                            '<th>% Desconto</th>'+
+                                            '<th>Pontos</th>'+
+                                          '</tr>'+
+                                        '</thead>'+
+                                        '<tbody>';
+                for (var i = 0; i < qtd; i++) {
+                            contExtrato +='<tr>'+
+                                            '<td>'+response.items[i].dataTransacao+'</td>'+
+                                            '<td>'+response.items[i].nomeEstabelecimento+'</td>'+
+                                            '<td>'+response.items[i].descricaoCompra+'</td>'+
+                                            '<td>('+response.items[i].quantidadeParcelas+'/'+response.items[i].numeroParcela+')</td>'+
+                                            '<td>R$ '+formatReal(getMoney(response.items[i].valorParcela))+'</td>'+
+                                            '<td>'+response.items[i].estabelecimento.taxaDesconto+'</td>'+
+                                            '<td>'+response.items[i].pontuacao+'</td>'+
+                                          '</tr>';
+                }
+                            contExtrato +='</tbody>'+
+                                      '</table>'+
+                                    '</div>';
+
+                $('#extrato-cont').html(contExtrato);
+            }
+        }); 
+
+    }else{
+        myApp.modal({
+            title:  'Opss',
+            text: 'Para visualizar seu extrato, você precisa fazer o seu login.',
+            buttons: [
+              {
+                text: 'Fechar',
+              },
+              {
+                text: 'Logar',
+                onClick: function() {
+                  mainView.router.load({pageName: "login"});
+                }
+              },
+            ]
+        });
+    }
 }
 
-$.ajax(settings).done(function (response) {
-    localStorage.setItem("tokenAnuidade",response.token);
-    console.log(response);
+$$('.button-login').on('click', function(){
 
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
-      "method": "GET",
-      "headers": {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer "+response.token,
-        "Accept": "*/*",
-        "cache-control": "no-cache"
-      },
-      "processData": false
+    $$cpf = $("#txtcpf").val();
+    $$senha = $("#txtsenha").val();
+
+    if ($$senha!="" && $$cpf!="") {
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/auth",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+            "Accept": "*/*",
+            "cache-control": "no-cache"
+          },
+          "processData": false,
+          "data": "{\n    \"username\": \""+$$cpf+"\",\n    \"password\": \""+$$cpf+"\"\n}"
+        }
+        localStorage.setItem("cpfAnuidade",$$cpf);
+        $.ajax(settings).done(function (response) {
+            localStorage.setItem("tokenAnuidade",response.token);
+            console.log(response);
+
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://anuidadezero.oabpe.org.br/fidelidade/rest/participante/score",
+              "method": "GET",
+              "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer "+response.token,
+                "Accept": "*/*",
+                "cache-control": "no-cache"
+              },
+              "processData": false
+            }
+
+            $.ajax(settings).done(function (response) {
+                localStorage.setItem("pontosAnuidade",response);
+                $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
+                console.log(response);
+            }); 
+        });
+    }else{
+        myApp.alert("Opps! Favor preencher todos os campos.");
     }
-
-    $.ajax(settings).done(function (response) {
-        localStorage.setItem("tokenAnuidade",response);
-        $(".tab-pontos").html('<span class="counting" data-count="'+response+'">'+response+'</span>pontos');
-        console.log(response);
-    }); 
-
 });
 
 // menu 2 niveis

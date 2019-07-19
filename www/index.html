@@ -29,7 +29,7 @@
           <div data-page="panel-left" class="page panel-reveal">
             <div class="navbar">
               <div class="navbar-inner profile">
-                <a href="#" onClick="loginInitApp();" class="profile_login panel-close">
+                <a href="#" class="profile_login panel-close">
                   <div class="infoprofile">
                   <div class="profile_foto"><img src="images/logo-appcaape.png"></div>
                   <div class="profile_nome">Seja bem-vindo!</div>
@@ -65,10 +65,10 @@
                         <a href="#"><i class="icon fa fa-id-card-o fa-lg"></i>ANUIDADE ZERO</a>
                         <ul class="sublist hide">
                           <li>
-                            <a href="#extrato" class="panel-close"><i class="icon fa fa-list fa-lg"></i>EXTRATO</a>
+                            <a href="#extrato" onclick="extrato()" class="panel-close"><i class="icon fa fa-list fa-lg"></i>EXTRATO</a>
                           </li>
                           <li>
-                            <a href="#listofertas" onclick="ofertasHome()" class="panel-close"><i class="icon fa fa-percent fa-lg"></i>PARCEIROS</a>
+                            <a href="#listofertas" onclick="ofertasHome()" class="panel-close"><i class="icon fa fa-percent fa-lg"></i>ESTABELECIMENTOS</a>
                           </li>
                           <li>
                             <a href="#filter" class="panel-close"><i class="icon fa fa-filter fa-lg"></i>CATEGORIAS</a>
@@ -150,8 +150,8 @@
               <div id="menuhome" class="menuhome list-block nomargin font13">
                   <div class="toolbar tabbar sub-menu-oferta" style=" background: #326596;background: -moz-linear-gradient(-45deg, #326596 0%, #4588ca 100%);background: -webkit-linear-gradient(-45deg, #326596 0%,#4588ca 100%);background: linear-gradient(135deg, #326596 0%,#4588ca 100%);">
                     <div class="toolbar-inner">
-                          <a href="#" class="tab-beneficios tab-link"><span class="counting" data-count="">00</span>parceiros</a>
-                          <a href="#" class="tab-link tab-pontos"><span class="counting" data-count="">00</span>pontos</a>
+                          <a href="#" class="tab-beneficios tab-link"><span class="counting" data-count="">00</span>estabelecimentos</a>
+                          <a href="#extrato" class="tab-link tab-pontos" onclick="extrato();"><span class="counting" data-count="">00</span>pontos</a>
                     </div>
                   </div>
                 <ul>
@@ -160,7 +160,7 @@
                     </li>
 
                     <li class="menubeneficioshome">
-                        <a href="#listofertas" class="item-link" onclick="ofertasHome()"><i class="icon fa fa-percent fa-3x color-amber"></i><br>PARCEIROS</a>
+                        <a href="#listofertas" class="item-link" onclick="ofertasHome()"><i class="icon fa fa-percent fa-3x color-amber"></i><br>ESTABELECIMENTOS</a>
                     </li>
                     <li class="menunoticias">
                         <a href="#noticias" class="item-link" onclick="noticias();"><i class="icon fa fa-newspaper-o fa-3x badgeespaco color-red"></i><br>NOTÍCIAS</a>
@@ -186,6 +186,77 @@
                         <a href="#contatos" class="item-link" ><i class="icon fa fa-envelope fa-3x color-teal"></i><br>CONTATOS</a>
                     </li>-->
                   </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Login -->
+          <div data-page="login" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center">ENTRAR</div>
+                  <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block">
+                <div class="list-block tablet">
+                <div class="headerImgLogin no-padding">
+                  <img src="images/logo-anuidadezero.jpg">
+                </div>
+                <form method="post" action="#" role="form" id="formlogin">
+                    <ul>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title label">CPF</div>
+                            <div class="item-input">
+                            <input type="text" id="txtcpf" onKeyUp="tabenter(event,getElementById('txtsenha'))" placeholder="Digite seu CPF" required="required">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title label">Senha</div>
+                            <div class="item-input">
+                            <input type="password" id="txtsenha" placeholder="Digite sua senha" required="required">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </form>
+                  <p class="buttons-row">
+                    <a href="#" class="button-login button button-big button-fill button-raised color-green button-full-margin">ENTRAR</a>
+                  </p>
+                </div>                
+              </div>
+            </div>
+          </div>
+
+          <!-- extrato -->
+          <div data-page="extrato" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">EXTRATO</div>
+                  <div class="right"><a href="#" class="back link link-back icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block">
+                <div class="list-block media-list tablet">
+                  <div id="extrato-cont"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -590,7 +661,7 @@
             <div class="navbar">
               <div class="navbar-inner">
                 <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
-                  <div class="center nameHome">MAPA DE PARCEIROS</div>
+                  <div class="center nameHome">MAPA DE ESTABELECIMENTOS</div>
                   <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
               </div>
             </div>
@@ -710,7 +781,7 @@ Para se tornar um conveniado, nos encaminhe uma proposta de benefício com a apr
 A proposta será analisada pela diretoria e uma vez aprovada, providenciaremos o contrato de convênio que deverá ser assinada em três vias e devolvido no menor prazo possível, para que possamos dar continuidade às demais assinaturas, após isso retornaremos uma das vias a VSª.<br>
 Clique no botão abaixo para realizar seu cadastro. <br>
                   <p class="buttons-row">
-                    <a href="https://www.caape.org.br/seja-um-parceiro/" class="link external button button-big button-fill button-raised color-red" target="_blank">SAJA PARCEIRO</a>
+                    <a href="https://www.caape.org.br/seja-um-parceiro/" class="link external button button-big button-fill button-raised color-red" target="_blank">SEJA PARCEIRO</a>
                   </p>
                 </div>
               </div>
