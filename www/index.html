@@ -1,0 +1,2520 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: blob: filesystem: ws: gap://ready file: cdvfile: https://ssl.gstatic.com *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src 'self' https://www.youtube.com gap://ready; child-src https://player.vimeo.com https://www.youtube.com">
+
+    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="stylesheet" href="framework7/css/framework7.material.css">
+    <link rel="stylesheet" href="framework7/css/framework7.material.colors.css">
+    <link rel="stylesheet" type="text/css" href="framework7/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="framework7/css/kitchen-sink.css">
+    
+
+    <script src="cordova.js"></script>
+    <script type="application/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="framework7/js/framework7.js"></script>
+
+  </head>
+
+  <body class="theme-indigo">      
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-reveal">
+      <div class="view">
+        <div class="pages navbar-fixed">
+        <!-- menu esquerdo -->
+          <div data-page="panel-left" class="page panel-reveal">
+            <div class="navbar">
+              <div class="navbar-inner profile">
+                <a href="#" onClick="loginInitApp();" class="profile_login panel-close">
+                  <div class="infoprofile">
+                  <div class="profile_foto"><img src="images/logo-appcaape.png"></div>
+                  <div class="profile_nome">Seja bem-vindo!</div>
+                  <div class="profile_detalhes">Selecione uma das opções abaixo</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="page-content menu-left">
+              <div>
+                <ul class="list">
+                    <li>
+                        <a href="#home" class="panel-close"><i class="link icon fa fa-home fa-lg"></i>HOME</a>
+                    </li>
+                    <li>
+                        <a href="#apresentacao" class="panel-close"><i class="link icon fa fa-info fa-lg"></i>APRESENTAÇÃO</a>
+                    </li>
+                    <!--<li class="menuservico">
+                        <a href="#"><i class="icon fa fa-cogs fa-lg"></i>SERVIÇOS</a>
+                        <ul class="sublist hide">
+                          <li>
+                            <a href="#biometria" class="panel-close"><i class="icon fa fa-bullseye fa-lg"></i>BIOMETRIA</a>
+                          </li>
+                          <li>
+                            <a href="#fiscalizacao" class="panel-close"><i class="icon fa fa-bullhorn fa-lg"></i>FISCALIZAÇÃO</a>
+                          </li>
+                          <li>
+                            <a href="#sala" class="panel-close"><i class="icon fa fa-users fa-lg"></i>SALAS PARA ARQUITETOS</a>
+                          </li>
+                        </ul>
+                    </li>-->
+                    <li class="menubeneficio">
+                        <a href="#"><i class="icon fa fa-id-card-o fa-lg"></i>ANUIDADE ZERO</a>
+                        <ul class="sublist hide">
+                          <li>
+                            <a href="#extrato" class="panel-close"><i class="icon fa fa-list fa-lg"></i>EXTRATO</a>
+                          </li>
+                          <li>
+                            <a href="#listofertas" onclick="ofertasHome()" class="panel-close"><i class="icon fa fa-percent fa-lg"></i>PARCEIROS</a>
+                          </li>
+                          <li>
+                            <a href="#filter" class="panel-close"><i class="icon fa fa-filter fa-lg"></i>CATEGORIAS</a>
+                          </li>
+                          <li>
+                            <a href="#maps" onclick="maps();" class="panel-close"><i class="icon fa fa-map-marker fa-lg"></i>MAPA</a>
+                          </li>
+                          <!--<li>
+                            <a href="#bemparceiro" class="panel-close"><i class="icon fa fa-handshake-o fa-lg"></i>PARCEIRO</a>
+                          </li>-->
+                          <!--<li>
+                            <a href="#meuscupons" onclick="meusCupons()" class="panel-close"><i class="icon fa fa-download fa-lg"></i>SALVOS</a>
+                          </li>-->
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#noticias" onclick="noticias();" class="panel-close"><i class="icon fa fa-newspaper-o fa-lg"></i>NOTÍCIAS</a>
+                    </li>
+                    <li class="">
+                        <a href="#fotos" onclick="instagram();" class="panel-close"><i class="icon fa fa-camera fa-lg"></i>FOTOS</a>
+                    </li>
+                    <!--<li class="">
+                        <a href="#videos" onclick="videos();" class="panel-close"><i class="icon fa fa-youtube-play fa-lg"></i>VÍDEOS</a>
+                    </li>-->
+                    <li class="">
+                        <a href="#agenda" class="panel-close"><i class="icon fa fa-calendar-check-o fa-lg"></i>AGENDA</a>
+                    </li>
+                    <li>
+                        <a href="#denuncias" class="panel-close"><i class="icon fa fa-bullhorn fa-lg"></i>SEJA UM PARCEIRO</a>
+                    </li>
+                    <li class="">
+                        <a href="#faleconosco" class="panel-close"><i class="icon fa fa-envelope fa-lg"></i>FALE CONOSCO</a>
+                    </li>
+                    <!--<li class="menudialogo">
+                        <a href="#"><i class="icon fa fa-comments-o fa-lg"></i>DIÁLOGO</a>
+                        <ul class="sublist hide">
+                          <li>
+                            <a href="#faleconosco" class="panel-close"><i class="icon fa fa-envelope fa-lg"></i>FALE CONOSCO</a>
+                          </li>
+                          <li>
+                            <a href="#perguntas" class="panel-close"><i class="icon fa fa-commenting-o fa-lg"></i>PERGUNTAS FREQUENTES</a>
+                          </li>
+                          <li>
+                            <a href="#denuncias" class="panel-close"><i class="icon fa fa-bullhorn fa-lg"></i>SEJA UM PARCEIRO</a>
+                          </li>
+                        </ul>
+                    </li>-->
+                    <!--<li class="">
+                        <a href="#contatos" class="panel-close"><i class="icon fa fa-envelope fa-lg"></i>CONTATOS</a>
+                    </li>-->
+                    <li >
+                        <a href="#" class="panel-close sair" onclick="sair();"><i class="icon fa fa-sign-out fa-lg"></i>SAIR DO APP</a>
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="views">
+      <div class="view view-main">
+        <div class="pages navbar-fixed">
+
+          <!-- home -->
+          <div data-page="home" class="page">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome"><img src="images/logo-white-brasao.png"></div>
+                  <div class="right no-margin"><a href="#filter" class="link icon-only"><i class="icon fa fa-filter"></i></a></div>
+                  <div class="right iconRight"><a href="#maps" onclick="maps();" class="link icon-only"><i class="icon fa fa-map-marker"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content pageindex tablet">
+              <div id="menuhome" class="menuhome list-block nomargin font13">
+                  <div class="toolbar tabbar sub-menu-oferta" style=" background: #326596;background: -moz-linear-gradient(-45deg, #326596 0%, #4588ca 100%);background: -webkit-linear-gradient(-45deg, #326596 0%,#4588ca 100%);background: linear-gradient(135deg, #326596 0%,#4588ca 100%);">
+                    <div class="toolbar-inner">
+                          <a href="#" class="tab-beneficios tab-link"><span class="counting" data-count="">00</span>benefícios</a>
+                          <a href="#" class="tab-link tab-pontos"><span class="counting" data-count="">00</span>pontos</a>
+                    </div>
+                  </div>
+                <ul>
+                    <li class="menuagenda">
+                        <a href="#agenda" class="item-link"><i class="icon fa fa-calendar-check-o fa-3x badgecomunicado color-blue"></i><br>AGENDA</a>
+                    </li>
+
+                    <li class="menubeneficioshome">
+                        <a href="#listofertas" class="item-link" onclick="ofertasHome()"><i class="icon fa fa-percent fa-3x color-amber"></i><br>PARCEIROS</a>
+                    </li>
+                    <li class="menunoticias">
+                        <a href="#noticias" class="item-link" onclick="noticias();"><i class="icon fa fa-newspaper-o fa-3x badgeespaco color-red"></i><br>NOTÍCIAS</a>
+                    </li>
+                    <li class="menufotos">
+                        <a href="#fotos" class="item-link" onclick="instagram();"><i class="icon fa fa-camera fa-3x color-brown"></i><br>FOTOS</a>
+                    </li>
+                    <li class="menudenuncias">
+                        <a href="#denuncias" class="item-link"><i class="icon fa fa-bullhorn fa-3x color-gray"></i><br>SEJA UM<br>PARCEIRO</a>
+                    </li>
+                    <li class="menufaleconosco">
+                        <a href="#faleconosco" class="item-link" ><i class="icon fa fa-envelope fa-3x"></i><br>FALE CONOSCO</a>
+                    </li>
+
+                    <!--<li class="menuvideos">
+                        <a href="#videos" class="item-link" onclick="videos();"><i class="icon fa fa-youtube-play fa-3x badgetransparencia color-orange"></i><br>VÍDEOS</a>
+                    </li>-->
+
+                    <!--<li class="menuperguntas">
+                        <a href="#perguntas" class="item-link"><i class="icon fa fa-commenting-o fa-3x color-deeppurple"></i><br>PERGUNTAS<br>FREQUENTES</a>
+                    </li>
+                    <li class="menufaleconosco">
+                        <a href="#contatos" class="item-link" ><i class="icon fa fa-envelope fa-3x color-teal"></i><br>CONTATOS</a>
+                    </li>-->
+                  </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- apresentacao-->
+          <div data-page="apresentacao" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">APRESENTAÇÃO</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet" style="padding: 0!important">
+                <div class="infoContatos">
+                  <p>O Decreto-Lei nº 4.563, de 11 de agosto de 1942, regulamentado pelo Decreto 11.051 de 08 de dezembro de 1942, garantiu à Ordem dos Advogados do Brasil (OAB) a criação das Caixas de Assistências dos Advogados (CAAs) nas suas Seccionais. A partir daí, as CAAs seriam instituídas por deliberações das Assembleias Gerais, mediante apreciação do Conselho Federal.</p>
+
+                  <p>A Caixa de Assistência dos Advogados de Pernambuco (CAAPE) foi criada no dia 26 de dezembro de 1975, em Assembleia Geral Extraordinária da Ordem dos Advogados do Brasil – Seccional Pernambuco (OAB-PE). Em 1984, foram aprovadas pelo Conselho da OAB-PE a sua instalação e seu Regimento Interno.</p>
+
+                  <p>O Regimento Interno, com alterações posteriores, permaneceu em vigência até a promulgação da Lei nº 8.906/94 (Estatuto da Advocacia e da Ordem dos Advogados do Brasil), que, em seu art. 45, IV, incluiu a Caixa de Assistência como órgão da OAB, regida por Estatuto próprio. </p>
+
+                  Confira quem está na gestão <strong>2019-2021</strong><br><br>
+
+                  <strong>Presidente:</strong> Fernando Ribeiro Lins<br>
+                  <strong>Vice-presidente:</strong> Patrícia Maaze<br>
+                  <strong>Secretário Geral:</strong> Cláudio Alexandre Soares Correia<br>
+                  <strong>Secretária Geral Adjunta:</strong> Newdylande de Oliveira Ribeiro de Souza<br>
+                  <strong>Tesoureiro:</strong> Ricardo Sampaio Ferreira da Silva<br>
+                  <strong>Suplente:</strong> Gener de Souza Serralva Rodrigues<br>
+                  <strong>Suplente:</strong> Juliana Nunes Galdino da Silva<br>
+                  <strong>Suplente:</strong> Deivson Fernando Alves da Silva<br>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- fotos -->
+          <div data-page="fotos" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">FOTOS</div>
+                  <div class="right"><a href="#home" class="link link icon-only"><i class="icon icon-back color-white"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content instagram pull-to-refresh-content">
+              <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+              </div>
+              <div class="content-block" style="padding: 0!important;">
+                <div class="list-block media-list tablet">
+                  <ul id="fotos-cont"></ul>
+                </div>
+              </div>
+            </div>
+          </div>          
+
+          <!-- lista videos -->
+          <div data-page="videos" class="page cached">
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">VÍDEOS</div>
+                  <div class="right"><a href="#home" class="link link icon-only"><i class="icon icon-back color-white"></i></a></div>
+                </div>
+              </div>
+              <div class="page-content videos pull-to-refresh-content">
+                <div class="pull-to-refresh-layer">
+                  <div class="preloader"></div>
+                  <div class="pull-to-refresh-arrow"></div>
+                </div>            
+                <div class="content-block tablet no-padding no-margin">
+                    <div class="list-block media-list">
+                      <ul id="videos-cont"></ul>
+                    </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- exibe videos -->
+          <div data-page="exibevideos" class="page exibevideos no-navbar no-toolbar cached">
+              <!-- Floatin Action Button -->
+              <a href="#videos" onClick="closevideo();" class="link floating-top color-white bg-red">
+                <i class="fa fa-times"></i>
+              </a>
+              <div class="page-content video-full" style="padding: 0px!important;">
+                  <iframe src="" id="exibevideos-cont" width="585px" height="300px" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+              </div>
+          </div>
+
+          <!-- agenda -->
+          <div data-page="agenda" class="page cached">
+
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                    <div class="center">AGENDA</div>
+                    <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+                </div>
+              </div>
+  
+              <div class="page-content">
+                  <div class="content-block no-margin no-padding">
+                      <div id="calendar-inline-container"></div>
+                  </div>
+                  <div class="list-block media-list tablet">
+                      <ul id="espaco-cont"></ul>
+                  </div>
+              </div>
+          </div>
+
+          <!-- espaco conteudo -->
+          <div data-page="agendacont" class="page cached">
+
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                    <div class="center">AGENDA</div>
+                    <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+                </div>
+              </div>
+
+              <div class="page-content">
+                <div class="content-block no-padding">
+                  <div class="list-block-cont media-list tablet">
+                    <ul id="agendacont-cont"></ul>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- noticias -->
+          <div data-page="noticias" class="page cached">
+
+              <div class="navbar">
+                  <div class="navbar-inner">
+                      <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                      <div class="center">NOTÍCIAS</div>
+                      <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+                  </div>
+              </div>
+       
+              <div class="page-content noticias pull-to-refresh-content">
+                  <div class="pull-to-refresh-layer">
+                      <div class="preloader"></div>
+                      <div class="pull-to-refresh-arrow"></div>
+                  </div>
+                  <div class="content-block no-padding">
+                      <div class="list-block media-list tablet">
+                          <ul id="noticias-cont" class="internal-page-cont"></ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- notícias conteudo -->
+          <div data-page="noticiascont" class="page cached">
+
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                    <div class="center">NOTÍCIAS</div>
+                    <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+                </div>
+              </div>
+
+              <div class="page-content">
+                <div class="content-block no-padding" style="padding: 0!important;">
+                  <div class="list-block-cont media-list tablet noticiascont-cont">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- ofertas -->
+          <div data-page="listofertas" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome"><img src="images/logo-white-brasao.png"></div>
+                  <div class="right no-margin"><a href="#filter" class="link icon-only"><i class="icon fa fa-filter"></i></a></div>
+                  <div class="right iconRight"><a href="#home" class="link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content ofertasHome pull-to-refresh-content">
+              <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+              </div>
+              <div class="content-block">
+                <div class="list-block media-list tablet">
+                  <ul id="ofertashome-cont"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- filter -->
+          <div data-page="filter" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                <div class="center nameHome"><img src="images/logo-white-brasao.png"></div>
+                  <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content tablet">
+              <!--<div id="console"></div>-->
+              <div id="menuhome" class="menuhome list-block nomargin font13">
+                <ul>
+                    <li class="menugastronomia">
+                        <a href="#listofertas" onclick="ofertas('11');" class="item-link"><i class="icon fa fa-cutlery fa-3x badgecomunicado"></i><br>GASTRONOMIA</a>
+                    </li>
+                    <li class="menuservicos">
+                        <a href="#listofertas" class="item-link" onclick="ofertas('9');"><i class="icon fa fa-cogs fa-3x"></i><br>SERVIÇOS</a>
+                    </li>
+                    <li class="menuestetica">
+                        <a href="#listofertas" class="item-link" onclick="ofertas('2');"><i class="icon fa fa-female fa-3x"></i><br>ESTÉTICA</a>
+                    </li>
+                    <li class="menueventos">
+                        <a href="#listofertas" class="item-link" onclick="ofertas('3');"><i class="icon fa fa-shopping-bag fa-3x"></i><br>VESTUÁRIO</a>
+                    </li>
+                    <li class="menuprodutos">
+                        <a href="#listofertas" onclick="ofertas('10');" class="item-link"><i class="icon fa fa-shopping-cart fa-3x"></i><br>PRODUTOS</a>
+                    </li>
+                    <li class="menuviagens">
+                        <a href="#listofertas" onclick="ofertas('20');" class="item-link"><i class="icon fa fa-building fa-3x"></i><br>IMÓVEIS</a>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- beneficio apresentacao-->
+          <div data-page="bemapresentacao" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">Clube CAU/PE</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet" style="padding: 0!important">
+                <div class="headerImgLogin no-padding">
+
+                </div>
+                <div class="infoContatos">
+                  O Clube CAU/PE é um programa de benefícios para os arquitetos e urbanistas registrados no CAU/PE. São descontos e vantagens na aquisição de produtos e serviços em diversos estabelecimentos.<br><br>
+
+                  Para participar é preciso estar devidamente registrado no CAU/PE, com a anuidade em dia e apresentar a carteira de identidade funcional.<br><br>
+
+                  Algumas empresas estendem as vantagens a colaboradores e familiares do profissional. Confira as regras com cada estabelecimento. <br><br>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- beneficio parceiro-->
+          <div data-page="bemparceiro" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">Seja nosso parceiro</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet" style="padding: 0!important">
+                <div class="headerImgLogin no-padding">
+                </div>
+                <div class="infoContatos">
+                  Para aderir ao Clube CAU/PE a empresa deve entrar em contato com o Conselho e formalizar o contrato definindo as regras de concessão dos benefícios que serão concedidos aos profissionais.<br><br>
+                   E-mail: <a href="#" onclick="window.open('mailto:renata.tavares@caupe.gov.br','_system')">renata.tavares@caupe.org.br</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- meus cupons -->
+          <div data-page="meuscupons" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome nameofertasCupons">BENEFÍCIOS SALVOS</div>
+                  <div class="right"><a href="#home" class="link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+   
+            <div class="page-content scroll-submenu-meuscupons">
+              <div class="content-block scroll-ofertascont">
+                <div class="list-block media-list tablet scroll-tab">
+                  <div class="meuscupons-baixados">
+                    <ul id="meuscupons-baixados-cont" class="baixados-meuscupons"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ofertas conteudo -->
+          <div data-page="ofertascont" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome nameofertascont"></div>
+                  <div class="right"><a href="#" class="back link link-back icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+            
+            <div class="speed-dial">
+              <!-- FAB inside will open Speed Dial actions -->
+              <a href="#" class="floating-button">
+                <!-- First icon is visible when Speed Dial actions are closed -->
+                <i class="icon icon-plus"></i>
+                <!-- Second icon is visible when Speed Dial actions are opened -->
+                <i class="icon icon-close"></i>
+              </a>
+              <!-- Speed Dial Actions -->
+              <div class="speed-dial-buttons">
+                <!-- First Speed Dial button -->
+                <a href="#" class="bg-green color-speed-green share">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+                <!-- Second Speed Dial  button -->
+                <a href="#" class="bg-brown color-speed-brown ir">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-leanpub fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+                <!-- Third Speed Dial  button -->
+                <a href="#" class="bg-indigo color-speed-indigo fone">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="page-content scroll-submenu-oferta">
+              <div class="content-block scroll-ofertascont">
+                <div class="list-block-cont media-list tablet scroll-tab">
+                  <div id="ofertascont-cont">
+                  </div>
+                  <div class="toolbar tabbar sub-menu-oferta">
+                    <div class="toolbar-inner">
+                          <a href="#tab1" class="oferta-opcoes tab-link">Opções</a>
+                          <a href="#tab2" class="tab-link oferta-descricao">Descrição</a>
+                          <!--<a href="#tab3" class="tab-link oferta-regras">Regras</a>-->
+                          <a href="#tab4" class="tab-link oferta-local">Endereço</a>
+                    </div>
+                  </div>
+                  <div class="tabs-swipeable-wrap tabs-animated-wrap">
+                      <div class="tabs">
+                          <div id="tab1" class="page-content tab sub-menu-oferta-tab tab-oferta-opcoes">
+                              <div class="content-block opcoes-oferta">
+                              </div>
+                          </div>
+                          <div id="tab2" class="page-content tab sub-menu-oferta-tab tab-oferta-descricao">
+                              <div class="content-block descricao-oferta"></div>
+                          </div>
+                          <!--<div id="tab3" class="page-content tab sub-menu-oferta-tab tab-oferta-regras">
+                              <div class="content-block regras-oferta"></div>
+                          </div>-->
+                          <div id="tab4" class="page-content tab sub-menu-oferta-tab tab-oferta-local">
+                              <div class="content-block local-oferta"></div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="buttons-row button-cupom"></p>
+          </div>
+
+          <!-- maps -->
+          <div data-page="maps" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">MAPA DE PARCEIROS</div>
+                  <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+   
+            <div class="page-content maps">
+                <div id="map"></div>
+            </div>
+          </div>
+
+
+          <!-- biometria-->
+          <div data-page="biometria" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">BIOMETRIA</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet" style="padding: 0!important">
+                <div class="infoContatos">
+                  A coleta de dados biométricos dos profissionais para confecção das carteiras de identidade profissional pode ser feita na sede do CAU/PE, das 8h às 14h, de segunda a sexta-feira. <br><br>
+
+                  O agendamento deve ser feito pelo O Sistema de Informação e Comunicação do CAU (SICCAU).<br><br>
+
+                  Clique no botão abaixo para realizar o agendamento. <br>
+                  Redirecionaremos você para o formulário de Agendamento Online do CAU/BR.<br>
+                  <p class="buttons-row">
+                    <a href="https://servicos.caubr.org.br/" class="link external button button-big button-fill button-raised color-green" target="_blank">AGENDAR BIOMETRIA</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- fiscalizacao-->
+          <div data-page="fiscalizacao" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">FISCALIZAÇÃO</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet" style="padding: 0!important">
+                <div class="headerImgLogin no-padding">
+
+                </div>
+                <div class="infoContatos">
+                  O CAU/PE desenvolve um programa permanente de fiscalizações educativas, cumprindo sua missão educar e orientar. <br><br>
+
+                  Denúncias podem ser encaminhadas para: <br><br>
+                  <strong>E-mail:</strong> <a href="#" onclick="window.open('mailto:fiscalizacao@caupe.gov.br','_system')">fiscalizacao@caupe.gov.br</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- sala-->
+          <div data-page="sala" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">SALAS PARA ARQUITETOS</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet" style="padding: 0!important">
+                <div class="headerImgLogin no-padding">
+
+                </div>
+                <div class="infoContatos">
+                  O CAU/PE disponibiliza, gratuitamente, sala para reunião ou atendimento do profissional registrado com seus clientes.<br><br>
+                  O espaço conta com toda a infraestrutura necessária (acesso à internet). <br><br>
+
+                  <strong>Reservas:</strong> <br><br>
+                  <strong>E-mail:</strong> <a href="#" onclick="window.open('mailto:fiscalizacao@caupe.gov.br','_system')">fiscalizacao@caupe.gov.br</a> <br><br>
+                  <strong>Fone:</strong> <a href="#" onclick="window.open('tel:(81) 3040-4004')">(81) 3040-4004</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- parceiro-->
+          <div data-page="denuncias" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">SEJA PARCEIRO</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet" style="padding: 0!important">
+                <div class="infoContatos">
+<p>Documentação necessária</p>
+<strong>Da empresa:</strong> CNPJ, Razão Social, Nome Fantasia, Endereço;<br>
+<strong>De um dos sócios:</strong> Nome, Estado Civil, Profissão, CPF, RG e Endereço Pessoal;<br>
+Proposta e condições dos benefícios a serem oferecidos aos associados da CAAPE / OAB-PE;<br>
+Logomarca da empresa em imagem de alta resolução (JPG ou PNG) ou em vetor (arquivos do CorelDRAW ou Illustrator).<br><br>
+Para se tornar um conveniado, nos encaminhe uma proposta de benefício com a apresentação da empresa, junto com a documentação.<br><br>
+A proposta será analisada pela diretoria e uma vez aprovada, providenciaremos o contrato de convênio que deverá ser assinada em três vias e devolvido no menor prazo possível, para que possamos dar continuidade às demais assinaturas, após isso retornaremos uma das vias a VSª.<br>
+Clique no botão abaixo para realizar seu cadastro. <br>
+                  <p class="buttons-row">
+                    <a href="https://www.caape.org.br/seja-um-parceiro/" class="link external button button-big button-fill button-raised color-red" target="_blank">SAJA PARCEIRO</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- fale conosco-->
+          <div data-page="faleconosco" class="page cached">
+
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                    <div class="center">FALE CONOSCO</div>
+                    <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+                </div>
+              </div>
+
+              <div class="page-content">
+                  <div class="content-block tablet">
+                    <div class="headerImgLogin">
+                      <a href="#" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Rua Rui Calaça, Número 54 Espinheiro, Recife - PE, 52020-110', '_system')"><img src="https://maps.googleapis.com/maps/api/staticmap?size=480x300&zoom=18&markers=icon:http://www.bynn.es/caupe/admin/img/maker-caupe.png|Rua Rui Calaça, Número 54 Espinheiro, Recife - PE, 52020-110&key=AIzaSyAB8ZuJzAX2m3xRhNhXFu9b654LvOgPOHg"></a>
+                    </div>
+                      <div class="headerTxtParticipe">
+                        <p><a href="#" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Rua Rui Calaça, Número 54 Espinheiro, Recife - PE, 52020-110', '_system')">Rua Rui Calaça, Número 54, Espinheiro, Recife - PE, CEP: 52020-110</a></p>
+
+                        <p>Telefone: <a href="#" onclick="window.open('tel:813223-0902')">81 3223-0902</a><br>
+                        Fax: <a href="#" onclick="window.open('tel:813231-4121')">81 3231-4121</a></p>
+
+                        Envie sua Opnião, Sugestão ou Reclamação.
+                      </div>
+                      <div class="list-block">
+                      <form id="forminserirparticipe">
+                          <ul>
+                              <li>
+                                <div class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title label">Assunto</div>
+                                    <div class="item-input">
+                                    <input type="hidden" id="txtparticipenomepolitico" value="CAU/PE">
+                                    <input type="hidden" id="txtparticipeemaildestino" value="johnnysonaraujo@gmail.com">
+                                      <select id="txtparticipeassunto">
+                                        <option value="">Selecione</option>
+                                        <option value="Opnião">Opnião</option>
+                                        <option value="Opnião">Sugestão</option>
+                                        <option value="Opnião">Reclamação</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+
+                              <li class="align-top">
+                              <div class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title label">Nome</div>
+                                    <div class="item-input">
+                                        <input type="text" id="txtparticipenome" onKeyUp="tabenter(event,getElementById('txtparticipeemail'))" placeholder="Digite seu nome" required="required">
+                                    </div>
+                                </div>
+                              </div>
+                              </li>
+
+                              <li class="align-top">
+                              <div class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title label">Email</div>
+                                    <div class="item-input">
+                                        <input type="email" id="txtparticipeemail" onKeyUp="tabenter(event,getElementById('txtparticipetelefone'))" placeholder="Digite seu email" required="required">
+                                    </div>
+                                </div>
+                              </div>
+                              </li>
+
+                              <li class="align-top">
+                              <div class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title label">Telefone</div>
+                                    <div class="item-input">
+                                        <input type="text" id="txtparticipetelefone" onKeyUp="tabenter(event,getElementById('txtparticipemensagem'))" placeholder="Digite seu telefone" required="required">
+                                    </div>
+                                </div>
+                              </div>
+                              </li>
+
+                              <li class="align-top">
+                                <div class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title label">Mensagem</div>
+                                    <div class="item-input">
+                                        <textarea class="resizable" id="txtparticipemensagem"></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+
+                              <li class="align-top">
+                              <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <p class="buttons-row">
+                                          <a href="#" class="button-form-participe button button-submit button-big button-fill button-raised color-green button-full-margin">ENVIAR</a>
+                                        </p>
+                                    </div>
+                                </div>
+                              </div>
+                              </li>
+
+                          </ul>
+                        </form>
+                      </div>               
+                  </div>
+              </div>
+          </div>
+
+
+          <!-- perguntas frequentes-->
+          <div data-page="perguntas" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">PERGUNTAS FREQUENTES</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet">
+                <div class="facebook-title">Para esclarecer suas dúvidas clique nos temas abaixo:</div>
+                <div class="list-block accordion-list">
+                  <ul>
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">CONTATOS DOS CAU/UF</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">1. CAU/AC</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua João Donato, nº 32 - Centro<br>
+                                    CEP: 69.900-345 - Rio Branco/AC<br>
+                                    Telefone(s): (68) 3222-8961<br>
+                                    E-mail: atendimento@cauac.gov.br</br>
+                                    Horário de funcionamento: das 09h às 19h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">2. CAU/AL</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua José Afonso de Melo, nº 118, Ed. Harmony Trade Center II Sala 519 - Jatiúca<br>
+                                    CEP: 57.036-510 - Maceió/AL.<br>
+                                    Telefone(s): (82) 3313-3508 / (82) 3313-3506<br>
+                                    E-mail: atendimento@caual.gov.br<br>
+                                    Horário de funcionamento: das 13h às 19h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">3. CAU/AM</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Carlos Lacerda, nº 105, Conjunto Celetramazon - Adrianópolis<br>
+
+                                    CEP: 69.057-410 - Manaus/AM<br>
+                                    Telefone(s): (92) 3302-2959<br>
+
+                                    E-mail: atendimento@cauam.gov.br<br>
+                                    Horário de funcionamento: das 08h às 14h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">4. CAU/AP</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Equatorial, nº 2265 - Jardim Marco Zero<br>
+
+                                    CEP: 68.903-361 - Macapá/AP<br>
+
+                                    Telefone(s): (96) 3223-6194<br>
+
+                                    E-mail: atendimento@cauap.gov.br<br>
+
+                                    Horário de funcionamento: das 08h às 18h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">5. CAU/BA</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Território do Guaporé, nº 218 – Pituba<br>
+
+                                    CEP: 41.830-520 - Salvador/BA<br>
+                                    Telefone(s): (71) 3032-2080 / 2081<br>
+
+                                    E-mail: atendimento@cauba.gov.br<br>
+
+                                    Horário de funcionamento: 08:30h às 18h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">6. CAU/CE</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Av. Santos Dumont, n° 2626, Ed. Plaza Power, Loja 15 - Bairro Aldeota<br>
+
+                                    CEP: 60.150-161 - Fortaleza/CE<br>
+                                    Telefone(s): (85) 3055-6440<br>
+
+                                    E-mail: atendimento@cauce.gov.br<br>
+
+                                    Horário de funcionamento: 09h às 13h30<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">7. CAU/DF</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: SEPS 705/905, Bloco A, Centro Empresarial Santa Cruz, Salas 401 a 406 - Asa Sul<br>
+
+                                    CEP: 70.390-055 - Brasília/DF<br>
+                                    Telefone(s): (61) 3222-5176<br>
+
+                                    E-mail: atendimento@caudf.gov.br<br>
+
+                                    Horário de funcionamento: 09h às 15h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">8. CAU/ES</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Hélio Marconi, nº 58 - Bento Ferreira<br>
+
+                                    CEP: 29.055-721 - Vitória/ES<br>
+                                    Telefone(s): (27) 3224-4850<br>
+                                    E-mail: atendimento@caues.gov.br<br>
+
+                                    Horário de funcionamento: 13h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">9. CAU/GO</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Av. Engº Eurico Viana nº 25, Qd-4  Lt-1-E, Ed. Concept Office, Salas 301-309, Vila Maria José.<br>
+
+                                    CEP: 74.815-465 - Goiânia/GO.<br>
+                                    Telefone(s): (62) 3095-4655<br>
+
+                                    E-mail: atendimento@caugo.gov.br<br>
+
+                                    Horário de funcionamento: 10h às 16h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">10. CAU/MA</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua dos Abacateiros, nº 01, Ed. Rio Anil, Lojas 03/04 - Jardim São Francisco<br>
+
+                                    CEP: 65.076-010 - São Luís/MA<br>
+                                    Telefone(s): (98) 3268-7572 / 3199-5247<br>
+
+                                    E-mail: atendimento@cauma.gov.br<br>
+
+                                    Horário de funcionamento: 13h às 19h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">11. CAU/MG</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Paraíba, nº 966, 12º andar – Savassi<br>
+
+                                    CEP: 30.130-141 - Belo Horizonte/MG<br>
+                                    Telefone(s): (31) 2519-0950<br>
+
+                                    E-mail: atendimento@caumg.gov.br<br>
+
+                                    Horário de funcionamento: 08h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">12. CAU/MS</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Espirito Santo, nº 205 - Jardim dos Estados<br>
+
+                                    CEP 79.020-080 - Campo Grande/MS<br>
+                                    Telefone(s): (67) 3306-7848/ 3306-3252<br>
+
+                                    E-mail: atendimento@caums.gov.br<br>
+
+                                    Horário de funcionamento: 08h às 18h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">13. CAU/MT</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Historiador Rubens de Mendonça n° 2.368, Ed. Top Tower, Salas 101/103 - Jardim Aclimação<br>
+
+                                    CEP: 78.050-000 - Cuiabá/MT<br>
+                                    Telefone(s): (65) 3028-4652 / 3028-1100<br>
+
+                                    E-mail: atendimento@caumt.gov.br<br>
+
+                                    Horário de funcionamento: 12h às 18h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">14. CAU/PA</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Cônego Jerônimo Pimentel, nº 968 - Bairro Umarizal<br>
+
+                                    CEP: 60.055-000 - Belém/PA.<br>
+                                    Telefone(s): (91) 3348-4953 / 3348-4954<br>
+
+                                    E-mail: atendimento@caupa.gov.br<br>
+
+                                    Horário de funcionamento: 08h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">15. CAU/PB</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Guarabira, n° 1200, 2° andar – Manaíra<br>
+
+                                    CEP: 58.038-142 - João Pessoa/PB<br>
+                                    Telefone(s): (83) 3221-8993 / 9326-5220<br>
+
+                                    E-mail: atendimento@caupb.gov.br<br>
+
+                                    Horário de funcionamento: 08h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">16. CAU/PE</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Rui Barbosa, nº 1363, Empresarial Ponte d´Uchôa, Sala 213 - Bairro das Graças<br>
+
+                                    CEP 52050-000 - Recife/PE<br>
+                                    Telefone(s): (81) 3040-4004 / 3423-0486<br>
+
+                                    E-mail: atendimento@caupe.gov.br<br>
+
+                                    Horário de funcionamento: 08h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">17. CAU/PI</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Areolino de Abreu, nº 2103 - Centro<br>
+
+                                    CEP: 64.000-180 - Teresina/PI<br>
+                                    Telefone(s): (86) 3222-1920<br>
+
+                                    E-mail: atendimento@caupi.gov.br<br>
+
+                                    Horário de funcionamento: 08h às 14h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">18. CAU/PR</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Nossa Senhora da Luz, 2530 - Alto da Rua XV<br>
+
+                                    CEP: 80.045-360 - Curitiba/PR<br>
+                                    Telefone(s): (41) 3218-0200<br>
+
+                                    E-mail: atendimento@caupr.gov.br<br>
+
+                                    Horário de funcionamento: 09h às 18h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">19. CAU/RJ</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida República do Chile, 230, 23º Andar - Centro<br>
+
+                                    CEP 20.031-170 - Rio de Janeiro/RJ<br>
+
+                                    Telefone(s): (21) 3916-3925<br>
+                                    E-mail: atendimento@caurj.gov.br<br>
+                                    Horário de funcionamento: 09h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">20. CAU/RN</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Conselheiro Morton Faria, nº 1448, Ed. Griffe Point, Sala 208 - Lagoa Nova<br>
+
+                                    CEP: 59.075-730 - Natal/RN.<br>
+                                    Telefone(s): (84) 2010-2614 / 9126-4301<br>
+
+                                    E-mail: atendimento@caurn.gov.br<br>
+                                    Horário de funcionamento: 08h às 14h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">21. CAU/RO</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Carlos Gomes, n° 1223, Porto Shopping, Sala 207<br>
+
+                                    CEP: 76.801-123 - Porto Velho/RO.<br>
+                                    Telefone(s): (69) 3229-2070 / 3221-3758<br>
+
+                                    E-mail: atendimento@cauro.gov.br<br>
+
+                                    Horário de funcionamento: 08h às 14h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">22. CAU/RR</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Santos Dumont, n° 1952 - Bairro 31 de Março<br>
+
+                                    CEP: 69.305-340 - Boa Vista/RR<br>
+                                    Telefone(s): (95) 3224-2967<br>
+
+                                    E-mail: atendimento@caurr.gov.br <br>
+                                    Horário de funcionamento: 07h30 às 13h30<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">23. CAU/RS</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Dona Laura, nº 320, Ed. Centro Empresarial La Defense, 14º Andar - Bairro Rio Branco<br>
+
+                                    CEP: 90.430-090 - Porto Alegre/RS<br>
+                                    Telefone(s): (51) 3094-9800<br>
+
+                                    E-mail: atendimento@caurs.gov.br<br>
+                                    Horário de atendimento: 09h às 17hc
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">24. CAU/SC</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Avenida Prefeito Osmar Cunha, nº 260, Ed. Royal Business Center, 6º andar – Centro<br>
+
+                                    CEP: 88.015-100 - Florianópolis/SC<br>
+                                    Telefone(s): (48) 3225-9599<br>
+
+                                    E-mail: atendimento@causc.gov.br<br>
+
+                                    Horário de atendimento: 11h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">25. CAU/SE</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua José Calumby, nº 155, Centro Empresarial Fernanda Machado, Salas 01/02 - Bairro Suíssa<br>
+
+                                    CEP 49.050-020 - Aracaju/SE<br>
+                                    Telefone(s): (79) 3255-1503 / 3211-4146<br>
+
+                                    E-mail: atendimento@cause.gov.br<br>
+
+                                    Horário de Atendimento: 08h às 12h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">26. CAU/SP</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Rua Formosa, n° 367, 23° Andar – Centro<br>
+
+                                    CEP: 01.049-000 - São Paulo/SP<br>
+                                    Telefone(s): (11) 3014-5900<br>
+                                    E-mail: atendimento@causp.gov.br<br>
+
+                                    Horário de Atendimento: 09h às 17h<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                           <li class="accordion-item">
+                              <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title">27. CAU/TO</div>
+                                </div>
+                              </a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  <p>
+                                    Endereço: Quadra 103 Sul, Rua SO 5,  Lote 12, Salas 104/105<br>
+
+                                    CEP: 77.015-018 - Palmas/TO<br>
+
+                                    Telefone(s): (63) 3026-1800 / 3026-1900<br>
+
+                                    E-mail: atendimento@cauto.gov.br<br>
+
+                                    Horário de Atendimento: 12h30 às 18h30<br>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">ACESSO AO SICCAU</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. O que preciso ter instalado no meu computador para acessar o SICCAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Com o número do seu CPF e a SENHA em mãos, você poderá ter acesso ao sistema. <br><br>
+
+                                  É necessário que o seu computador possua conexão ativa à internet e tenha instalado um dos navegadores compatíveis com o sistema SICCAU. Dentre os navegadores que possuem essas características, os mais populares existentes no mercado são o “Google Chrome”, o “Mozilla Firefox”, e o "Internet Explorer", que deverão estar atualizados. Caso não possua um desses navegadores, é possível encontrá-los facilmente através de busca na internet ou acessando os sites www.google.com/chrome, para baixar o Google Chrome; www.mozilla.org/firefox, para baixar o Mozilla Firefox; e www.windows.microsoft.com/pt-br/internet-explorer/download-ie, para o Internet Explorer.
+                                </div>
+                              </div>
+                            </li>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Sou um profissional que possuia registro no Crea, mas nÃ£o possuo acesso ao SICCAU. Como resolver?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Na importação dos dados do Crea para o CAU, o seu cadastro pode não ter sido enviado. Para que a situação seja regularizada, acesse o site: https://servicos.caubr.gov.br/, clique no link "Solicitar Registro Profissional" e preencha o formulário, anexando os documentos listados. Após aprovação dos documentos pelo CAU/UF, seu cadastro será deferido e você receberá uma mensagem por e-mail com seu número de registro e senha para acessar seu ambiente profissional no SICCAU.
+                                </div>
+                              </div>
+                            </li>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Minha empresa possuía o registro no Crea, mas ainda não consta no cadastro do CAU. Como resolver?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Na importação dos dados do Crea para o CAU, o registro de sua empresa pode não ter sido enviado.  Para que a empresa seja cadastrada, esta será registrada no CAU de acordo com o que determina o Artigo 4º da Resolução CAU/BR Nº 28. <br><br>
+                                  Para efetuar o registro, acesse a página https://servicos.caubr.gov.br/, clique no link "Solicitar Registro de Empresa" e preencha o formulário eletrônico, anexando a Certidão de Registro e Quitação de Pessoa Jurídica (CRQPJ), ou documento equivalente, em cópia frente e verso, no formato digital – PDF ou JPG, com tamanho de até 2MB. Se aparecer a mensagem "Este CNPJ já está cadastrado", a empresa deve encaminhar a documentação por e-mail para atendimento@cauUF.gov.br (substituindo UF pela sigla do seu estado).<br><br>
+                                  Após a análise e validação dos documentos, o requerente receberá um e-mail com senha para acessar o SICCAU. A apresentação da comprovação de registro no Crea (Certidão) determinará a data de registro no CAU, retroativa, considerando o seu tempo de registro no conselho anterior. <br>
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">ALTERAÇÃO DE DADOS CADASTRAIS</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Posso alterar meus dados cadastrais? Como fazer?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Você pode alterar os seguintes dados no seu ambiente profissional: <br><br>
+
+                                  - Senha de acesso;<br>
+                                  - E-mail;<br>
+                                  - Telefone;<br>
+                                  - Endereço.<br><br>
+
+                                  Sempre observe se os seus dados cadastrais estão consistentes e completos no site do CAU, acessando o https://servicos.caubr.gov.br/ e fazendo o login com seu CPF ou CNPJ e senha. Caso encontre alguma dessas informações vazias ou inconsistentes, favor utilizar a opção “Ferramentas - Alterar Dados Pessoais”, que permitirá complementar ou atualizar os seus dados. <br><br>
+
+                                  Se houver algum dado a ser alterado diferente dos citados acima, entre em contato com o CAU pelo e-mail atendimento@cauUF.gov.br (substituindo UF pela sigla do seu estado). Para os campos que não estão disponíveis para mudanças - como nome, estado civil e data de nascimento - é necessário encaminhar cópia digital de documento que comprove a veracidade da solicitação.
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">REGISTRO PROFISSIONAL</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Sou recém-formado. Como faço meu registro?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O CAU/BR já cadastrou todas as Instituições de Ensino Superior (IES) de Arquitetura e Urbanismo do país. O processo é iniciado online, no SICCAU (Sistema de informação e Comunicação do CAU), pelos coordenadores de curso. <br><br>
+
+                                  O novo arquiteto e urbanista precisa apenas protocolar a solicitação de seu registro no SICCAU (https://servicos.caubr.gov.br/), com cópias digitais (de até 10MB) dos seguintes documentos:<br><br>
+
+                                  1. Carteira de Identidade (RG); <br>
+                                  2. CPF; <br>
+                                  3. Portaria de reconhecimento do curso; <br>
+                                  4. Comprovante de quitação com o Serviço Militar (para sexo masculino); <br>
+                                  5. Comprovante de residência (água, luz ou telefone); <br>
+                                  6. Prova de regularidade com a Justiça Eleitoral; <br>
+                                  7. Histórico escolar de graduação; <br>
+                                  8. Diploma ou certificado de conclusão do curso. <br>
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Sou técnica em edificações e também arquiteta e urbanista. Como faço com meu registro?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Caso opte por exercer as duas atividades, será necessário manter seu registro nos dois conselhos (CAU e Crea).<br><br>
+                                  O CAU abriga exclusivamente profissionais arquitetos e urbanistas graduados.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Posso inativar temporariamente o meu registro e não pagar a anuidade corrente?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Para profissionais que precisam requerer a "interrupção de registro" no CAU: <br><br>
+
+                                  A Lei 12.378/2010 prevê "interrupção", "suspensão" ou "cancelamento" de registro profissional, conforme estabelece a Resolução n° 18 do CAU/BR. <br><br>
+
+                                  O pedido é totalmente online, pela aba “Protocolos/Cadastrar Protocolo” via SICCAU. Clique aqui para acessar o tutorial completo.<br><br>
+
+                                  A Resolução n° 18 do CAU/BR, define as condições para interrupção de registro aos profissionais que, temporariamente, não pretendem exercer a profissão:<br><br>
+
+                                  - Esteja em dia com suas obrigações perante o CAU, inclusive as referentes ao ano do requerimento;<br>
+                                  - Não ocupe cargo ou emprego para o qual é exigida a formação de arquiteto e urbanista ou para cujo concurso fosse necessário o título de arquiteto e urbanista;<br>
+                                  - Não tenha autuação em processo de infração tramitando no CAU do Estado ou CAU/BR, ou aos dispositivos do Código de Ética e Disciplina ou da Lei 12.378/2010.<br><br>
+
+                                  Quando disponível no SICCAU, o requerimento será instruído com os seguintes documentos:<br><br>
+
+                                  - Declaração de que não exercerá a atividade na área de sua formação profissional durante a interrupção do registro;<br>
+                                  - Comprovação de baixa ou da inexistência de Registro de responsabilidade Técnica (RRT) referentes a serviços executados ou em execução, registrados no CAU.<br><br>
+
+                                  Os documentos serão então encaminhados para análise do CAU de seu estado.<br><br>
+
+                                  A interrupção solicitada tem prazo indeterminado e a reativação depende de solicitação do profissional, que pode requerê-la a qualquer momento.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">4. Estava com o meu registro inativo no Crea. Como fica?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O CAU/BR determinou que os profissionais que já tinham, comprovadamente, o registro inativo - "cancelado", "suspenso" ou "interrompido" - no Crea, têm o seu registro na mesma situação, de forma automática, no CAU.
+                                </div>
+                              </div>
+                            </li>
+
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">REGISTRO DE PESSOA JURÍDICA</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. O que devo fazer para registrar uma empresa no CAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  - Acessar o SICCAU (https://servicos.caubr.gov.br/) <br>
+                                  - Na aba “acesso rápido”  e clicar em “Solicitar Registro de Empresa”<br>
+                                  - Preencher o requerimento de pessoa jurídica, respeitando os campos obrigatórios;<br>
+                                  - Anexar os documentos necessários para o registro (em formato digital – PDF ou JPG, com até 10MB):<br><br>
+
+                                  a)     Ato constitutivo, contrato social ou estatuto devidamente registrado na junta comercial, quando for o caso, incluindo as alterações ou quando houver consolidação, incluindo esta e alterações posteriores;<br>
+
+                                  b) Comprovante de inscrição no Cadastro Nacional de Pessoas Jurídicas (CNPJ) junto ao órgão da Receita Federal;<br>
+
+                                  c) Comprovação de vínculo do responsável técnico com a pessoa jurídica (carteira de trabalho previdência social (CTPS); contrato de prestação de serviços; portaria de nomeação ou contrato social, nos casos do(s) arquiteto(s) responsável(eis) ser(em) sócio(s) da empresa;<br>
+
+                                  d) Registro de Responsabilidade Técnica (RRT) com atividade de Desempenho de Cargo ou Função Técnica do arquiteto e urbanista responsável, a ser feito no próprio SICCAU (https://servicos.caubr.gov.br/) pelo profissional.<br>
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Quais os critérios para registrar minha empresa no CAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Conforme estabelece a Resolução CAU/BR Nº 28, que trata de registro de pessoa jurídica, devem ser registradas no CAU: <br><br>
+
+                                  I - as pessoas jurídicas que tenham por objetivo social o exercício de atividades profissionais privativas de arquitetos e urbanistas;<br>
+
+                                  II - as pessoas jurídicas que tenham em seus objetivos sociais o exercício de atividades privativas de arquitetos e urbanistas cumulativamente com atividades em outras áreas profissionais não vinculadas ao Conselho de Arquitetura e Urbanismo;<br>
+
+                                  III - as pessoas jurídicas que tenham em seus objetivos sociais o exercício de atividades de arquitetos e urbanistas compartilhadas com outras áreas profissionais, cujo responsável técnico seja arquiteto e urbanista.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Sou responsável técnico por uma empresa que tem sócios arquitetos e engenheiros. Como devo proceder?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Empresas de composição (sócios e objeto social) ‘mista’ devem ser registradas tanto no CAU e quanto no Crea. 
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">CARTEIRA PROFISSIONAL</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. O que é preciso para emissão da minha carteira profissional?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  a) Realizar a atualização cadastral pelo SICCAU (https://servicos.caubr.gov.br/); <br>
+
+                                  b) Realizar a coleta biométrica no CAU de seu estado e levar os seguintes documento originais: documento de identidade, CPF, título de eleitor, comprovante de residência, comprovante de tipo sanguíneo (se houver) e diploma;<br>
+
+                                  c) Realizar o pagamento da taxa para emissão da carteira (R$ 49,82) – o boleto está disponível para impressão via SICCAU.<br>
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Quanto tempo leva para receber minha carteira profissional?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A partir da realização dos três procedimentos do item 1, a carteira profissional levará até 120 dias para chegar no endereço registrado no SICCAU. Se demorar mais, entre em contato com o CAU de seu estado por telefone ou envie um e-mail para o endereço atendimento@cauUF.gov.br (substituindo UF pela sigla do seu estado).
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Receberei a carteira profissional diretamente na minha casa?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A carteira profissional chegará ao endereço cadastrado no SICCAU (https://servicos.caubr.gov.br/) como “Endereço de correspondência”. Nos casos em que o entregador dos Correios não encontrar o interessado, a carteira será entregue na sede do CAU/UF.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">4. O que é preciso para a emissão de segunda via da carteira profissional?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  a) Em casos de extravio, roubo ou perda da carteira: <br><br>
+
+                                  Cadastre um protocolo no seu ambiente profissional no SICCAU (https://servicos.caubr.gov.br/) descrevendo o motivo da solicitação e anexando o boletim de ocorrência.<br><br>
+
+                                  b) Em casos de dados errados ou inutilização na carteira:<br><br>
+
+                                  Cadastre um protocolo no seu ambiente profissional no SICCAU (https://servicos.caubr.gov.br/) anexando cópia digitalizada da carteira e descrevendo o motivo da solicitação.
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">ANUIDADE</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Qual o valor da anuidade para profissionais e empresas?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A definição deste valor é prevista no artigo 42, parágrafo 1o, da Lei 12.378/2010, que regulamentou o exercício da profissão no Brasil e criou o CAU/BR e os CAU/UF. A importância para 2017 de R$ 523,60 foi estabelecida a partir da aplicação de um reajuste de 7,39%, correspondente à variação do Índice Nacional de Preços ao Consumidor (INPC) calculado pelo Instituto Brasileiro de Geografia e Estatística (IBGE), conforme determinado pela referida Lei. O reajuste incidiu sobre a anuidade de 2016, que era de R$ 487,57. <br><br>
+
+                                  Alguns grupos de profissionais têm direito a descontos especiais:<br><br>
+
+                                  a) 50% de redução para arquitetos e urbanistas com até dois anos de formados;<br>
+                                  b) 50% de redução para arquitetos e urbanistas com mais de 30 anos de formados.<br>
+                                  c) Profissionais que já completaram 40 anos de contribuição (incluindo as anuidades pagas aos CREA) estão isentos do pagamento de anuidade.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Há desconto para pagamento da anuidade 2017 à vista? E possibilidades de parcelamento?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Sim. A opção para o pagamento à vista, com desconto de 10%, ou seja, R$ 471,24 (quatrocentos e setenta e hum reais e vinte e quatro centavos), deve ser feita necessariamente em janeiro de 2017, uma vez que é válida apenas até o último dia do mês. <br><br>
+
+                                  O profissional/empresa que preferir fazer o pagamento em até cinco parcelas, iguais e sucessivas, sem desconto, recolherá R$ 104,72 (cento e quatro reais e setenta e dois centavos) por mês, de janeiro a maio.<br><br>
+
+                                  A opção precisará ser registrada no SICCAU Profissional até 31/01/2017. O sistema disponibilizará o(s) boleto(s) para impressão com as datas de vencimentos (lembrando que se negociar no dia 31/01 a primeira parcela será para o mesmo dia). <br><br>
+
+                                  Após 31/01/2017, a alternativa do parcelamento continuará válida, podendo ser realizada a qualquer momento até 31/05, mas a quantidade de parcelas será decrescente a cada mês. Ou seja, se o profissional/empresa negociar em março, o sistema deverá disponibilizar o parcelamento apenas em três vezes.<br><br>
+
+                                  Se a parcela ficar em atraso ou vencida, profissional/empresa deverá acessar o SICCAU Profissional para atualizar a data de vencimento. Serão cobrados juros com base na Taxa Referencial do Sistema Especial de Liquidação e de Custódia (SELIC) e multa de mora, como determina a legislação vigente.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Meu boleto não veio com desconto de 50%, mesmo eu tendo menos de dois anos de formado ou mais de 30 anos de formado. Como resolver?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Acesse seu ambiente profissional pelo SICCAU (https://servicos.caubr.gov.br/) e gere o boleto. O sistema calculará automaticamente o valor correspondente. Caso o desconto não esteja correto, entre em contato com a Central de Atendimento: <br><br>
+
+                                  Teleatendimento: 0800-883-0113 (ligação gratuita) ou 4007-2613 (para celulares)<br>
+                                  Atendimento Online: http://www.caubr.gov.br/atendimento<br>
+                                  E-mail: atendimento@caubr.gov.br<br>
+                                  Ouvidoria do CAU/BR: ouvidoriacaubr@caubr.gov.br<br><br>
+
+                                  É importante observar que o cálculo da anuidade leva em conta o ano todo na definição do valor. Dessa maneira, o desconto é dado proporcionalmente até o mês que o profissional completa 2 ou 30 anos de formado – fora desse prazo, o valor passa a ser integral.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">4. Não recebi o boleto da anuidade de 2017. Como proceder?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O CAU não envia boletos de anuidade por e-mail ou pelos correios. Os profissionais devem acessar seu ambiente profissional no SICCAU (https://servicos.caubr.gov.br/) e gerar o boleto correspondente à anuidade. Caso tenha dúvidas, por favor entre em contato com nossa Central de Atendimento: <br><br>
+
+                                  Teleatendimento: 0800-883-0113 (ligação gratuita) ou 4007-2613 (para celulares)<br>
+                                  Atendimento Online: http://www.caubr.gov.br/atendimento<br>
+                                  E-mail: atendimento@caubr.gov.br<br>
+                                  Ouvidoria do CAU/BR: ouvidoriacaubr@caubr.gov.br<br>
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">5. Não paguei anuidades anteriores. Como regularizar a situação?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O valor total do débito anterior a 31 de dezembro de 2016 poderá ser parcelado, por meio do SICCAU (serviços.caubr.gov.br), das seguintes formas: <br><br>
+
+                                  I – em até 10 (dez) vezes para dois exercícios em débito;<br>
+                                  II – em até 15 (quinze) vezes para três exercícios em débito;<br>
+                                  III – em até 20 (vinte) vezes para quatro exercícios em débito;<br>
+                                  IV – em até 25 (vinte e cinco) vezes para cinco exercícios em débito.<br><br>
+
+                                  No cálculo dos valores a pagar no parcelamento ou em pagamento à vista não incidirá a multa de mora, sendo somente considerados os juros equivalentes à variação da Taxa Referencial do Sistema Especial de Liquidação e de Custódia (SELIC), calculada desde o primeiro dia de atraso até o último dia do mês antecedente ao do pagamento, e juros de 1% (um por cento) no mês do pagamento.<br><br>
+
+                                  Havendo descumprimento do parcelamento, os valores correspondentes à multa dispensada nos termos deste artigo, considerados os percentuais aplicáveis na forma do art. 5º, inciso II, serão reincorporados nos valores a pagar correspondentes às parcelas restantes.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">6. O que acontece caso algum profissional deixe de pagar a anuidade?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Após o vencimento da anuidade, em 31 de maio, o profissional ou empresa que não tiver quitado a contribuição receberá uma notificação do CAU, informando que em 30 dias será aberto processo administrativo, o que poderá resultar em suspensão do registro. Após o processo administrativo de cobrança de anuidades atrasadas, o registro do profissional poderá ser suspenso por inadimplência. Contudo, as dívidas do arquiteto e urbanista ou da empresa não se extinguem, podendo ser refinanciadas pelos interessados. Caso não haja negociação, serão cobradas administrativamente, com posterior inscrição na Dívida Ativa para cobrança judicial. <br><br>
+
+                                  O arquiteto e urbanista só será passível de inscrição em dívida ativa após cobrança amigável frustrada e processo administrativo de cobrança, no qual ficará assegurado ao arquiteto e urbanista ou à pessoa jurídica o contraditório e a ampla defesa. O tema é regulamentado pela Resolução nº 121, de 19 de agosto de 2016, que dispõe sobre as anuidades e sobre a negociação de valores devidos aos Conselhos de Arquitetura e Urbanismo dos Estados e do Distrito Federal (CAU/UF) e dá outras providências:<br><br>
+
+                                  Uma vez suspenso o registro, este somente poderá ser reativado após o pagamento integral da dívida que lhe deu causa.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">7. Paguei minha anuidade e ainda estou sem acesso a algumas funcionalidades do SICCAU. Como resolver?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O período para compensação do pagamento é de até 2 (dois) dias úteis. Após esse prazo, entre em contato com o CAU de seu estado por telefone ou envie um e-mail para o endereço atendimento@cauUF.gov.br (substituindo UF pela sigla do seu estado).
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">8. Tenho 40 anos de contribuição. Qual o valor da minha anuidade?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Os profissionais com no mínimo 40 (quarenta) anos de contribuição são isentos do pagamento da anuidade. 
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">CONTRIBUIÇÃO SINDICAL URBANA</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Recebi boleto da Contribuição Sindical Urbana (Sindicato dos Arquitetos). Devo pagar?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A orientação da Assessoria Jurídica do CAU/BR é de informar aos profissionais que a contribuição sindical urbana, a ser paga uma vez por ano, é obrigatória a todos os profissionais, sindicalizados ou não, nos termos dos Artigos 578 a 591 da CLT (Decreto-Lei Nº 5.452/1943). <br><br>
+
+                                  Não cabe ao CAU/BR nem aos CAU/UF, entretanto, fiscalizar ou se envolver nas questões relativas aos valores cobrados, a serem resolvidas entre os trabalhadores e entidades sindicais. Com base nesse entendimento, não haverá suspensão automática de registro profissional ou qualquer punição sumária no CAU do arquiteto e urbanista que deixar de pagar o imposto.
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">ATRIBUIÇÕES PROFISSIONAIS</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Quais são as atribuições e campos de atuação dos arquitetos e urbanistas?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Todos os campos de atuação dos arquitetos e urbanistas constam na Resolução CAU/BR Nº 21/2012, que detalha o conteúdo do Artigo 2º da Lei nº 12.378/2010. <br><br>
+
+                                  Já a Resolução CAU/BR Nº 51/2013 descreve quais áreas de atuação são privativas dos arquitetos e urbanistas e quais são compartilhadas com outros profissionais.
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">ESPECIALIZAÇÃO EM ENGENHARIA DE SEGURANÇA DO TRABALHO</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Quero fazer especialização em Engenharia de Segurança do Trabalho. Como saber se terei título e atribuições no CAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  No Brasil, a única pós-graduação que confere título e atribuições, é a especialização em Engenharia de Segurança do Trabalho, conforme a Lei Nº 7410/85. Ao escolher essa especialização, o profissional deve observar as seguintes condições: <br><br>
+
+                                  1) A Instituição de Ensino deve ser credenciada pelo MEC para ofertar cursos de pós-graduação; (art.1º, §4º)<br>
+                                  2) O curso deve ter carga horária mínima de 600 horas; <br>
+                                  3) As disciplinas cursadas devem atender ao disposto nas diretrizes curriculares* do Parecer nº 19/87-CESU;<br>
+                                  4) O corpo docente deve ser composto, no mínimo, por 50% de mestres ou doutores (art. 4º Res. 01/2077-CNE/CES)
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Como cadastrar minha especialização em Engenharia de Segurança do Trabalho no CAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Para registrar a titulação no ambiente profissional: <br><br>
+
+                                  - O profissional faz o login no SICCAU (https://servicos.caubr.gov.br/) e acessa o ambiente profissional;<br>
+                                  - No menu “Protocolo”, no item “Cadastrar Protocolo”, escolhe o campo “Cadastro” e “Inclusão de pós-graduação (Engenharia de Segurança do Trabalho)”;<br>
+                                  - No campo “anexar documentos”, incluir: <br>
+                                  - 1) Certificado de conclusão do curso de especialização;<br>
+                                  - 2) Histórico Escolar do curso com a carga horária das disciplinas e relação do corpo docente (nominal e titulação), no formato PDF ou JPG;<br>
+                                  - O curso deve ter no mínimo 600h/aula para ser incluído.<br><br>
+                                   
+                                  O processo será, então, analisado pelo CAU. Assim que aprovado, o arquiteto e urbanista passará a ter acesso ao grupo de atividades “Engenharia de Segurança do Trabalho” para registro de RRT com base nas atribuições exclusivas do especialista.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Sou arquiteto e urbanista com especialização em Engenharia de Segurança do Trabalho. Como fica minha situação no CAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O CAU registrará, dentro do ambiente do profissional, a habilitação para o exercício da Engenharia de Segurança do Trabalho e, ao arquiteto e urbanista com esta especialização, cabe registro apenas no CAU. <br><br>
+
+                                  As atribuições conferidas ao arquiteto e urbanista com especialização em Engenharia de Segurança do Trabalho estão dispostas no Artigo 3º da Resolução CAU/BR Nº 10.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">4. Como fazer um RRT com atividades de Engenharia de Segurança do Trabalho?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  As atividades pertinentes à Engenharia de Segurança do Trabalho somente estarão disponíveis, ao preencher um RRT, para os profissionais com a especialização registrada no CAU.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">5. Tenho pós graduação em área similar. Como fica minha situação?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  No Brasil, a única pós-graduação que confere título e atribuições aos certificados nessa área é a especialização em Engenharia de Segurança do Trabalho, de acordo com a Lei nº 7.410/1985.
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">SINALIZAÇÃO EM EXECUÇÃO DE OBRA</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. A sinalização em obra de arquitetura e urbanismo é obrigatória?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Sim. No local de execução de obras, de montagens ou de serviços no âmbito da Arquitetura e Urbanismo, é obrigatória a afixação de  placas de identificação do exercício profissional, indicando os responsáveis técnicos pelas atividades desenvolvidas. As placas deverão ser mantidas no local, desde o inicio até o término da obra, montagem ou serviço considerado.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. O que deve estar na placa?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  - nome e número do registro no CAU dos arquitetos e urbanistas responsáveis e de pessoa jurídica de Arquitetura e Urbanismo envolvida; <br><br>
+
+                                  - contato (endereço, telefone ou e-mail) dos envolvidos;<br><br>
+
+                                  - identificação das atividades sob responsabilidade de cada profissional, além do(s) número(s) de RRT correspondente(s).
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Que número de registro coloco na placa?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Veja seu número de registro no ambiente do profissional do SICCAU (https://servicos.caubr.gov.br/), em "registro nacional". Este é o número que deve ser colocado em sua placa juntamente com a atividade a ser desenvolvida, e estará no seguinte padrão: CAU nº A00000-0.
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">RRT - REGISTRO DE RESPONSABILIDADE TÉCNICA</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Para que serve o RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O Registro de Responsabilidade Técnica é o documento que comprova que projetos, obras ou serviços técnicos de Arquitetura e Urbanismo possuem um responsável devidamente habilitado e com situação regular perante o Conselho para realizar tais atividades. <br><br>
+ 
+                                  Os RRTs são gravados no Sistema de Informação e Comunicação do CAU (SICCAU) e compõem o acervo técnico do arquiteto e urbanista, com as informações registradas sobre o exercício da profissão. É uma proteção à sociedade e confere legitimidade ao profissional, fornecendo segurança técnica e jurídica para quem contrata e para quem é contratado.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Quem deve fazer o RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  As providências relativas ao RRT são de responsabilidade exclusiva do arquiteto e urbanista ou da pessoa jurídica de Arquitetura e Urbanismo (por intermédio de seu responsável técnico cadastrado no CAU).
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Quando se deve fazer o RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O arquiteto e urbanista deve fazer o RRT sempre que realizar atividades técnicas de Arquitetura e Urbanismo previstas no Artigo 3º da Resolução CAU/BR Nº 21. <br><br>
+
+                                  Essa Resolução estabelece sete grupos de atividades: Projeto; Execução; Gestão; Meio Ambiente e Planejamento Regional e Urbano; Ensino e Pesquisa; Atividades Especiais em Arquitetura e Urbanismo e Engenharia de Segurança do Trabalho (esse último disponível apenas para especialistas na área). Um RRT pode conter mais de uma atividade de um mesmo grupo. Quando forem realizadas atividades de grupos diferentes, devem ser feitos registros distintos.<br><br>
+
+                                  Todos os arquitetos e urbanistas envolvidos em uma mesma atividade – seja de projeto, execução de obra, urbanismo, ensino, pesquisa ou quaisquer outros serviços técnicos, devem emitir o RRT, assumindo, solidariamente com os demais, a responsabilidade pelo trabalho. O RRT deve ser efetuado sempre antes da realização das atividades do Grupo Execução, ou até o término das atividades dos demais grupos. A exceção são casos de “situação de emergência” oficialmente decretada.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">4. Qual o primeiro passo para fazer um RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Ao acessar o SICCAU (Sistema de Informação e Comunicação do CAU), o arquiteto e urbanista terá a opção de solicitar um novo registro (RRT Inicial) ou de alterar um registro existente (RRT Retificador). Nesse segundo caso, não há custo para o profissional.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">5. Quais são as modalidades de RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Ao iniciar o preenchimento do formulário de RRT, o profissional deve escolher a modalidade de registro entre as quatro disponíveis: <br><br>
+                                   
+                                  5.1. RRT Simples<br><br>
+                                   
+                                  Serve para registrar a responsabilidade técnica por atividade de Arquitetura e Urbanismo. Para fazer o registro, o profissional deve especificar em qual grupo de atividades se insere o serviço que prestará. São sete grupos de atividades: Projeto; Execução; Gestão; Meio Ambiente e Planejamento Regional e Urbano; Ensino e Pesquisa; Atividades Especiais em Arquitetura e Urbanismo e Engenharia de Segurança do Trabalho (esse último disponível apenas para especialistas na área). Clique aqui para consultar a lista detalhada dos grupos de atividades.<br><br>
+                                   
+                                  Os grupos englobam todas as atividades de Arquitetura e Urbanismo e se desdobram em subgrupos e em atividades específicas. Um RRT só pode conter mais de uma atividade quando elas pertencerem ao mesmo grupo e endereço. Se as atividades pertencerem a mais de um grupo, deverá ser registrado um RRT para cada grupo.<br><br>
+                                   
+                                  O RRT Simples deve ser utilizado também para registrar a atividade de “Desempenho de Cargo ou Função Técnica”, que pertence ao Grupo Gestão.<br>
+                                  A efetivação do registro se dará após o pagamento da taxa de RRT.<br><br>
+                                   
+                                  5.2. RRT Múltiplo Mensal<br><br>
+
+                                  Serve para registrar algumas atividades especiais definidas pela Resolução CAU/BR Nº 91, como vistoria, perícia, avaliação, laudo técnico, parecer técnico, auditoria, arbitragem e mensuração, entre outras, desde que seja uma única atividade e realizada dentro de um mesmo mês. Os profissionais que possuem especialização em Engenharia de Segurança do Trabalho também podem fazer essa modalidade de RRT para determinadas atividades, como relatórios para fins judiciais e laudos de inspeção sobre atividades insalubres.<br><br>
+                                   
+                                  O RRT Múltiplo Mensal atende àquelas atividades executadas, de forma avulsa e descontínua, dentro de um mesmo mês, mesmo tendo diversos contratantes – mas de uma mesma unidade da federação.<br>
+                                  A efetivação do registro se dará após o pagamento da taxa de RRT.<br><br>
+                                   
+                                  5.3. RRT Mínimo<br><br>
+                                   
+                                  Serve somente para registrar as atividades dos Grupos Projeto e/ou Execução relativas a uma habitação de até 70 m² ou a um conjunto residencial unifamiliar enquadrado na Lei de Habitação de Interesse Social – HIS (Lei Nº 11.124/2005) ou na Lei de Assistência Técnica (Lei Nº 11.888/2008).<br><br>
+                                   
+                                  A efetivação do registro se dará após o pagamento da taxa de RRT.<br><br>
+
+                                  5.4. RRT Derivado<br><br>
+                                   
+                                  Permite transpor para o CAU atividades oficializadas antes de 2012 por meio de ART (Anotação de Responsabilidade Técnica), no Sistema Confea/Crea. Só poderão ser registradas as atividades correspondentes às atuais atribuições dos arquitetos e urbanistas.<br><br>
+                                   
+                                  Esse RRT é importante para o profissional, pois possibilita complementar e atualizar o seu acervo técnico. Essa modalidade de RRT é gratuita.<br>
+                                  A efetivação do registro nessa modalidade se dará após análise e aprovação pelo CAU.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">6. Posso registrar quais formas de participação no RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Após escolhida a modalidade de RRT, o profissional informará a sua forma de participação na atividade a ser registrada. No SICCAU estarão disponíveis duas opções: <br><br>
+ 
+                                  6.1. Individual<br><br>
+                                   
+                                  Após escolhida a modalidade de RRT, o profissional informará a sua forma de participação na atividade a ser registrada. No SICCAU estarão disponíveis duas opções:<br><br>
+                                   
+                                  Quando um único arquiteto e urbanista assume a responsabilidade técnica por determinada atividade.<br><br>
+                                   
+                                  6.2. Em equipe<br><br>
+                                   
+                                  Quando mais de um profissional realiza a mesma atividade de Arquitetura e Urbanismo. Nesse caso, cada arquiteto e urbanista deve fazer um RRT, no qual assume, de forma solidária, a responsabilidade pela atividade feita em conjunto com os demais arquitetos e urbanistas.<br><br>
+                                   
+                                  Não haverá mais as formas de participação denominadas “coautoria” ou “corresponsabilidade”. Para registrar a autoria ou coautoria de um projeto ou elaboração intelectual, o profissional deve utilizar o RDA (Registro de Direitos Autorais), que é facultativo.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">7. É possível fazer RRT fora do prazo?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O RRT Extemporâneo é aquele feito fora do prazo regular. Para as atividades do Grupo Execução, o prazo regular é somente até o início da atividade. Para as atividades dos demais grupos, considerados de criação e elaboração, o prazo regular é até o término da atividade. <br><br>
+                                   
+                                  O registro extemporâneo será analisado mediante o pagamento de uma taxa de RRT (atualmente R$ 83,58). Sendo aprovado, o profissional terá que pagar ainda uma multa de três vezes o valor da taxa de RRT (totalizando, atualmente, R$ 250,74) para que o registro seja efetivado.<br><br>
+                                   
+                                  Em compensação, o profissional ou empresa de Arquitetura e Urbanismo se regulariza e complementa seu acervo técnico. Importante: como todas as modalidades, o RRT fora do prazo exige que o arquiteto e urbanista esteja com seu registro junto ao CAU ativo e regular.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">8. O RRT para atividade realizada no exterior é obrigatório?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Esse tipo de RRT é facultativo e serve para registrar atividade de Arquitetura e Urbanismo realizada fora do Brasil. Para ser requerido, é necessário o pagamento antecipado de 3 (três) vezes a taxa de RRT (totalizando, atualmente, R$ 250,74). Só então é realizada a análise e estabelecida a documentação comprobatória a ser apresentada. <br><br>
+ 
+                                  Se aprovado o pedido, há ainda a cobrança posterior de uma taxa de RRT (atualmente R$ 83,58) para efetivação do registro.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">9. Como fazer a baixa do RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A baixa do RRT é realizada para informar que a atividade foi concluída ou interrompida. É obrigatória quando se tratar de atividade do Grupo Execução, por ser considerada atividade de materialização, e facultativa quando for dos demais grupos, por se tratarem de atividades de criação e elaboração. <br><br>
+ 
+                                  Uma das novidades é que baixa do RRT não terá mais análise e aprovação por parte do CAU – será feita diretamente pelo profissional via SICCAU.<br><br>
+                                   
+                                  Caso o RRT seja composto de várias atividades e o profissional precise dar baixa em apenas uma delas, deverá fazer um RRT Retificador, gratuito, para baixar apenas o que foi concluído ou interrompido.<br><br>
+                                   
+                                  A baixa também poderá ocorrer em caso de comprovada omissão do arquiteto e urbanista; de falecimento do profissional; ou quando o responsável tiver seu registro suspenso ou cancelado – esses casos, entretanto, serão objeto de análise do CAU.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">10. O que significa o cancelamento do RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O cancelamento torna o RRT sem efeito e deve ser feito quando nenhuma das atividades técnicas registradas for realizada.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">11. O que significa a nulidade do RRT?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A nulidade significa que o RRT não tem validade legal por possuir algum dado ou informação falsa ou errada e que não pode ser retificada. Conforme o caso, a anulação pode implicar em instauração de processo administrativo e/ou ético-disciplinar.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">12. Em que casos o RRT passa por análise do CAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Acontecerá em apenas duas situações: <br><br>
+                                   
+                                  12.1. Análise de requerimento novo<br><br>
+                                   
+                                  Serão feitas análises apenas de RRT Derivado, RRT Extemporâneo e RRT de atividade técnica realizada no exterior, porque requerem uma verificação documental prévia.<br><br>
+                                   
+                                  12.2. Análise de baixa, cancelamento e nulidade de RRT<br><br>
+                                   
+                                  A baixa do RRT não precisará mais de aprovação do CAU e poderá ser feita pelo arquiteto e urbanista diretamente no SICCAU.<br><br>
+                                   
+                                  As exceções são as baixas motivadas: em caso de comprovada omissão do profissional; em caso de falecimento do profissional; ou quando o arquiteto e urbanista tiver seu registro suspenso ou cancelado. Os pedidos de cancelamento e nulidade de RRT serão obrigatoriamente analisados pelo CAU. Em médio prazo, será exigida a Certificação Digital do profissional para a baixa.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">13. Como faço o RRT de Desempenho de Cargo ou Função Técnica?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O profissional solicita uma RRT Simples e escolhe a atividade do Grupo Gestão denominada: “Desempenho de Cargo ou Função Técnica”. Esse registro se aplica tanto a contratos de trabalho quanto a prestação de serviços.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">14. Qual a taxa para emissão de RRT? Como emitir o boleto?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O valor da taxa de RRT em 2016 é de R$ 83,58. Preenchido o RRT, o arquiteto e urbanista poderá emitir, via SICCAU, o boleto bancário para pagamento da taxa, assim como um formulário de RRT com a tarja “rascunho”, sem o número de registro. <br><br>
+ 
+                                  Após o pagamento da taxa, o sistema liberará para o profissional o formulário definitivo, contendo número do registro e sem a tarja “rascunho”.<br><br>
+                                   
+                                  O RRT é de responsabilidade exclusiva do arquiteto e urbanista.<br><br>
+                                   
+                                  O boleto bancário para pagamento da taxa de RRT poderá ter como sacado o profissional responsável pelo registro, a empresa de Arquitetura e Urbanismo contratada ou a pessoa jurídica de direito público, caso o arquiteto e urbanista responsável tenha RRT por atividade de “Desempenho de Cargo ou Função Técnica” vinculado a ela.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">15. Posso usar meus RRTs para comprovar experiência profissional?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O valor da taxa de RRT em 2016 é de R$ 83,58. Preenchido o RRT, o arquiteto e urbanista poderá emitir, via SICCAU, o boleto bancário para pagamento da taxa, assim como um formulário de RRT com a tarja “rascunho”, sem o número de registro. <br><br>
+                                   
+                                  Após o pagamento da taxa, o sistema liberará para o profissional o formulário definitivo, contendo número do registro e sem a tarja “rascunho”.<br><br>
+                                   
+                                  O RRT é de responsabilidade exclusiva do arquiteto e urbanista.<br><br>
+                                   
+                                  O boleto bancário para pagamento da taxa de RRT poderá ter como sacado o profissional responsável pelo registro, a empresa de Arquitetura e Urbanismo contratada ou a pessoa jurídica de direito público, caso o arquiteto e urbanista responsável tenha RRT por atividade de “Desempenho de Cargo ou Função Técnica” vinculado a ela.
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">CAT - CERTIDÃO DE ACERVO TÉCNICO</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Como posso solicitar uma Certidão de Acervo Técnico (CAT)?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A solicitação para Certidão de Acervo Técnico está disponível no ambiente do profissional no SICCAU (https://servicos.caubr.gov.br/). É só clicar no menu “Certidões” e escolher “Emitir Certidão”. <br><br>
+
+                                  As opções de CAT são: <br><br>
+
+                                  a) Certidão de Acervo Técnico<br>
+                                  b) Certidão de Acervo Técnico com Atestado (CAT-A)<br>
+                                  c) Certidão de Acervo Técnico - Atividades Exterior<br>
+                                  d) Certidão de Acervo Técnico com Atestado - Atividades Exterior (CAT-A Atividades Exterior)<br><br>
+
+                                  O RRT só consta na Certidão após a baixa. Apenas as CAT-A têm taxa de emissão, equivalente a uma taxa de RRT. As demais são gratuitas.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. A Certidão de Acervo Técnico contém quais dados?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  A CAT contém as seguintes informações, segundo determina a Resolução CAU/BR Nº 93: <br><br>
+
+                                  I - número da certidão;<br>
+                                  II - nome do arquiteto e urbanista;<br>
+                                  III - título profissional e, se houver, complemento;<br>
+                                  IV - data de obtenção do título de arquiteto e urbanista, para os diplomados no Brasil, ou da revalidação do diploma, para os diplomados no exterior;<br>
+                                  V - número de registro do arquiteto e urbanista no CAU;<br>
+                                  VI - data de registro do arquiteto e urbanista no CAU;<br>
+                                  VII - dados dos RRT baixados que a constituem (conforme seleção do profissional);<br>
+                                  VIII - local e data de expedição;<br>
+                                  e IX - código da certificação digital. 
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. Uma empresa pode ter Certidão de Acervo Técnico?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Não. A Certidão de Acervo Técnico é exclusiva do profissional. <br><br>
+
+                                  O que comprova a capacidade técnica de uma empresa, para participar de licitações, são os acervos técnicos dos arquitetos e urbanistas integrantes de seu quadro e ligados a ela por meio de RRT com atividade de Desempenho de Cargo ou Função Técnica. 
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">4. Tenho uma ART do Crea e preciso obter a CAT com ela incluída. Como proceder?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Primeiro, o profissional deve elaborar um RRT Derivado, sem custo, idêntico ao documento do Crea, documento este que deve ser anexado de forma digital no pedido. É importante atentar para as informações transpostas, como datas do período de execução e descrição das atividades desenvolvidas. <br><br>
+
+                                  A solicitação será analisada pelo CAU. É importante ressaltar que o RRT Derivado é gratuito. Esse procedimento está disponível no ambiente do profissional do SICCAU (https://servicos.caubr.gov.br/) no menu RRT > Preencher Registro de Responsabilidade Técnica > Forma de registro: INICIAL > MODELO COD010 – DERIVADO.<br><br>
+
+                                  Após aprovação do RRT Derivado pelo CAU, o profissional deve solicitar a baixa do RRT. Vencidas essas etapas, o profissional poderá emitir a CAT.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">5. Como verificar a autenticidade de uma CAT? E do Atestado?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Na página inicial do SICCAU (https://servicos.caubr.gov.br/), no menu “Acesso Rápido”, clique em "Verificar Autenticidade de Certidões". <br><br>
+
+                                  Na janela seguinte, informe o Número da Certidão, o Ano de emissão e a Chave de Validação que consta no rodapé da CAT.<br><br>
+
+                                  Repita os caracteres para validação e clique em "Verificar". O sistema responderá se o documento existe ou não.<br><br>
+
+                                  Se for CAT-A, na janela seguinte é possível baixar o Atestado original encaminhado ao CAU/UF para análise e verificar se houve alguma alteração.
+                                </div>
+                              </div>
+                            </li>                            
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">FISCALIZAÇÃO E DENÚNCIAS</div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="content-block">
+                          <ul>
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">1. Como será feita a fiscalização do CAU?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O modelo de fiscalização do CAU tem como base a implantação de um Módulo de GEOPROCESSAMENTO. Esse modelo será operado com o que existe de mais moderno em tecnologias SIG (Sistema de Informação Geográfica), aumentando sua eficácia e diminuindo seus custos. <br><br>
+
+                                  O CAU/BR regulamentou, através de RESOLUÇÃO N° 22, DE 4 DE MAIO DE 2012 a fiscalização do exercício profissional da Arquitetura e Urbanismo que será realizada pelos CAU/UF (com fiscais in loco) e abrangerá todo o território sob jurisdição do conselho correspondente, conforme dispõe o inciso VIII do art. 34 da Lei n° 12.378, de 2010.3 e contará com estrutura de planejamento e controle, com recursos técnicos de coleta e tratamento de dados e de informações, além de gerenciamento das ações de fiscalização visando a sua eficácia e economicidade.
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">2. Para onde e como devo dirigir uma denúncia contra profissional arquiteto e urbanista?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  Acesse o site do CAU de seu Estado ou Distrito Federal e clique em “Serviços Online”, em “Acesso Rápido”, clique em ‘cadastrar denúncia’. Anexe à denúncia os documentos que fundamentam a mesma para análise, considerando que uma denúncia só tem acolhida pelo CAU se acompanhada de elementos que a comprovem
+                                </div>
+                              </div>
+                            </li>
+
+                            <li class="accordion-item"><a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                  <div class="item-title nowrap-full">3. O que fazer se a fiscalização do CREA notifica meu cliente, solicitando profissional (que não seja arquiteto e urbanista) para que a obra fique regular?</div>
+                                </div></a>
+                              <div class="accordion-item-content">
+                                <div class="content-block">
+                                  O CREA não pode notificar ou autuar obras ou serviços em que haja um arquiteto e urbanista como responsável, se todas as atividades da obra ou serviço forem da atribuição do arquiteto e urbanista. Caso ocorra, o profissional deve informar ao CAU de seu Estado ou Distrito Federal sobre o que eventualmente esteja ocorrendo por meio do e-mail: atendimento@cauuf.org.br , sendo "UF" a Unidade da Federação. <br><br>
+
+                                  O cliente do Arquiteto e Urbanista estará em situação regular com o CAU se a obra ou serviço tem um RRT devidamente registrada no CAU.
+                                </div>
+                              </div>
+                            </li>                          
+
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          <!-- contatos-->
+          <div data-page="contatos" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center nameHome">CONTATOS</div>
+                  <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+              <div class="content-block tablet">
+                <div class="headerImgLogin">
+                  <a href="#" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Av. Rui Barbosa, 1363 - Graças, Recife - PE, 52050-000', '_system')"><img src="https://maps.googleapis.com/maps/api/staticmap?size=480x300&zoom=18&markers=icon:http://www.bynn.es/caupe/admin/img/maker-caupe.png|Av. Rui Barbosa, 1363 - Graças, Recife - PE, 52050-000&key=AIzaSyAB8ZuJzAX2m3xRhNhXFu9b654LvOgPOHg"></a>
+                </div>
+                <div class="infoContatos">
+                  <strong>CAU/PE</strong><br>
+                  Av. Rui Barbosa, 1363 - Graças, Recife - PE<br>
+                  CEP: 52050-000<br>
+                  Telefone: <a href="#" onclick="window.open('tel:(81) 3040-4004')">(81) 3040-4004</a><br>
+                  Email: <a href="#" onclick="window.open('mailto:renata.tavares@caupe.gov.br','_system')">renata.tavares@caupe.gov.br</a><br><br>
+
+                  <strong>CARUARU</strong><br>
+                  <a href="#" onclick="window.open('mailto:ouvidoria.caruaru@caupe.gov.br','_system')">ouvidoria.caruaru@caupe.gov.br</a><br>
+                  <em>Delegados Ouvidores</em><br>
+                  Filipo Arce Madeira Campos Júnior<br>
+                  Haroldo Bernardino<br><br>
+
+                  <strong>GARANHUNS</strong><br>
+                  <a href="#" onclick="window.open('mailto:ouvidoria.garanhuns@caupe.gov.br','_system')">ouvidoria.garanhuns@caupe.gov.br</a><br>
+                  <em>Delegados Ouvidores</em><br>
+                  Gláucio Brandão Leitão<br> 
+                  Marcílio Reinaux Maia<br><br>
+
+                  <strong>PETROLINA</strong><br>
+                  <a href="#" onclick="window.open('mailto:ouvidoria.petrolina@caupe.gov.br','_system')">ouvidoria.petrolina@caupe.gov.br</a><br>
+                  <em>Delegada Ouvidora</em><br>
+                  Phana Neri Tavares de Melo<br>
+                  Poliana Caxias<br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB8ZuJzAX2m3xRhNhXFu9b654LvOgPOHg" type="text/javascript"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/spectragram.min.js"></script>
+  </body>
+
+</html>
