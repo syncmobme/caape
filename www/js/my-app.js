@@ -102,7 +102,7 @@ $.ajax({
 
                   {
 
-                    duration: 5000,
+                    duration: 3000,
                     easing:'linear',
                     step: function() {
                       $this.text(Math.floor(this.countNum));
@@ -156,7 +156,7 @@ if (!localStorage.getItem("tokenAnuidade")) {
 
                   {
 
-                    duration: 5000,
+                    duration: 3000,
                     easing:'linear',
                     step: function() {
                       $this.text(Math.floor(this.countNum));
@@ -215,7 +215,7 @@ function extrato(){
 
                       {
 
-                        duration: 5000,
+                        duration: 3000,
                         easing:'linear',
                         step: function() {
                           $this.text(Math.floor(this.countNum));
@@ -240,7 +240,7 @@ function extrato(){
 
                       {
 
-                        duration: 5000,
+                        duration: 3000,
                         easing:'linear',
                         step: function() {
                           $this.text(Math.floor(this.countNum));
@@ -367,7 +367,7 @@ $$('.button-login').on('click', function(){
 
                       {
 
-                        duration: 5000,
+                        duration: 3000,
                         easing:'linear',
                         step: function() {
                           $this.text(Math.floor(this.countNum));
@@ -380,7 +380,7 @@ $$('.button-login').on('click', function(){
                       });  
                     });
                 }
-                
+
                 console.log(response);
                 myApp.alert('Login realizado com sucesso!', function () { extrato();});
             }); 
