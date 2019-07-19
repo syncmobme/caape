@@ -32,7 +32,7 @@ var $$ = Dom7;
 var $server = 'https://bynn.es/caape/';
 var $serverCau = 'https://www.caape.org.br/api/';
 
-//onDeviceReady();
+onDeviceReady();
 
 if (localStorage.getItem("email")) {
     $$(".profile_nome").html(localStorage.getItem("name"));
@@ -539,7 +539,8 @@ function ofertasHome(){
                             bgThemeTrans = "bg-orange-light"
                         } 
 
-
+                        data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
+                        data.oferta[i].ImgEmpresa[0] = data.oferta[i].ImgEmpresa[0].replace("http://","https://");
                         imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"></div>';
 
                         dataOferta += '<li data-index="'+i+'" class="'+bgThemeTrans+'">'+
@@ -689,6 +690,7 @@ function ofertas(idCategoria){
                         if (data.oferta[i].Opcoes) {
                             opcoes = true;
                         }
+                        data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
                         //imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"><div class="validade">Válido até: '+formatDate(data.oferta[i].dataValidade)+'</div><div class="desconto '+bgThemeLight+' color-white">'+Math.round(data.oferta[i].Desconto)+'%</div></div>';
                         imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"></div>';
                         /*dataOferta += '<li data-index="'+i+'" class="'+bgThemeTrans+'">'+
@@ -1383,13 +1385,14 @@ if (!opcoes) {
                     var dataOferta = "";
                     var dataLocal = "";
                     for (var i = 0; i < qtd; i++) {
-
+                        data.oferta[i].ImgEmpresa[0] = data.oferta[i].ImgEmpresa[0].replace("http://","https://");
                         //imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"><div class="validade">Válido até: '+formatDate(data.oferta[i].dataValidade)+'</div><div class="desconto '+bgThemeLight+' color-white">'+Math.round(data.oferta[i].Desconto)+'%</div></div>';
                         imgOferta = '<div class="card-content">'+
                                     '<div class="swiper-container swiper-ofertascont">'+
                                         '<div class="swiper-pagination"></div>'+
                                         '<div class="swiper-wrapper">';
                                         for (var e = 0; e < data.oferta[i].Img.length; e++) {
+                                            data.oferta[i].Img[e] = data.oferta[i].Img[e].replace("http://","https://");
                                             imgOferta += '<div class="swiper-slide"><img data-src="'+data.oferta[i].Img[e]+'" class="swiper-lazy" width="100%"><span class="preloader"><span class="preloader-inner"><span class="preloader-inner-gap"></span><span class="preloader-inner-left"><span class="preloader-inner-half-circle"></span></span><span class="preloader-inner-right"><span class="preloader-inner-half-circle"></span></span></span></span></div>';
                                         }
                         imgOferta +=    '</div>'+
@@ -2192,7 +2195,7 @@ function alteraCidade(id){
 //////////////////////////// Get Location ///////////////////////////////////////////////////
 
 function getLocation(){
-
+    console.log("getLocation");
     navigator.geolocation.getCurrentPosition(onSuccess);
         function onSuccess(pos){
             console.log(pos.coords.latitude+" - "+pos.coords.longitude);
@@ -2231,7 +2234,8 @@ function maps(){
                     }
                 
                     idCategoria = data.oferta[i].IdCategoria;
-                    
+                    data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
+
                     info = '<a href="#ofertascont" onclick="ofertascont('+data.oferta[i].Id+','+idCategoria+','+opcoes+',\'home\');">'+
                                 '<div style="display:block;max-width:360px;height:80px;overflow: hidden;">'+
                                     '<div style="width:80px;height:80px;float:left;overflow: auto;">'+
@@ -2302,7 +2306,7 @@ function ofertasMaps(){
         
 /////////////////////////// push ////////////////////////////
 
-//document.addEventListener('app.Ready', onDeviceReady, true);
+document.addEventListener('app.Ready', onDeviceReady, true);
 function onDeviceReady() {
     //navigator.splashscreen.show();
     setTimeout("getLocation()",2000);
