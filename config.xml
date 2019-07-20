@@ -90,13 +90,13 @@
 </platform>
 
 <plugin name="cordova-plugin-geolocation" spec="^2.2.0">
-    <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Usamos a sua localização, quando autorizado, para enviar alertas de chegada para portaria" />
+    <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Usamos a sua localização, quando autorizado, para listar ofertas próximas a você" />
 </plugin>
 <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription" platform="ios" overwrite="true">
     <string>Usamos a sua localização, quando autorizado, para listar ofertas próximas a você</string>
 </config-file>
 <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription" platform="ios" overwrite="true">
-    <string>Usamos a sua localização, quando autorizado, para enviar alertas de chegada para portaria</string>
+    <string>Usamos a sua localização, quando autorizado, para listar ofertas próximas a você</string>
 </config-file>
 <preference name="GEOLOCATION_USAGE_DESCRIPTION" default="Usamos a sua localização, quando autorizado, para enviar alertas de chegada para portaria" />
 
