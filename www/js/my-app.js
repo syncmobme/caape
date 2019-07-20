@@ -2534,8 +2534,6 @@ document.addEventListener('app.Ready', onDeviceReady, true);
 function onDeviceReady() {
     console.log("onDeviceReady");
 
-    setTimeout("getLocation()",2000);
-
     var push = PushNotification.init({
         android: {
             senderID: "214666097431",
@@ -2594,6 +2592,8 @@ function onDeviceReady() {
         console.log(e.message);
         //$('#push').html(e.message);
     });
+
+    setTimeout("getLocation()",2000);
 }
 
 
