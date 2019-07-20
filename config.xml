@@ -27,6 +27,10 @@
 <plugin name="cordova-plugin-app-version" spec="0.1.9"/>
 <plugin name="cordova-plugin-android-permissions"/>
 
+<plugin name="phonegap-plugin-push" spec="1.11.1">
+    <variable name="SENDER_ID" value="214666097431"/>
+</plugin>
+
 <preference  name="AutoHideSplashScreen" value="true"/>
 <preference  name="SplashScreenDelay" value="3000"/>
 <preference  name="FadeSplashScreen" value="true"/>
@@ -39,7 +43,8 @@
 <preference name="AndroidPersistentFileLocation" value="Compatibility" />
 
 <platform name="android" >
-
+    
+    <resource-file src="google-services.json" target="google-services.json" />
     <preference name="android-minSdkVersion" value="17"/>
     <preference name="android-targetSdkVersion" value="28"/>
     <preference name="android-installLocation" value="auto"/>
@@ -88,7 +93,7 @@
     <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Usamos a sua localização, quando autorizado, para enviar alertas de chegada para portaria" />
 </plugin>
 <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription" platform="ios" overwrite="true">
-    <string>Usamos a sua localização, quando autorizado, para enviar alertas de chegada para portaria</string>
+    <string>Usamos a sua localização, quando autorizado, para listar ofertas próximas a você</string>
 </config-file>
 <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription" platform="ios" overwrite="true">
     <string>Usamos a sua localização, quando autorizado, para enviar alertas de chegada para portaria</string>

@@ -102,7 +102,7 @@ $.ajax({
 
                   {
 
-                    duration: 3000,
+                    duration: 2000,
                     easing:'linear',
                     step: function() {
                       $this.text(Math.floor(this.countNum));
@@ -123,8 +123,13 @@ $.ajax({
 //verifica se esta logado
 console.log("entrei logado");
 if (!localStorage.getItem("tokenAnuidade")) {
+    
     $(".tab-pontos").html('<span class="counting" data-count="">LOGIN</span>anuidade zero');
+
 }else{
+
+    $(".profile_nome").html(localStorage.getItem("nome"));
+    
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -145,7 +150,7 @@ if (!localStorage.getItem("tokenAnuidade")) {
 
             $(".tab-pontos span").attr('data-count',parseInt(response));
 
-            if ($(".tab-pontos span").attr('data-count',parseInt(response))!="00") {
+            if ($(".tab-pontos span").attr('data-count')!="00") {
                 $('.tab-pontos .counting').each(function() {
                   var $this = $(this),
                       countTo = $this.attr('data-count');
@@ -156,7 +161,7 @@ if (!localStorage.getItem("tokenAnuidade")) {
 
                   {
 
-                    duration: 3000,
+                    duration: 2000,
                     easing:'linear',
                     step: function() {
                       $this.text(Math.floor(this.countNum));
@@ -203,6 +208,8 @@ function extrato(){
                 $(".tab-transacoes").html();
 
                 $(".tab-transacoes span").attr('data-count',qtd);
+                $(".profile_nome").html(response.items[0].participante.user.nome);
+                localStorage.setItem("nome",response.items[0].participante.user.nome);
 
                 if ($(".tab-transacoes span").attr('data-count',qtd)!="00") {
                     $('.tab-transacoes .counting').each(function() {
@@ -215,7 +222,7 @@ function extrato(){
 
                       {
 
-                        duration: 3000,
+                        duration: 2000,
                         easing:'linear',
                         step: function() {
                           $this.text(Math.floor(this.countNum));
@@ -229,7 +236,7 @@ function extrato(){
                     });
                 }
 
-                if ($(".tab-pontos span").attr('data-count',parseInt(response))!="00") {
+                if ($(".tab-pontos span").attr('data-count')!="00") {
                     $('.tab-pontos .counting').each(function() {
                       var $this = $(this),
                           countTo = $this.attr('data-count');
@@ -240,7 +247,7 @@ function extrato(){
 
                       {
 
-                        duration: 3000,
+                        duration: 2000,
                         easing:'linear',
                         step: function() {
                           $this.text(Math.floor(this.countNum));
@@ -356,7 +363,7 @@ $$('.button-login').on('click', function(){
                 localStorage.setItem("pontosAnuidade",response);
                 $(".tab-pontos").html('<span class="counting" data-count="'+parseInt(response)+'">'+parseInt(response)+'</span>pontos');
 
-                if ($(".tab-pontos span").attr('data-count',parseInt(response))!="00") {
+                if ($(".tab-pontos span").attr('data-count')!="00") {
                     $('.tab-pontos .counting').each(function() {
                       var $this = $(this),
                           countTo = $this.attr('data-count');
@@ -367,7 +374,7 @@ $$('.button-login').on('click', function(){
 
                       {
 
-                        duration: 3000,
+                        duration: 2000,
                         easing:'linear',
                         step: function() {
                           $this.text(Math.floor(this.countNum));
@@ -579,7 +586,7 @@ $$('.button-form-participe').on('click', function(){
 function atualizartoken(){
     console.log("atualizartoken");
     $.ajax({
-        url: $server+"Gerar_json.php?op=cliente&action=edit&id="+localStorage.getItem("userID")+"&token="+localStorage.getItem("userToken"),
+        url: $server+"Gerar_json.php?op=token&action=inserir&token="+localStorage.getItem("token"),
         dataType : "json",
         success: function(data) {
             if (data) {
@@ -595,60 +602,14 @@ function sair() {
     myApp.confirm('Deseja realmente sair?', function () {
 
         localStorage.clear();
-        $$(".profile_nome").html("Visitante");
-        $$(".profile_detalhes").html("seu@email.com.br");
+        $$(".profile_nome").html("Seja bem-vindo!");
+        $$(".profile_detalhes").html("Selecione uma das opções abaixo");
 
+        window.location = "index.html";
         navigator.app.exitApp();
-        //window.location = "index.html";
     });
 }
 
-///////////////////////////// logado ////////////////////////////
-
-function logado() {
-    //logado //
-    
-    if (localStorage.getItem("moradorIdmorador") && localStorage.getItem("sindicoIdsindico")) {
-
-        profileSindico();     
-        myApp.closeModal(".login-screen");
-        //popupBanner();
-        console.log("morador/sindico");
-
-    } else if (localStorage.getItem("sindicoEmail")) {
-
-        profileSindico();        
-        myApp.closeModal(".login-screen"); 
-        //popupBanner();   
-        console.log("sindico");    
-
-    } else if (localStorage.getItem("moradorEmail")) {
-
-        profile();        
-        myApp.closeModal(".login-screen");
-        //popupBanner();
-        console.log("morador");
-
-    } else if (localStorage.getItem("administradoraEmail")) {
-
-        profileAdministradora();        
-        myApp.closeModal(".login-screen");
-        //popupBanner();
-        console.log("administradora");
-
-    } else if (localStorage.getItem("portariaEmail")) {
-
-        profilePortaria();        
-        myApp.closeModal(".login-screen");
-        //popupBanner();
-        console.log("portaria");
-
-    }
-
-    else {
-        myApp.loginScreen();
-    }
-}
 
 //////////////////////////// profile /////////////////////////////
 
@@ -1693,7 +1654,7 @@ if (!opcoes) {
                         $('.speed-dial-buttons .share').attr('onclick','window.open(\"mailto:'+data.oferta[i].Empresa_email+'\","_system")');
                         $('.local-map a').attr('onclick','window.open(\"https://www.google.com/maps/search/?api=1&query='+data.oferta[i].EmpresaEndereco+','+data.oferta[i].EmpresaNumero+','+data.oferta[i].EmpresaBairro+','+data.oferta[i].EmpresaCidade+','+data.oferta[i].EmpresaEstado+'\","_system")');
 
-                        $$('.nameofertascont').html(data.oferta[i].EmpresaNome);
+                        //$$('.nameofertascont').html(data.oferta[i].EmpresaNome);
                         myApp.initImagesLazyLoad(".page");
                         
                         var baixarCupom = '<a href="#" id="baixarCupom" onClick="baixarCupom('+data.oferta[i].Id+')" class="button-action button button-big button-fill button-raised color-green"><i class="fa fa-download"></i> SALVAR CUPOM</a>';
@@ -2572,17 +2533,18 @@ function ofertasMaps(){
 document.addEventListener('app.Ready', onDeviceReady, true);
 function onDeviceReady() {
     console.log("onDeviceReady");
-    //logado();
-    //navigator.splashscreen.show();
+
     setTimeout("getLocation()",2000);
 
-    /*var push = PushNotification.init({
+    var push = PushNotification.init({
         android: {
             senderID: "214666097431",
+            icon: "icon-notification",
+            iconColor: "#004a73"
         },
         ios: {
             senderID: "214666097431",
-            gcmSandbox: "false", // false para producao true para desenvolvimento
+            gcmSandbox: "true", // false para producao true para desenvolvimento
             alert: "true",
             sound: "true",
             badge: "false"
@@ -2591,7 +2553,8 @@ function onDeviceReady() {
     });
     push.on('registration', function(data) {
         console.log('APARELHO REGISTRADO:' + data.registrationId);
-        localStorage.setItem("userToken", data.registrationId);
+        localStorage.setItem("token", data.registrationId);
+        atualizartoken();
     });
     
     push.on('notification', function(data) {
@@ -2630,7 +2593,7 @@ function onDeviceReady() {
     push.on('error', function(e) {
         console.log(e.message);
         //$('#push').html(e.message);
-    });*/
+    });
 }
 
 
