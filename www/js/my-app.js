@@ -48,9 +48,9 @@ if (localStorage.getItem("email")) {
 myApp.onPageReinit('home', function (page) {
 
         localStorage.setItem("idCategoria","");
-        $$(".profile").removeClass("bg-brown bg-teal bg-red bg-green bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $$(".profile").removeClass("bg-brown bg-teal bg-cyan bg-red bg-green bg-purple bg-red bg-indigo bg-amber bg-orange");
         $$(".profile").addClass("bg-indigo");
-        $$("body").removeClass("theme-brown theme-teal theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
+        $$("body").removeClass("theme-brown theme-teal theme-cyan theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
         $$("body").addClass("theme-indigo");
         //ofertasHome();
     if (localStorage.getItem("email")) {
@@ -687,9 +687,9 @@ function ofertasHome(){
 
     myApp.showIndicator();
     $('#ofertasHome-cont').html("");
-    $(".profile").removeClass("bg-teal bg-red bg-green bg-purple bg-indigo bg-amber bg-orange");
+    $(".profile").removeClass("bg-teal bg-red bg-cyan bg-green bg-purple bg-indigo bg-amber bg-orange");
     $(".profile").addClass("bg-indigo");
-    $("body").removeClass("theme-teal theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
+    $("body").removeClass("theme-teal theme-blue theme-cyan theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
     $("body").addClass("theme-indigo");
     if (!localStorage.getItem("idCidade")) {
         localStorage.setItem("idCidade","1");
@@ -831,7 +831,7 @@ function ofertas(idCategoria){
     var bgThemeTrans;
 
     if (idCategoria=="2") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-purple");
         $("body").removeClass();
         $("body").addClass("theme-purple");
@@ -842,7 +842,7 @@ function ofertas(idCategoria){
         $$('.nameofertas').html("SAÚDE");
     }
     if (idCategoria=="10") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-indigo");
         $("body").removeClass();
         $("body").addClass("theme-indigo");
@@ -853,7 +853,7 @@ function ofertas(idCategoria){
         $$('.nameofertas').html("EDUCAÇÃO");
     }
     if (idCategoria=="21") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-amber");
         $("body").removeClass();
         $("body").addClass("theme-amber");
@@ -864,8 +864,8 @@ function ofertas(idCategoria){
         $$('.nameofertas').html("COMÉRCIO");
     }
     if (idCategoria=="9") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-orange");
+        $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-brown");
         $("body").removeClass();
         $("body").addClass("theme-brown");
         bgTheme = "bg-brown";
@@ -875,7 +875,7 @@ function ofertas(idCategoria){
         $$('.nameofertas').html("SERVIÇOS");
     }
     if (idCategoria=="20") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-green");
         $("body").removeClass();
         $("body").addClass("theme-green");
@@ -886,7 +886,7 @@ function ofertas(idCategoria){
         $$('.nameofertas').html("TURISMO");
     }
     if (idCategoria=="11") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-red");
         $("body").removeClass();
         $("body").addClass("theme-red");
@@ -897,8 +897,8 @@ function ofertas(idCategoria){
         $$('.nameofertas').html("GASTRONOMIA");
     }
     if (idCategoria=="3") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-indigo");
+        $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-cyan");
         $("body").removeClass();
         $("body").addClass("theme-cyan");
         bgTheme = "theme-cyan";
@@ -1574,7 +1574,7 @@ if (!opcoes) {
     var bgThemeTrans;
 
     if (idCategoria=="2") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-purple");
         $("body").removeClass();
         $("body").addClass("theme-purple");
@@ -1585,7 +1585,7 @@ if (!opcoes) {
         $$('.nameofertas').html("SAÚDE");
     }
     if (idCategoria=="10") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-indigo");
         $("body").removeClass();
         $("body").addClass("theme-indigo");
@@ -1596,7 +1596,7 @@ if (!opcoes) {
         $$('.nameofertas').html("EDUCAÇÃO");
     }
     if (idCategoria=="21") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-amber");
         $("body").removeClass();
         $("body").addClass("theme-amber");
@@ -1607,8 +1607,8 @@ if (!opcoes) {
         $$('.nameofertas').html("COMÉRCIO");
     }
     if (idCategoria=="9") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-brown");
         $("body").removeClass();
         $("body").addClass("theme-brown");
         bgTheme = "bg-brown";
@@ -1618,7 +1618,7 @@ if (!opcoes) {
         $$('.nameofertas').html("SERVIÇOS");
     }
     if (idCategoria=="20") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-green");
         $("body").removeClass();
         $("body").addClass("theme-green");
@@ -1629,7 +1629,7 @@ if (!opcoes) {
         $$('.nameofertas').html("TURISMO");
     }
     if (idCategoria=="11") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-red");
         $("body").removeClass();
         $("body").addClass("theme-red");
@@ -1640,7 +1640,7 @@ if (!opcoes) {
         $$('.nameofertas').html("GASTRONOMIA");
     }
     if (idCategoria=="3") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-cyan");
         $("body").removeClass();
         $("body").addClass("theme-cyan");
