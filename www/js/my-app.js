@@ -48,9 +48,9 @@ if (localStorage.getItem("email")) {
 myApp.onPageReinit('home', function (page) {
 
         localStorage.setItem("idCategoria","");
-        $$(".profile").removeClass("bg-teal bg-red bg-green bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $$(".profile").removeClass("bg-brown bg-teal bg-red bg-green bg-purple bg-red bg-indigo bg-amber bg-orange");
         $$(".profile").addClass("bg-indigo");
-        $$("body").removeClass("theme-teal theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
+        $$("body").removeClass("theme-brown theme-teal theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
         $$("body").addClass("theme-indigo");
         //ofertasHome();
     if (localStorage.getItem("email")) {
@@ -716,43 +716,52 @@ function ofertasHome(){
                             opcoes = true;
                         }
                         idCategoria = data.oferta[i].IdCategoria;
-
-                        if (idCategoria=="11") {
-                            bgTheme = "bg-red";
-                            colorTheme = "color-red";
-                            bgThemeLight = "bg-deeporange";
-                            bgThemeTrans = "bg-red-light"
+                        if (idCategoria=="2") {
+                            bgTheme = "bg-purple";
+                            bgThemeLight = "bg-pink";
+                            colorTheme = "color-purple";
+                            bgThemeTrans = "bg-purple-light";
+                        }
+                        if (idCategoria=="10") {
+                            bgTheme = "bg-indigo";
+                            bgThemeLight = "bg-blue";
+                            colorTheme = "color-indigo";
+                            bgThemeTrans = "bg-indigo-light";
+                        }
+                        if (idCategoria=="21") {
+                            bgTheme = "bg-amber";
+                            bgThemeLight = "bg-yellow";
+                            colorTheme = "color-amber";
+                            bgThemeTrans = "bg-amber-light";
+                        }
+                        if (idCategoria=="9") {
+                            bgTheme = "bg-brown";
+                            bgThemeLight = "bg-brown";
+                            colorTheme = "color-brown";
+                            bgThemeTrans = "bg-brown-light"
+                            /*bgTheme = "bg-orange";
+                            bgThemeLight = "bg-amber";
+                            colorTheme = "color-orange";
+                            bgThemeTrans = "bg-orange-light";*/
                         }
                         if (idCategoria=="20") {
                             bgTheme = "bg-green";
                             bgThemeLight = "bg-lightgreen";
                             colorTheme = "color-green";
-                            bgThemeTrans = "bg-green-light"
+                            bgThemeTrans = "bg-green-light";
                         }
-                        if (idCategoria=="2") {
-                            bgTheme = "bg-purple";
-                            bgThemeLight = "bg-pink";
-                            colorTheme = "color-purple";
-                            bgThemeTrans = "bg-purple-light"
+                        if (idCategoria=="11") {
+                            bgTheme = "bg-red";
+                            colorTheme = "color-red";
+                            bgThemeLight = "bg-deeporange";
+                            bgThemeTrans = "bg-red-light";
                         }
                         if (idCategoria=="3") {
-                            bgTheme = "bg-indigo";
-                            bgThemeLight = "bg-blue";
-                            colorTheme = "color-indigo";
-                            bgThemeTrans = "bg-indigo-light"
+                            bgTheme = "bg-lightblue";
+                            bgThemeLight = "bg-lightblue";
+                            colorTheme = "color-cyan";
+                            bgThemeTrans = "bg-indigo-light";
                         }
-                        if (idCategoria=="10") {
-                            bgTheme = "bg-amber";
-                            bgThemeLight = "bg-yellow";
-                            colorTheme = "color-amber";
-                            bgThemeTrans = "bg-amber-light"
-                        }  
-                        if (idCategoria=="9") {
-                            bgTheme = "bg-orange";
-                            bgThemeLight = "bg-amber";
-                            colorTheme = "color-orange";
-                            bgThemeTrans = "bg-orange-light"
-                        } 
 
                         data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
                         data.oferta[i].ImgEmpresa[0] = data.oferta[i].ImgEmpresa[0].replace("http://","https://");
@@ -821,6 +830,61 @@ function ofertas(idCategoria){
     var colorTheme;
     var bgThemeTrans;
 
+    if (idCategoria=="2") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-purple");
+        $("body").removeClass();
+        $("body").addClass("theme-purple");
+        bgTheme = "bg-purple";
+        bgThemeLight = "bg-pink";
+        colorTheme = "color-purple";
+        bgThemeTrans = "bg-purple-light";
+        $$('.nameofertas').html("SAÚDE");
+    }
+    if (idCategoria=="10") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-indigo");
+        $("body").removeClass();
+        $("body").addClass("theme-indigo");
+        bgTheme = "bg-indigo";
+        bgThemeLight = "bg-blue";
+        colorTheme = "color-indigo";
+        bgThemeTrans = "bg-indigo-light";
+        $$('.nameofertas').html("EDUCAÇÃO");
+    }
+    if (idCategoria=="21") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-amber");
+        $("body").removeClass();
+        $("body").addClass("theme-amber");
+        bgTheme = "bg-amber";
+        bgThemeLight = "bg-yellow";
+        colorTheme = "color-amber";
+        bgThemeTrans = "bg-amber-light";
+        $$('.nameofertas').html("COMÉRCIO");
+    }
+    if (idCategoria=="9") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-orange");
+        $("body").removeClass();
+        $("body").addClass("theme-brown");
+        bgTheme = "bg-brown";
+        bgThemeLight = "bg-brown";
+        colorTheme = "color-brown";
+        bgThemeTrans = "bg-brown-light";
+        $$('.nameofertas').html("SERVIÇOS");
+    }
+    if (idCategoria=="20") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-green");
+        $("body").removeClass();
+        $("body").addClass("theme-green");
+        bgTheme = "bg-green";
+        bgThemeLight = "bg-lightgreen";
+        colorTheme = "color-green";
+        bgThemeTrans = "bg-green-light";
+        $$('.nameofertas').html("TURISMO");
+    }
     if (idCategoria=="11") {
         $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-red");
@@ -832,61 +896,19 @@ function ofertas(idCategoria){
         bgThemeTrans = "bg-red-light";
         $$('.nameofertas').html("GASTRONOMIA");
     }
-    if (idCategoria=="20") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-green");
-        $("body").removeClass();
-        $("body").addClass("theme-green");
-        bgTheme = "bg-green";
-        bgThemeLight = "bg-lightgreen";
-        colorTheme = "color-green";
-        bgThemeTrans = "bg-green-light";
-        $$('.nameofertas').html("VIAGENS");
-    }
-    if (idCategoria=="2") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-purple");
-        $("body").removeClass();
-        $("body").addClass("theme-purple");
-        bgTheme = "bg-purple";
-        bgThemeLight = "bg-pink";
-        colorTheme = "color-purple";
-        bgThemeTrans = "bg-purple-light";
-        $$('.nameofertas').html("ESTÉTICA");
-    }
     if (idCategoria=="3") {
         $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-indigo");
         $("body").removeClass();
-        $("body").addClass("theme-indigo");
-        bgTheme = "bg-indigo";
-        bgThemeLight = "bg-blue";
-        colorTheme = "color-indigo";
+        $("body").addClass("theme-cyan");
+        bgTheme = "theme-cyan";
+        bgThemeLight = "bg-cyan";
+        colorTheme = "color-lightblue";
         bgThemeTrans = "bg-indigo-light";
-        $$('.nameofertas').html("EVENTOS");
+        $$('.nameofertas').html("LAZER");
     }
-    if (idCategoria=="10") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-amber");
-        $("body").removeClass();
-        $("body").addClass("theme-amber");
-        bgTheme = "bg-amber";
-        bgThemeLight = "bg-yellow";
-        colorTheme = "color-amber";
-        bgThemeTrans = "bg-amber-light";
-        $$('.nameofertas').html("PRODUTOS");
-    }  
-    if (idCategoria=="9") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-orange");
-        $("body").removeClass();
-        $("body").addClass("theme-orange");
-        bgTheme = "bg-orange";
-        bgThemeLight = "bg-amber";
-        colorTheme = "color-orange";
-        bgThemeTrans = "bg-orange-light";
-        $$('.nameofertas').html("SERVIÇOS");
-    }  
+ 
+ 
 
     myApp.showIndicator();
     $('#ofertashome-cont').html("");
@@ -1061,42 +1083,53 @@ function meusCupons(){
                             var bgThemeTrans;
                             var idCategoria = data.oferta[i].IdCategoria;
 
-                            if (idCategoria=="11") {
-                                bgTheme = "bg-red";
-                                colorTheme = "color-red";
-                                bgThemeLight = "bg-deeporange";
-                                bgThemeTrans = "bg-red-light";
-                            }
-                            if (idCategoria=="20") {
-                                bgTheme = "bg-green";
-                                bgThemeLight = "bg-lightgreen";
-                                colorTheme = "color-green";
-                                bgThemeTrans = "bg-green-light";
-                            }
-                            if (idCategoria=="2") {
-                                bgTheme = "bg-purple";
-                                bgThemeLight = "bg-pink";
-                                colorTheme = "color-purple";
-                                bgThemeTrans = "bg-purple-light";
-                            }
-                            if (idCategoria=="3") {
-                                bgTheme = "bg-indigo";
-                                bgThemeLight = "bg-blue";
-                                colorTheme = "color-indigo";
-                                bgThemeTrans = "bg-indigo-light";
-                            }
-                            if (idCategoria=="10") {
-                                bgTheme = "bg-amber";
-                                bgThemeLight = "bg-yellow";
-                                colorTheme = "color-amber";
-                                bgThemeTrans = "bg-amber-light";
-                            }  
-                            if (idCategoria=="9") {
-                                bgTheme = "bg-orange";
-                                bgThemeLight = "bg-amber";
-                                colorTheme = "color-orange";
-                                bgThemeTrans = "bg-orange-light";
-                            } 
+                        idCategoria = data.oferta[i].IdCategoria;
+                        if (idCategoria=="2") {
+                            bgTheme = "bg-purple";
+                            bgThemeLight = "bg-pink";
+                            colorTheme = "color-purple";
+                            bgThemeTrans = "bg-purple-light";
+                        }
+                        if (idCategoria=="10") {
+                            bgTheme = "bg-indigo";
+                            bgThemeLight = "bg-blue";
+                            colorTheme = "color-indigo";
+                            bgThemeTrans = "bg-indigo-light";
+                        }
+                        if (idCategoria=="21") {
+                            bgTheme = "bg-amber";
+                            bgThemeLight = "bg-yellow";
+                            colorTheme = "color-amber";
+                            bgThemeTrans = "bg-amber-light";
+                        }
+                        if (idCategoria=="9") {
+                            bgTheme = "bg-brown";
+                            bgThemeLight = "bg-brown";
+                            colorTheme = "color-brown";
+                            bgThemeTrans = "bg-brown-light"
+                            /*bgTheme = "bg-orange";
+                            bgThemeLight = "bg-amber";
+                            colorTheme = "color-orange";
+                            bgThemeTrans = "bg-orange-light";*/
+                        }
+                        if (idCategoria=="20") {
+                            bgTheme = "bg-green";
+                            bgThemeLight = "bg-lightgreen";
+                            colorTheme = "color-green";
+                            bgThemeTrans = "bg-green-light";
+                        }
+                        if (idCategoria=="11") {
+                            bgTheme = "bg-red";
+                            colorTheme = "color-red";
+                            bgThemeLight = "bg-deeporange";
+                            bgThemeTrans = "bg-red-light";
+                        }
+                        if (idCategoria=="3") {
+                            bgTheme = "bg-cyan";
+                            bgThemeLight = "bg-lightblue";
+                            colorTheme = "color-cyan";
+                            bgThemeTrans = "bg-indigo-light";
+                        }
 
                             imgOfertaBaixados = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"></div>';
 
@@ -1175,42 +1208,53 @@ function meusCupons(){
                             var bgThemeTrans;
                             var idCategoria = data.oferta[i].IdCategoria;
 
-                            if (idCategoria=="11") {
-                                bgTheme = "bg-red";
-                                colorTheme = "color-red";
-                                bgThemeLight = "bg-deeporange";
-                                bgThemeTrans = "bg-red-light";
-                            }
-                            if (idCategoria=="20") {
-                                bgTheme = "bg-green";
-                                bgThemeLight = "bg-lightgreen";
-                                colorTheme = "color-green";
-                                bgThemeTrans = "bg-green-light";
-                            }
-                            if (idCategoria=="2") {
-                                bgTheme = "bg-purple";
-                                bgThemeLight = "bg-pink";
-                                colorTheme = "color-purple";
-                                bgThemeTrans = "bg-purple-light";
-                            }
-                            if (idCategoria=="3") {
-                                bgTheme = "bg-indigo";
-                                bgThemeLight = "bg-blue";
-                                colorTheme = "color-indigo";
-                                bgThemeTrans = "bg-indigo-light";
-                            }
-                            if (idCategoria=="10") {
-                                bgTheme = "bg-amber";
-                                bgThemeLight = "bg-yellow";
-                                colorTheme = "color-amber";
-                                bgThemeTrans = "bg-amber-light";
-                            }  
-                            if (idCategoria=="9") {
-                                bgTheme = "bg-orange";
-                                bgThemeLight = "bg-amber";
-                                colorTheme = "color-orange";
-                                bgThemeTrans = "bg-orange-light";
-                            } 
+                        idCategoria = data.oferta[i].IdCategoria;
+                        if (idCategoria=="2") {
+                            bgTheme = "bg-purple";
+                            bgThemeLight = "bg-pink";
+                            colorTheme = "color-purple";
+                            bgThemeTrans = "bg-purple-light";
+                        }
+                        if (idCategoria=="10") {
+                            bgTheme = "bg-indigo";
+                            bgThemeLight = "bg-blue";
+                            colorTheme = "color-indigo";
+                            bgThemeTrans = "bg-indigo-light";
+                        }
+                        if (idCategoria=="21") {
+                            bgTheme = "bg-amber";
+                            bgThemeLight = "bg-yellow";
+                            colorTheme = "color-amber";
+                            bgThemeTrans = "bg-amber-light";
+                        }
+                        if (idCategoria=="9") {
+                            bgTheme = "bg-brown";
+                            bgThemeLight = "bg-brown";
+                            colorTheme = "color-brown";
+                            bgThemeTrans = "bg-brown-light"
+                            /*bgTheme = "bg-orange";
+                            bgThemeLight = "bg-amber";
+                            colorTheme = "color-orange";
+                            bgThemeTrans = "bg-orange-light";*/
+                        }
+                        if (idCategoria=="20") {
+                            bgTheme = "bg-green";
+                            bgThemeLight = "bg-lightgreen";
+                            colorTheme = "color-green";
+                            bgThemeTrans = "bg-green-light";
+                        }
+                        if (idCategoria=="11") {
+                            bgTheme = "bg-red";
+                            colorTheme = "color-red";
+                            bgThemeLight = "bg-deeporange";
+                            bgThemeTrans = "bg-red-light";
+                        }
+                        if (idCategoria=="3") {
+                            bgTheme = "bg-cyan";
+                            bgThemeLight = "bg-lightblue";
+                            colorTheme = "color-cyan";
+                            bgThemeTrans = "bg-indigo-light";
+                        }
 
 
                             imgOfertaUsados = '<div class="card-content"><img src="'+data.oferta[i].Img[0]+'" width="100%"><div class="validade">Válido até: '+formatDate(data.oferta[i].dataValidade)+'</div><div class="desconto '+bgThemeLight+' color-white">'+Math.round(data.oferta[i].Desconto)+'%</div></div>';
@@ -1287,42 +1331,53 @@ function meusCupons(){
                             var bgThemeTrans;
                             var idCategoria = data.oferta[i].IdCategoria;
 
-                            if (idCategoria=="11") {
-                                bgTheme = "bg-red";
-                                colorTheme = "color-red";
-                                bgThemeLight = "bg-deeporange";
-                                bgThemeTrans = "bg-red-light";
-                            }
-                            if (idCategoria=="20") {
-                                bgTheme = "bg-green";
-                                bgThemeLight = "bg-lightgreen";
-                                colorTheme = "color-green";
-                                bgThemeTrans = "bg-green-light";
-                            }
-                            if (idCategoria=="2") {
-                                bgTheme = "bg-purple";
-                                bgThemeLight = "bg-pink";
-                                colorTheme = "color-purple";
-                                bgThemeTrans = "bg-purple-light";
-                            }
-                            if (idCategoria=="3") {
-                                bgTheme = "bg-indigo";
-                                bgThemeLight = "bg-blue";
-                                colorTheme = "color-indigo";
-                                bgThemeTrans = "bg-indigo-light";
-                            }
-                            if (idCategoria=="10") {
-                                bgTheme = "bg-amber";
-                                bgThemeLight = "bg-yellow";
-                                colorTheme = "color-amber";
-                                bgThemeTrans = "bg-amber-light";
-                            }  
-                            if (idCategoria=="9") {
-                                bgTheme = "bg-orange";
-                                bgThemeLight = "bg-amber";
-                                colorTheme = "color-orange";
-                                bgThemeTrans = "bg-orange-light";
-                            } 
+                        idCategoria = data.oferta[i].IdCategoria;
+                        if (idCategoria=="2") {
+                            bgTheme = "bg-purple";
+                            bgThemeLight = "bg-pink";
+                            colorTheme = "color-purple";
+                            bgThemeTrans = "bg-purple-light";
+                        }
+                        if (idCategoria=="10") {
+                            bgTheme = "bg-indigo";
+                            bgThemeLight = "bg-blue";
+                            colorTheme = "color-indigo";
+                            bgThemeTrans = "bg-indigo-light";
+                        }
+                        if (idCategoria=="21") {
+                            bgTheme = "bg-amber";
+                            bgThemeLight = "bg-yellow";
+                            colorTheme = "color-amber";
+                            bgThemeTrans = "bg-amber-light";
+                        }
+                        if (idCategoria=="9") {
+                            bgTheme = "bg-brown";
+                            bgThemeLight = "bg-brown";
+                            colorTheme = "color-brown";
+                            bgThemeTrans = "bg-brown-light"
+                            /*bgTheme = "bg-orange";
+                            bgThemeLight = "bg-amber";
+                            colorTheme = "color-orange";
+                            bgThemeTrans = "bg-orange-light";*/
+                        }
+                        if (idCategoria=="20") {
+                            bgTheme = "bg-green";
+                            bgThemeLight = "bg-lightgreen";
+                            colorTheme = "color-green";
+                            bgThemeTrans = "bg-green-light";
+                        }
+                        if (idCategoria=="11") {
+                            bgTheme = "bg-red";
+                            colorTheme = "color-red";
+                            bgThemeLight = "bg-deeporange";
+                            bgThemeTrans = "bg-red-light";
+                        }
+                        if (idCategoria=="3") {
+                            bgTheme = "bg-cyan";
+                            bgThemeLight = "bg-lightblue";
+                            colorTheme = "color-cyan";
+                            bgThemeTrans = "bg-indigo-light";
+                        }
 
                             imgOfertaExpirados = '<div class="card-content"><img src="'+data.oferta[i].Img[0]+'" width="100%"><div class="validade">Válido até: '+formatDate(data.oferta[i].dataValidade)+'</div><div class="desconto '+bgThemeLight+' color-white">'+Math.round(data.oferta[i].Desconto)+'%</div></div>';
 
@@ -1518,15 +1573,49 @@ if (!opcoes) {
     var colorTheme;
     var bgThemeTrans;
 
-    if (idCategoria=="11") {
+    if (idCategoria=="2") {
         $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-red");
+        $(".profile").addClass("bg-purple");
         $("body").removeClass();
-        $("body").addClass("theme-red");
-        bgTheme = "bg-red";
-        colorTheme = "color-red";
-        bgThemeLight = "bg-deeporange";
-        bgThemeTrans = "bg-red-light";
+        $("body").addClass("theme-purple");
+        bgTheme = "bg-purple";
+        bgThemeLight = "bg-pink";
+        colorTheme = "color-purple";
+        bgThemeTrans = "bg-purple-light";
+        $$('.nameofertas').html("SAÚDE");
+    }
+    if (idCategoria=="10") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-indigo");
+        $("body").removeClass();
+        $("body").addClass("theme-indigo");
+        bgTheme = "bg-indigo";
+        bgThemeLight = "bg-blue";
+        colorTheme = "color-indigo";
+        bgThemeTrans = "bg-indigo-light";
+        $$('.nameofertas').html("EDUCAÇÃO");
+    }
+    if (idCategoria=="21") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-amber");
+        $("body").removeClass();
+        $("body").addClass("theme-amber");
+        bgTheme = "bg-amber";
+        bgThemeLight = "bg-yellow";
+        colorTheme = "color-amber";
+        bgThemeTrans = "bg-amber-light";
+        $$('.nameofertas').html("COMÉRCIO");
+    }
+    if (idCategoria=="9") {
+        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+        $(".profile").addClass("bg-orange");
+        $("body").removeClass();
+        $("body").addClass("theme-brown");
+        bgTheme = "bg-brown";
+        bgThemeLight = "bg-brown";
+        colorTheme = "color-brown";
+        bgThemeTrans = "bg-brown-light";
+        $$('.nameofertas').html("SERVIÇOS");
     }
     if (idCategoria=="20") {
         $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
@@ -1537,47 +1626,31 @@ if (!opcoes) {
         bgThemeLight = "bg-lightgreen";
         colorTheme = "color-green";
         bgThemeTrans = "bg-green-light";
+        $$('.nameofertas').html("TURISMO");
     }
-    if (idCategoria=="2") {
+    if (idCategoria=="11") {
         $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-purple");
+        $(".profile").addClass("bg-red");
         $("body").removeClass();
-        $("body").addClass("theme-purple");
-        bgTheme = "bg-purple";
-        bgThemeLight = "bg-pink";
-        colorTheme = "color-purple";
-        bgThemeTrans = "bg-purple-light";
+        $("body").addClass("theme-red");
+        bgTheme = "bg-red";
+        colorTheme = "color-red";
+        bgThemeLight = "bg-deeporange";
+        bgThemeTrans = "bg-red-light";
+        $$('.nameofertas').html("GASTRONOMIA");
     }
     if (idCategoria=="3") {
         $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-indigo");
+        $(".profile").addClass("bg-cyan");
         $("body").removeClass();
-        $("body").addClass("theme-indigo");
-        bgTheme = "bg-indigo";
-        bgThemeLight = "bg-blue";
-        colorTheme = "color-indigo";
-        bgThemeTrans = "bg-indigo-light"
+        $("body").addClass("theme-cyan");
+        bgTheme = "theme-cyan";
+        bgThemeLight = "bg-cyan";
+        colorTheme = "color-lightblue";
+        bgThemeTrans = "bg-indigo-light";
+        $$('.nameofertas').html("LAZER");
     }
-    if (idCategoria=="10") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-amber");
-        $("body").removeClass();
-        $("body").addClass("theme-amber");
-        bgTheme = "bg-amber";
-        bgThemeLight = "bg-yellow";
-        colorTheme = "color-amber";
-        bgThemeTrans = "bg-amber-light";
-    }  
-    if (idCategoria=="9") {
-        $(".profile").removeClass("bg-brown bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
-        $(".profile").addClass("bg-orange");
-        $("body").removeClass();
-        $("body").addClass("theme-orange");
-        bgTheme = "bg-orange";
-        bgThemeLight = "bg-amber";
-        colorTheme = "color-orange";
-        bgThemeTrans = "bg-orange-light";
-    }  
+
     myApp.showIndicator();
     $('#ofertascont-cont').html("");
     $('.descricao-oferta').html("");
@@ -2090,7 +2163,7 @@ myApp.onPageInit('agenda', function (page) {
         value: [new Date()],
         dayNamesShort: dayNamesShort,
         dateFormat: 'dd-mm-yyyy',
-        minDate: minDate,
+        //minDate: minDate,
         toolbarTemplate: 
             '<div class="toolbar calendar-custom-toolbar">' +
                 '<div class="toolbar-inner">' +

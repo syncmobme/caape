@@ -60,12 +60,12 @@
                           </li>
                         </ul>
                     </li>-->
+                    <li>
+                      <a href="#" onclick="extrato()" class="panel-close"><i class="icon fa fa-list fa-lg"></i>ANUIDADE ZERO</a>
+                    </li>
                     <li class="menubeneficio">
-                        <a href="#"><i class="icon fa fa-id-card-o fa-lg"></i>ANUIDADE ZERO</a>
+                        <a href="#"><i class="icon fa fa-id-card-o fa-lg"></i>CONVÊNIOS</a>
                         <ul class="sublist hide">
-                          <li>
-                            <a href="#" onclick="extrato()" class="panel-close"><i class="icon fa fa-list fa-lg"></i>EXTRATO</a>
-                          </li>
                           <li>
                             <a href="#listofertas" onclick="ofertasHome()" class="panel-close"><i class="icon fa fa-percent fa-lg"></i>ESTABELECIMENTOS</a>
                           </li>
@@ -159,7 +159,7 @@
                     </li>
 
                     <li class="menubeneficioshome">
-                        <a href="#listofertas" class="item-link" onclick="ofertasHome()"><i class="icon fa fa-percent fa-3x color-amber"></i><br>ANUIDADE<br>ZERO</a>
+                        <a href="#listofertas" class="item-link" onclick="ofertasHome()"><i class="icon fa fa-percent fa-3x color-amber"></i><br>CONVÊNIOS</a>
                     </li>
                     <li class="menunoticias">
                         <a href="#noticias" class="item-link" onclick="noticias();"><i class="icon fa fa-newspaper-o fa-3x badgeespaco color-red"></i><br>NOTÍCIAS</a>
@@ -229,6 +229,9 @@
                           </div>
                         </div>
                       </li>
+                      <div class="list-block no-margin-auto">
+                        <div class="list-block-label no-margin-auto"><a href="#" onclick="window.open('https://anuidadezero.oabpe.org.br/fidelidade/#/esqueci-minha-senha','_system')">Esqueceu a senha?</a></div>
+                      </div>
 
                     </ul>
                   </form>
@@ -453,24 +456,29 @@
               <!--<div id="console"></div>-->
               <div id="menuhome" class="menuhome list-block nomargin font13">
                 <ul>
-                    <li class="menugastronomia">
-                        <a href="#listofertas" onclick="ofertas('11');" class="item-link"><i class="icon fa fa-cutlery fa-3x badgecomunicado"></i><br>GASTRONOMIA</a>
+                    <li class="menuestetica">
+                        <a href="#listofertas" class="item-link" onclick="ofertas('2');"><i class="icon fa fa-user-md fa-3x"></i><br>SAÚDE</a>
+                    </li>
+                    <li class="menueventos">
+                        <a href="#listofertas" onclick="ofertas('10');" class="item-link"><i class="icon fa fa-book fa-3x"></i><br>EDUCAÇÃO</a>
+                    </li>
+                    <li class="menuprodutos">
+                        <a href="#listofertas" onclick="ofertas('21');" class="item-link"><i class="icon fa fa-shopping-cart fa-3x"></i><br>COMÉRCIO</a>
                     </li>
                     <li class="menuservicos">
                         <a href="#listofertas" class="item-link" onclick="ofertas('9');"><i class="icon fa fa-cogs fa-3x"></i><br>SERVIÇOS</a>
                     </li>
-                    <li class="menuestetica">
-                        <a href="#listofertas" class="item-link" onclick="ofertas('2');"><i class="icon fa fa-female fa-3x"></i><br>ESTÉTICA</a>
-                    </li>
-                    <li class="menueventos">
-                        <a href="#listofertas" class="item-link" onclick="ofertas('3');"><i class="icon fa fa-shopping-bag fa-3x"></i><br>VESTUÁRIO</a>
-                    </li>
-                    <li class="menuprodutos">
-                        <a href="#listofertas" onclick="ofertas('10');" class="item-link"><i class="icon fa fa-shopping-cart fa-3x"></i><br>PRODUTOS</a>
-                    </li>
                     <li class="menuviagens">
-                        <a href="#listofertas" onclick="ofertas('20');" class="item-link"><i class="icon fa fa-building fa-3x"></i><br>IMÓVEIS</a>
+                        <a href="#listofertas" onclick="ofertas('20');" class="item-link"><i class="icon fa fa-bed fa-3x"></i><br>TURISMO</a>
                     </li>
+                    <li class="menugastronomia">
+                        <a href="#listofertas" onclick="ofertas('11');" class="item-link"><i class="icon fa fa-cutlery fa-3x badgecomunicado"></i><br>GASTRONOMIA</a>
+                    </li>
+                    <li class="menulazer">
+                        <a href="#listofertas" class="item-link" onclick="ofertas('3');"><i class="icon fa fa-sun-o fa-3x"></i><br>LAZER</a>
+                    </li>
+
+
                   </ul>
               </div>
             </div>

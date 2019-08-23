@@ -162,6 +162,9 @@ display: block;
 .bg-orange-light{
 	background: #FDE9CE;
 }
+.bg-brown-light{
+	background: #eadfda;
+}
 .color-speed-indigo{
 	color: #004a73!important;
 }
@@ -884,6 +887,12 @@ display: block;
 	background: -webkit-linear-gradient(-45deg, #007db0 0%,#004967 100%);
 	background: linear-gradient(135deg, #007db0 0%,#004967 100%);
 }
+.menulazer{
+	background: #007db0;
+	background: -moz-linear-gradient(-45deg, #00bcd4 0%, #2196f3 100%);
+	background: -webkit-linear-gradient(-45deg, #00bcd4 0%,#2196f3 100%);
+	background: linear-gradient(135deg, #00bcd4 0%,#2196f3 100%);
+}
 .menuprodutos{
 	background: #ffc200;
 	background: -moz-linear-gradient(-45deg, #ffc200 0%, #ff8100 100%);
@@ -892,9 +901,9 @@ display: block;
 }
 .menuservicos{
 	background: #ffc200;
-	background: -moz-linear-gradient(-45deg, #ff6a00 0%, #ffb100 100%);
-	background: -webkit-linear-gradient(-45deg, #ff6a00 0%,#ffb100 100%);
-	background: linear-gradient(135deg, #ff6a00 0%,#ffb100 100%);
+	background: -moz-linear-gradient(-45deg, #da9b84 0%, #795548 100%);
+	background: -webkit-linear-gradient(-45deg, #da9b84 0%,#795548 100%);
+	background: linear-gradient(135deg, #da9b84 0%,#795548 100%);
 }
 .menusorteios{
 	background: url("../images/bg-sorteios.jpg") 100%;
