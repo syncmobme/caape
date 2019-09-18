@@ -51,33 +51,6 @@
     <preference name="AndroidLaunchMode" value="singleTop"/>
     <preference name="android-signed" value="true"/>
 
-        <resource-file src="package-assets/icon-notification.png" target="res/drawable/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/drawable-hdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/drawable-ldpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/drawable-mdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/drawable-xhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/drawable-xxhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/drawable-xxxhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/mipmap-hdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/mipmap-ldpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/mipmap-mdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/mipmap-xhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/mipmap-xxhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="res/mipmap-xxxhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/drawable-hdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/drawable-ldpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/drawable-mdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/drawable-xhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/drawable-xxhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/drawable-xxxhdpi-v4/icon-notification.png" />
-
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/mipmap-hdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/mipmap-ldpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/mipmap-mdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/mipmap-xhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/mipmap-xxhdpi-v4/icon-notification.png" />
-        <resource-file src="package-assets/icon-notification.png" target="app/src/main/res/mipmap-xxxhdpi-v4/icon-notification.png" />
-
 </platform>
 
 <platform name="ios" >
