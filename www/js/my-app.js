@@ -915,7 +915,7 @@ function ofertas(idCategoria){
     $('#ofertashome-cont').html("");
 
         $.ajax({
-            url: $server+"Gerar_json.php?idCategoria="+localStorage.getItem("idCategoria")+"&idCidade=1&op=oferta",
+            url: $server+"Gerar_json.php?idCategoria="+localStorage.getItem("idCategoria")+"&idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
             dataType : "json",
             success: function(data) {
                 //console.log(data);
