@@ -45,6 +45,10 @@ if (localStorage.getItem("email")) {
     }
 }
 
+if (!localStorage.getItem("idCidade")) {
+    localStorage.setItem("idCidade","1");
+}
+
 myApp.onPageReinit('home', function (page) {
 
         localStorage.setItem("idCategoria","");
@@ -661,7 +665,7 @@ function cidades(){
                 if (data!=null) {
                     for (var i = 0; i < qtd; i++) {
                         if (localStorage.getItem("idCidade")==data.cidades[i].id) {
-                            selectCidade = " bg-gray color-white";
+                            selectCidade = " bg-red-dark color-white";
                         }
                         dataCidades += '<li class="item-content'+selectCidade+'">'+
                                             '<a href="#" class="item-link link-cidades">'+
@@ -691,12 +695,9 @@ function ofertasHome(){
     $(".profile").addClass("bg-indigo");
     $("body").removeClass("theme-teal theme-blue theme-cyan theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
     $("body").addClass("theme-indigo");
-    if (!localStorage.getItem("idCidade")) {
-        localStorage.setItem("idCidade","1");
-    }
 
         $.ajax({
-            url: $server+"Gerar_json.php?idCidade=1&op=oferta",
+            url: $server+"Gerar_json.php?idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
             dataType : "json",
             success: function(data) {
                 //console.log(data);
@@ -2512,7 +2513,7 @@ function maps(){
     ofertasMap = [];
 
     $.ajax({
-        url: $server+"Gerar_json.php?idCidade=1&op=oferta&full=1",
+        url: $server+"Gerar_json.php?idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
         dataType : "json",
         success: function(data) {
             //console.log(data);

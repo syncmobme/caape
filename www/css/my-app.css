@@ -144,6 +144,12 @@ display: block;
 	/*bottom: 75px!important;*/
 }
 /*color*/
+.bg-red-dark{
+	background: #9e0b00;
+}
+.bg-red-dark .item-title{
+	color: white!important;
+}
 .bg-red-light{
 	background: #F8DBD8;
 }
@@ -860,8 +866,10 @@ display: block;
 	background-size: cover;
 }
 .menucidades{
-	background: url("../images/bg-cidades.jpg") 100%;
-	background-size: cover;
+	background: #c51716;
+	background: -moz-linear-gradient(-45deg, #ff9b00 0%, #ff3000 100%);
+	background: -webkit-linear-gradient(-45deg, #ff9b00 0%,#ff3000 100%);
+	background: linear-gradient(135deg, #ff9b00 0%,#ff3000 100%);
 }
 .menugastronomia{
 	background: #c51716;

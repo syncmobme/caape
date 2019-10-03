@@ -66,6 +66,10 @@
                     <li class="menubeneficio">
                         <a href="#"><i class="icon fa fa-id-card-o fa-lg"></i>CONVÊNIOS</a>
                         <ul class="sublist hide">
+                          
+                          <li>
+                            <a href="#cidades" onclick="cidades();" class="panel-close"><i class="icon fa fa-globe fa-lg"></i>CIDADES</a>
+                          </li>
                           <li>
                             <a href="#listofertas" onclick="ofertasHome()" class="panel-close"><i class="icon fa fa-percent fa-lg"></i>ESTABELECIMENTOS</a>
                           </li>
@@ -450,6 +454,9 @@
               <!--<div id="console"></div>-->
               <div id="menuhome" class="menuhome list-block nomargin font13">
                 <ul>
+                    <li class="menucidades">
+                        <a href="#cidades" onclick="cidades();" class="item-link"><i class="icon fa fa-globe fa-3x"></i><br>CIDADES</a>
+                    </li>
                     <li class="menuestetica">
                         <a href="#listofertas" class="item-link" onclick="ofertas('2');"><i class="icon fa fa-user-md fa-3x"></i><br>SAÚDE</a>
                     </li>
@@ -558,6 +565,24 @@
               </div>
             </div>
             <p class="buttons-row button-cupom"></p>
+          </div>
+
+          <!-- cidades -->
+          <div data-page="cidades" class="page cached">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center">SELECIONE UMA CIDADE</div>
+                  <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+
+            <div class="page-content">
+                <div class="list-block media-list tablet">
+                  <ul id="cidades-cont"></ul>
+                </div>
+            </div>
           </div>
 
           <!-- maps -->

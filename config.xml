@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" android-versionCode="15" ios-CFBundleVersion="0.1.5" version="0.1.5" id="com.caape.android">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" android-versionCode="16" ios-CFBundleVersion="0.1.6" version="0.1.6" id="com.caape.android">
 
 <name>CAAPE</name>
 <description>Aplicativo da CAAPE</description>
@@ -75,6 +75,7 @@
 <splash platform="android" src="package-assets/splash-android-320-470.png" density="mdpi" width="320" height="470" orientation="portrait"/>
 <splash platform="android" src="package-assets/splash-android-480-640.png" density="hdpi" width="480" height="640" orientation="portrait"/>
 <splash platform="android" src="package-assets/splash-android-720-960.png" density="xhdpi" width="720" height="960" orientation="portrait"/>
+
 <splash platform="android" src="package-assets/splash-android-960-720.png" density="xhdpi" width="960" height="720" orientation="landscape"/>
 <splash platform="android" src="package-assets/splash-android-640-480.png" density="hdpi" width="640" height="480" orientation="landscape"/>
 <splash platform="android" src="package-assets/splash-android-470-320.png" density="mdpi" width="470" height="320" orientation="landscape"/>
