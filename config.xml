@@ -24,6 +24,8 @@
 
 <plugin name="cordova-plugin-splashscreen" spec="3.2.2"/>
 
+
+
 <plugin name="cordova-plugin-app-version" spec="0.1.9"/>
 <plugin name="cordova-plugin-android-permissions"/>
 
@@ -74,10 +76,14 @@
 <splash platform="android" src="package-assets/splash-android-480-640.png" density="hdpi" width="480" height="640" orientation="portrait"/>
 <splash platform="android" src="package-assets/splash-android-720-960.png" density="xhdpi" width="720" height="960" orientation="portrait"/>
 
-<splash platform="android" src="package-assets/splash-android-960-720.png" density="xhdpi" width="960" height="720" orientation="landscape"/>
-<splash platform="android" src="package-assets/splash-android-640-480.png" density="hdpi" width="640" height="480" orientation="landscape"/>
-<splash platform="android" src="package-assets/splash-android-470-320.png" density="mdpi" width="470" height="320" orientation="landscape"/>
-<splash platform="android" src="package-assets/splash-android-426-320.png" density="ldpi" width="426" height="320" orientation="landscape"/>
+<splash platform="ios" src="package-assets/splash-ios-320-480.png" width="320" height="480" orientation="portrait"/>
+<splash platform="ios" src="package-assets/splash-ios-640-960.png" width="640" height="960" orientation="portrait"/>
+<splash platform="ios" src="package-assets/splash-ios-640-1136.png" width="640" height="1136" orientation="portrait"/>
+<splash platform="ios" src="package-assets/splash-ios-750-1334.png" width="750" height="1334" orientation="portrait"/>
+<splash platform="ios" src="package-assets/splash-ios-768-1024.png" width="768" height="1024" orientation="portrait"/>
+<splash platform="ios" src="package-assets/splash-ios-1242-2208.png" width="1242" height="2208" orientation="portrait"/>
+<splash platform="ios" src="package-assets/splash-ios-1536-2048.png" width="1536" height="2048" orientation="portrait"/>
+<splash platform="ios" src="package-assets/splash-ios-2048-2732.png" width="2048" height="2732" orientation="portrait"/>
 
 
 <icon platform="android" src="package-assets/icon-36.png" density="ldpi" width="36" height="36"/>
