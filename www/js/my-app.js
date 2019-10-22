@@ -670,7 +670,7 @@ function cidades(){
                         dataCidades += '<li class="item-content'+selectCidade+'">'+
                                             '<a href="#" class="item-link link-cidades">'+
                                                 '<div class="item-inner">'+
-                                                    '<div class="item-title" onClick="alteraCidade('+data.cidades[i].id+')">'+data.cidades[i].descricao+'/'+data.cidades[i].uf+'</div>'+
+                                                    '<div class="item-title" onClick="alteraCidade('+data.cidades[i].id+')">'+data.cidades[i].descricao+'</div>'+
                                                 '</div>'+
                                             '</a>'+
                                         '</li>';
@@ -2488,7 +2488,9 @@ function limpar()
 //////////////////////////// Alterar de cidade ///////////////////////////////////////////////////
 function alteraCidade(id){
     localStorage.setItem("idCidade", id);
-    window.location = "index.html";
+    mainView.router.load({pageName: 'filter'});
+    //window.location = "index.html";
+
 }
 //////////////////////////// Get Location ///////////////////////////////////////////////////
 
@@ -2499,6 +2501,49 @@ function getLocation(){
             console.log(pos.coords.latitude+" - "+pos.coords.longitude);
             localStorage.setItem("userLatitude", pos.coords.latitude);
             localStorage.setItem("userLongitude", pos.coords.longitude);
+
+            $.ajax({
+                url: 'http://nominatim.openstreetmap.org/reverse?',
+                crossOrigin: true,
+                dataType: 'json',
+                data: {
+                    format: 'json',
+                    lat: pos.coords.latitude,
+                    lon: pos.coords.longitude,
+                    addressdetails: 1,
+                    'accept-language': 'pt-BR',
+                    zoom: 18
+                }
+            }).then(function (response) {
+                  console.info(response);
+
+                  $.ajax({
+                      url: $server+"Gerar_json.php?op=cidades",
+                      dataType : "json",
+                      success: function(data) {
+                          //console.log(data);
+                          var qtd = data.cidades.length;
+                          var dataCidades = "";
+                          var selectCidade = "";
+                          if (data!=null) {
+                              for (var i = 0; i < qtd; i++) {
+                                console.log("cidade cordenada = "+response.address.city.toUpperCase());
+                                console.log("cidade base = "+data.cidades[i].descricao.toUpperCase());
+                                if (response.address.city.toUpperCase()==data.cidades[i].descricao.toUpperCase()) {
+                                  localStorage.setItem("idCidade", data.cidades[i].id);
+                                  console.log("encontrei cidade");
+                                }else{
+                                  console.log("Não tem cidade cadastrada");
+                                }
+                              }
+                          }
+                      }
+                  });
+
+            }).fail(function (err, msg) {
+                console.info(err, msg);
+            });
+
         }
 }
 
