@@ -2927,9 +2927,15 @@ function ofertasMaps(){
         
 /////////////////////////// push ////////////////////////////
 
-if ($$testelocal==false) {
-  document.addEventListener('load', onDeviceReady, true);
-}
+
+  function onLoad() {
+    console.log("onload")
+    if ($$testelocal==false) {
+      document.addEventListener('app.Ready', onDeviceReady, true);
+    }
+  }
+  //document.addEventListener('load', onDeviceReady, true);
+
 function onDeviceReady() {
     console.log("onDeviceReady");
 
@@ -3003,9 +3009,7 @@ function onDeviceReady() {
                         sound = "https://www.aptohome.com.br/sounds/notification-android.mp3";
                         console.log("sound android: " + sound);
                     }else{
-                        /*var path = window.location.pathname;
-                        var sizefilename = path.length - (path.lastIndexOf("/")+1);
-                        path = path.substr( path, path.length - sizefilename );*/
+
                         sound = "https://www.aptohome.com.br/sounds/notification-ios.mp3";
                         console.log("sound ios: " + sound);
                     }
