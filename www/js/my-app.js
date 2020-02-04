@@ -2931,7 +2931,7 @@ function ofertasMaps(){
   function onLoad() {
     console.log("onload")
     if ($$testelocal==false) {
-      document.addEventListener('app.Ready', onDeviceReady, true);
+      document.addEventListener('deviceready', onDeviceReady, false);
     }
   }
   //document.addEventListener('load', onDeviceReady, true);
