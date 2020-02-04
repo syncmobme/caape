@@ -129,7 +129,7 @@ function voltar(){
 console.log("entrei logado");
 
 if ($$testelocal==false) {
-  onDeviceReady();
+  //onDeviceReady();
 }
 
 if (!localStorage.getItem("tokenAnuidade")) {
@@ -2928,7 +2928,7 @@ function ofertasMaps(){
 /////////////////////////// push ////////////////////////////
 
 if ($$testelocal==false) {
-  document.addEventListener('app.Ready', onDeviceReady, true);
+  document.addEventListener('load', onDeviceReady, true);
 }
 function onDeviceReady() {
     console.log("onDeviceReady");
