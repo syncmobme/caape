@@ -1765,13 +1765,6 @@ $$('#tab1').on('show', function () {
 /////////////////////////////////////  oferta conteudo /////////////////////////
 function ofertascont(idOferta, idCategoria, opcoes, alvo){
 
-    //visualizar ofertas de todas as cidades
-    if (localStorage.getItem("idCidade")=="") {
-      $(".toolbar-inner-ofertas").html("Ofertas de todas as cidades");
-    }else{
-      $(".toolbar-inner-ofertas").html("Ofertas de "+localStorage.getItem("nomeCidade"));
-    }
-
 if (!opcoes) {
     
 
@@ -1906,6 +1899,17 @@ if (!opcoes) {
                     var percentual = "";
 
                     for (var i = 0; i < qtd; i++) {
+
+
+                        //visualizar ofertas de todas as cidades
+                        if (data[i].subseccionais=="") {
+                          $(".toolbar-inner-ofertas").html("Ofertas de todas as cidades");
+                        }else{
+
+                          localStorage.setItem("idCidade", data[i].subseccionais);
+                          localStorage.setItem("nomeCidade", data[i].titulosub.toUpperCase());
+                          $(".toolbar-inner-ofertas").html("Ofertas de "+data[i].titulosub.toUpperCase());
+                        }
                         
                         if (data[i].desconto!="" && data[i].desconto!="null" && data[i].desconto!=null) {
                           if (data[i].desconto.indexOf("%")=="-1") {
@@ -2934,7 +2938,6 @@ function ofertasMaps(){
       document.addEventListener('deviceready', onDeviceReady, false);
     }
   }
-  //document.addEventListener('load', onDeviceReady, true);
 
 function onDeviceReady() {
     console.log("onDeviceReady");
