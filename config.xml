@@ -108,10 +108,6 @@
 <splash platform="android" src="package-assets/splash-android-320-426.png" density="ldpi" width="320" height="426" orientation="portrait"/>
 <splash platform="android" src="package-assets/splash-android-320-470.png" density="mdpi" width="320" height="470" orientation="portrait"/>
 
-<splash platform="android" src="package-assets/splash-android-960-720.png" density="xhdpi" width="960" height="720" orientation="landscape"/>
-<splash platform="android" src="package-assets/splash-android-640-480.png" density="hdpi" width="640" height="480" orientation="landscape"/>
-<splash platform="android" src="package-assets/splash-android-470-320.png" density="mdpi" width="470" height="320" orientation="landscape"/>
-<splash platform="android" src="package-assets/splash-android-426-320.png" density="ldpi" width="426" height="320" orientation="landscape"/>
 
 <splash src = "package-assets/Default@2x~universal~anyany.png" />
 
