@@ -34,9 +34,6 @@ var $serverCau = 'https://www.caape.org.br/api/';
 var $$senderID = "314829403235";
 var $$testelocal = false;
 
-if ($$testelocal==false) {
-  //onDeviceReady();
-}
 
 if (localStorage.getItem("email")) {
     $$(".profile_nome").html(localStorage.getItem("name"));
@@ -130,6 +127,11 @@ function voltar(){
 
 //verifica se esta logado
 console.log("entrei logado");
+
+if ($$testelocal==false) {
+  onDeviceReady();
+}
+
 if (!localStorage.getItem("tokenAnuidade")) {
     
     $(".tab-pontos").html('<span class="counting" data-count="">LOGIN</span>anuidade zero');
@@ -2951,9 +2953,9 @@ function onDeviceReady() {
 
                 console.log("atualizartoken");
 
-                $.ajax($server+'api-app.php?op=token&token='+localStorage.getItem("token"), {
+                $.ajax($server+'api-app.php', {
                     type: "post",
-                    data: "action=token&token="+localStorage.getItem("token"),
+                    data: "op=token&token="+localStorage.getItem("token"),
                 })
                 .fail(function() {
                 //myApp.alert('Erro! Tente novamente.');
