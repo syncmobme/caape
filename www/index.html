@@ -74,7 +74,7 @@
                             <a href="#listofertas" onclick="ofertasHome()" class="panel-close"><i class="icon fa fa-percent fa-lg"></i>ESTABELECIMENTOS</a>
                           </li>
                           <li>
-                            <a href="#filter" class="panel-close"><i class="icon fa fa-filter fa-lg"></i>CATEGORIAS</a>
+                            <a href="#filter" class="panel-close"><i class="icon fa fa-filter fa-lg"></i>FILTROS</a>
                           </li>
                           <li>
                             <a href="#maps" onclick="maps();" class="panel-close"><i class="icon fa fa-map-marker fa-lg"></i>MAPA</a>
@@ -94,7 +94,7 @@
                         <a href="#agenda" class="panel-close"><i class="icon fa fa-calendar-check-o fa-lg"></i>AGENDA</a>
                     </li>
                     <li>
-                        <a href="#denuncias" class="panel-close"><i class="icon fa fa-bullhorn fa-lg"></i>SEJA UM PARCEIRO</a>
+                        <a href="https://www.caape.org.br/seja-um-parceiro/" class="panel-close link external" target="_system"><i class="icon fa fa-bullhorn fa-lg"></i>SEJA UM PARCEIRO</a>
                     </li>
                     <li class="">
                         <a href="#faleconosco" class="panel-close"><i class="icon fa fa-envelope fa-lg"></i>FALE CONOSCO</a>
@@ -138,11 +138,22 @@
               <div class="navbar-inner">
                 <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
                   <div class="center nameHome"><img src="images/logo-white-brasao.png"></div>
-                  <div class="right no-margin"><a href="#filter" class="link icon-only"><i class="icon fa fa-filter"></i></a></div>
-                  <div class="right iconRight"><a href="#maps" onclick="maps();" class="link icon-only"><i class="icon fa fa-map-marker"></i></a></div>
+                  <div class="right no-margin"><a href="#filter" class="link icon-only filter icons-toobar">FILTROS</a></div>
+                  <div class="right no-margin"><a href="#" class="link icon-only icons-toobar icons-toobar-search"><i class="icon fa fa-search"></i></a></div>
+                  <div class="right iconRight"><a href="#maps" onclick="maps();" class="link icon-only icons-toobar"><i class="icon fa fa-map-marker"></i></a></div>
               </div>
             </div>
-
+            <div class="toolbar tabbar sub-menu-oferta sub-menu-oferta-city">
+              <div class="submenu toolbar-inner">
+                    Você está em <span>...</span>
+              </div>
+            </div>
+            <form data-search-list=".search-here" data-search-in=".item-title" class="searchbar searchbar-init toolbar tabbar searchbar-active hide" style="background: #004160!important;">
+              <div class="searchbar-input">
+                <input type="search" class="inputsearchoferta" placeholder="Qual convênio você procura?">
+                <a href="#" class="searchbar-submit"><i class="icon fa fa-search"></i></a>
+              </div>
+            </form>
             <div class="page-content pageindex tablet">
               <div id="menuhome" class="menuhome list-block nomargin font13">
                   <!--<div class="toolbar tabbar sub-menu-oferta" style=" background: #326596;background: -moz-linear-gradient(-45deg, #326596 0%, #4588ca 100%);background: -webkit-linear-gradient(-45deg, #326596 0%,#4588ca 100%);background: linear-gradient(135deg, #326596 0%,#4588ca 100%);">
@@ -151,6 +162,7 @@
                           <a href="#" class="tab-link tab-pontos" onclick="extrato();"><span class="counting" data-count="">00</span>pontos</a>
                     </div>
                   </div>-->
+
                 <ul>
                     <li class="menuagenda">
                         <a href="#agenda" class="item-link"><i class="icon fa fa-calendar-check-o fa-3x badgecomunicado color-blue"></i><br>AGENDA</a>
@@ -166,7 +178,7 @@
                         <a href="#fotos" class="item-link" onclick="instagram();"><i class="icon fa fa-camera fa-3x color-brown"></i><br>FOTOS</a>
                     </li>
                     <li class="menudenuncias">
-                        <a href="#denuncias" class="item-link"><i class="icon fa fa-bullhorn fa-3x color-gray"></i><br>SEJA UM<br>PARCEIRO</a>
+                        <a href="https://www.caape.org.br/seja-um-parceiro/" class="item-link link external" target="_system"><i class="icon fa fa-bullhorn fa-3x color-gray"></i><br>SEJA UM<br>PARCEIRO</a>
                     </li>
                     <li class="menufaleconosco">
                         <a href="#faleconosco" class="item-link" ><i class="icon fa fa-envelope fa-3x"></i><br>FALE CONOSCO</a>
@@ -277,6 +289,11 @@
                   <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
               </div>
             </div>
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner">
+                    Você está em <span>...</span>
+              </div>
+            </div>
 
             <div class="page-content">
               <div class="content-block tablet" style="padding: 0!important">
@@ -316,6 +333,11 @@
                   <div class="right"><a href="#home" class="link link icon-only"><i class="icon icon-back color-white"></i></a></div>
               </div>
             </div>
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner">
+                    Você está em <span>...</span>
+              </div>
+            </div>
 
             <div class="page-content instagram pull-to-refresh-content">
               <div class="pull-to-refresh-layer">
@@ -340,7 +362,12 @@
                     <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
                 </div>
               </div>
-  
+              <div class="toolbar tabbar sub-menu-oferta">
+                <div class="submenu toolbar-inner">
+                      Você está em <span>...</span>
+                </div>
+              </div>
+
               <div class="page-content">
                   <div class="content-block no-margin no-padding">
                       <div id="calendar-inline-container"></div>
@@ -359,6 +386,11 @@
                   <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
                     <div class="center">AGENDA</div>
                     <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+                </div>
+              </div>
+              <div class="toolbar tabbar sub-menu-oferta">
+                <div class="submenu toolbar-inner">
+                      Você está em <span>...</span>
                 </div>
               </div>
 
@@ -381,7 +413,12 @@
                       <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
                   </div>
               </div>
-       
+              <div class="toolbar tabbar sub-menu-oferta">
+                <div class="submenu toolbar-inner">
+                      Você está em <span>...</span>
+                </div>
+              </div>
+
               <div class="page-content noticias pull-to-refresh-content">
                   <div class="pull-to-refresh-layer">
                       <div class="preloader"></div>
@@ -405,6 +442,11 @@
                     <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
                 </div>
               </div>
+              <div class="toolbar tabbar sub-menu-oferta">
+                <div class="submenu toolbar-inner">
+                      Você está em <span>...</span>
+                </div>
+              </div>
 
               <div class="page-content">
                 <div class="content-block no-padding" style="padding: 0!important;">
@@ -421,8 +463,13 @@
               <div class="navbar-inner">
                 <div class="left"><a href="#" class="open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>
                   <div class="center nameHome">CONVÊNIOS</div>
-                  <div class="right no-margin"><a href="#filter" class="link icon-only"><i class="icon fa fa-filter"></i></a></div>
+                  <div class="right no-margin"><a href="#filter" class="link icon-only filter icons-toobar">FILTROS</a></div>
                   <div class="right iconRight"><a href="#home" class="link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner toolbar-inner-ofertas">
+                    Você está em <span>...</span>
               </div>
             </div>
 
@@ -449,6 +496,11 @@
                   <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
               </div>
             </div>
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner">
+                    Você está em <span>...</span>
+              </div>
+            </div>
 
             <div class="page-content tablet">
               <!--<div id="console"></div>-->
@@ -458,25 +510,25 @@
                         <a href="#cidades" onclick="cidades();" class="item-link"><i class="icon fa fa-globe fa-3x"></i><br>CIDADES</a>
                     </li>
                     <li class="menuestetica">
-                        <a href="#listofertas" class="item-link" onclick="ofertas('2');"><i class="icon fa fa-user-md fa-3x"></i><br>SAÚDE</a>
+                        <a href="#listofertas" class="item-link" onclick="ofertas('6');"><i class="icon fa fa-user-md fa-3x"></i><br>SAÚDE</a>
                     </li>
                     <li class="menueventos">
-                        <a href="#listofertas" onclick="ofertas('10');" class="item-link"><i class="icon fa fa-book fa-3x"></i><br>EDUCAÇÃO</a>
+                        <a href="#listofertas" onclick="ofertas('4');" class="item-link"><i class="icon fa fa-book fa-3x"></i><br>EDUCAÇÃO</a>
                     </li>
                     <li class="menuprodutos">
-                        <a href="#listofertas" onclick="ofertas('21');" class="item-link"><i class="icon fa fa-shopping-cart fa-3x"></i><br>COMÉRCIO</a>
+                        <a href="#listofertas" onclick="ofertas('3');" class="item-link"><i class="icon fa fa-shopping-cart fa-3x"></i><br>COMÉRCIO</a>
                     </li>
                     <li class="menuservicos">
-                        <a href="#listofertas" class="item-link" onclick="ofertas('9');"><i class="icon fa fa-cogs fa-3x"></i><br>SERVIÇOS</a>
+                        <a href="#listofertas" class="item-link" onclick="ofertas('7');"><i class="icon fa fa-cogs fa-3x"></i><br>SERVIÇOS</a>
                     </li>
                     <li class="menuviagens">
-                        <a href="#listofertas" onclick="ofertas('20');" class="item-link"><i class="icon fa fa-bed fa-3x"></i><br>TURISMO</a>
+                        <a href="#listofertas" onclick="ofertas('8');" class="item-link"><i class="icon fa fa-bed fa-3x"></i><br>TURISMO</a>
                     </li>
                     <li class="menugastronomia">
-                        <a href="#listofertas" onclick="ofertas('11');" class="item-link"><i class="icon fa fa-cutlery fa-3x badgecomunicado"></i><br>GASTRONOMIA</a>
+                        <a href="#listofertas" onclick="ofertas('2');" class="item-link"><i class="icon fa fa-cutlery fa-3x badgecomunicado"></i><br>GASTRONOMIA</a>
                     </li>
                     <li class="menulazer">
-                        <a href="#listofertas" class="item-link" onclick="ofertas('3');"><i class="icon fa fa-sun-o fa-3x"></i><br>LAZER</a>
+                        <a href="#listofertas" class="item-link" onclick="ofertas('5');"><i class="icon fa fa-sun-o fa-3x"></i><br>LAZER</a>
                     </li>
 
 
@@ -496,7 +548,12 @@
                   <div class="right"><a href="#" class="back link link-back icon-only"><i class="icon icon-back"></i></a></div>
               </div>
             </div>
-            
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner toolbar-inner-ofertas">
+                    Você está em <span>...</span>
+              </div>
+            </div>
+
             <div class="speed-dial">
               <!-- FAB inside will open Speed Dial actions -->
               <a href="#" class="floating-button">
@@ -511,7 +568,7 @@
                 <a href="#" class="bg-green color-speed-green share">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                    <i class="fa fa-link fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
                 <!-- Second Speed Dial  button -->
@@ -577,6 +634,11 @@
                   <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
               </div>
             </div>
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner">
+                    Você está em <span>...</span>
+              </div>
+            </div>
 
             <div class="page-content">
                 <div class="list-block media-list tablet">
@@ -595,7 +657,12 @@
                   <div class="right"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
               </div>
             </div>
-   
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner">
+                    Você está em <span>...</span>
+              </div>
+            </div>
+
             <div class="page-content maps">
                 <div id="map"></div>
             </div>
@@ -610,6 +677,11 @@
                 <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
                   <div class="center nameHome">SEJA PARCEIRO</div>
                   <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+              </div>
+            </div>
+            <div class="toolbar tabbar sub-menu-oferta">
+              <div class="submenu toolbar-inner">
+                    Você está em <span>...</span>
               </div>
             </div>
 
@@ -643,6 +715,11 @@
                   <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
                     <div class="center">FALE CONOSCO</div>
                     <div class="right"><a href="#home" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+                </div>
+              </div>
+              <div class="toolbar tabbar sub-menu-oferta">
+                <div class="submenu toolbar-inner">
+                      Você está em <span>...</span>
                 </div>
               </div>
 

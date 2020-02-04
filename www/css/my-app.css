@@ -9,6 +9,38 @@
 	text-align: center!important;
 	width: 100%;
 }
+/* sub menu */
+.submenu.toolbar-inner {
+    background: #004160;
+    text-align: center;
+    display: block!important;
+    line-height: 47px;
+}
+.media-list .toolbar{
+	top: 0!important;
+}
+.navbar-fixed .toolbar ~ .page-content {
+    padding-top: 104px!important;
+}
+.theme-indigo .navbar, .navbar.theme-indigo, .theme-indigo .toolbar, .toolbar.theme-indigo, .theme-indigo .subnavbar, .subnavbar.theme-indigo {
+    background-color: #004160!important;
+}
+.searchbar-submit{
+    position: absolute!important;
+    width: 56px;
+    height: 100%;
+    right: -32px;
+    top: 0;
+    color: white!important;
+}
+.searchbar-submit i {
+    font-size: 20px;
+}
+.searchbar input[type="search"]{
+padding: 0!important;
+    background-image: none!important;
+    font-size: 14px;
+}
 /*table*/
 .data-table {
     overflow-x: auto;
@@ -135,7 +167,7 @@ display: block;
 	padding: 0!important;
 }
 .hide{
-	display: none;
+	display: none!important;
 }
 .margin10{
 	margin: 0 10px;
@@ -183,6 +215,11 @@ display: block;
 .color-speed-brown{
 	color: #523F38!important;
 }
+
+.bg-indigo, a.bg-indigo, .list-block .swipeout-actions-left a.bg-indigo, .list-block .swipeout-actions-right a.bg-indigo {
+    background-color: #004a73!important;
+}
+
 /* meus cupons */
 .ofertasList{
 	-moz-user-select: none;        
@@ -216,6 +253,13 @@ display: block;
 }
 .sub-menu-meuscupons-tab{
 	padding-top: 0px!important;
+}
+.filter {
+    font-size: 14px;
+}
+.icons-toobar{
+	padding: 10px!important;
+    margin: 0;
 }
 /* oferta */
 
@@ -253,9 +297,7 @@ display: block;
     height: 45px!important;
 }
 .sub-menu-oferta{
-	top: 0px!important;
 	padding-top: 0px!important;
-	height: 47px!important;
 }
 .sub-menu-oferta a.tab-link{
 	font-size: 10px!important;
@@ -342,7 +384,7 @@ display: block;
 }
 .nameHome img{
 width: 170px;
-    top: 12px;
+    top: 11px;
 	margin-left: -7px;
 	position: relative;
 }
@@ -461,10 +503,28 @@ width: 170px;
 .ks-facebook-card .card-header {
 	background: white;
 }
+#ofertashome-cont .ks-facebook-card .card-content img, #ofertashome-cont .card-content-cont img{
+    max-width: 60% !important;
+    max-height: 100% !important;
+}
+#postCont p img{
+	width: 100%;
+}
+#postCont p span img{
+	width: 100%;
+}
 .ks-facebook-card .card-content img, .card-content-cont img {
-	top: 50%;
+	/*top: 50%;
 	position: absolute;
-	transform: translateY(-50%);
+	transform: translateY(-50%);*/
+vertical-align: middle;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    margin: 0 auto;
+height: auto;
+    text-align: center;
 }
 .card-content-cont i {
 	color: white;
@@ -816,7 +876,9 @@ padding: 5px 0;
     padding-left: 16px;
 }
 /* menuhome */
-
+.iconRight .icons-toobar {
+    margin-right: 10px!important;
+}
 #menuhome{
 	width: 100%;
 }
@@ -1164,8 +1226,8 @@ display: block;
 	height: 100%;
 }
 .card-content-info{
-	width: 70%;
-	float: right;
+	/*width: 70%;
+	float: right;*/
 }
 .facebook-price-valor{
 	text-align: center;
@@ -1184,8 +1246,9 @@ display: block;
 }
 .facebook-title{
 	padding: 5px;
-	font-size: 14px;
-	color: black;
+font-size: 13px;
+    color: gray;
+    text-align: justify;
 }
 .facebook-titlevideo {
     padding: 5px;
@@ -1223,7 +1286,7 @@ padding: 0 5px 10px;
 }
 .facebook-date{
 	font-size: 17px;
-    padding: 5px 5px 0;
+    padding: 5px 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1237,6 +1300,8 @@ padding: 0 5px 10px;
 .card-content {
 	overflow: hidden;
 	height: 180px;
+	border: solid 1px lightgray;
+	background: white;
 }
 .card-content-cont {
 	position: relative;
@@ -1262,6 +1327,9 @@ padding: 0 5px 10px;
 }
 .ks-facebook-card .card-header {
     padding: 10px 0;
+}
+.notlist{
+
 }
 .noticias-date{
 font-size: 13px;
@@ -1321,6 +1389,9 @@ color: #fff;
 }
 
 /* mapa  */
+#map p {
+    margin: 5px 0;
+}
 #map{
 	height: 100%;
 	width: 100%;

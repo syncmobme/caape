@@ -1,38 +1,44 @@
 {
   "project_info": {
-    "project_number": "214666097431",
-    "firebase_url": "https://aptohome-1056.firebaseio.com",
-    "project_id": "aptohome-1056"
+    "project_number": "314829403235",
+    "firebase_url": "https://caape-7f19b.firebaseio.com",
+    "project_id": "caape-7f19b",
+    "storage_bucket": "caape-7f19b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:214666097431:android:d86a54cf7b760175",
+        "mobilesdk_app_id": "1:314829403235:android:cc601f5bb32105fc193456",
         "android_client_info": {
-          "package_name": "com.aptohome.android.crosswalk"
+          "package_name": "com.caape.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "214666097431-9as3au3f7hpi0vkk8f7dfub7c4e83kh4.apps.googleusercontent.com",
+          "client_id": "314829403235-j18q3201k7piuqd1lotj8ubr1n3e48an.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBlszakIM_GmOdS22zYpRWVzjFAFeyGxGY"
+          "current_key": "AIzaSyBwk6ivv8rb-h2a_2VQNqnAZOb0Z_E-faE"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314829403235-j18q3201k7piuqd1lotj8ubr1n3e48an.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "314829403235-oc696o2uf70q9cq0tt2cb28caq15oakd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.caape.ios"
+              }
+            }
+          ]
         }
       }
     }

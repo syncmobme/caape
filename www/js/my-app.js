@@ -29,10 +29,14 @@ var myApp = new Framework7({
 
 ///////////////////////// iniciar dom /////////////////////////
 var $$ = Dom7;
-var $server = 'https://bynn.es/caape/';
+var $server = 'https://www.caape.org.br/';
 var $serverCau = 'https://www.caape.org.br/api/';
+var $$senderID = "314829403235";
+var $$testelocal = false;
 
-onDeviceReady();
+if ($$testelocal==false) {
+  onDeviceReady();
+}
 
 if (localStorage.getItem("email")) {
     $$(".profile_nome").html(localStorage.getItem("name"));
@@ -45,9 +49,9 @@ if (localStorage.getItem("email")) {
     }
 }
 
-if (!localStorage.getItem("idCidade")) {
+/*if (!localStorage.getItem("idCidade")) {
     localStorage.setItem("idCidade","1");
-}
+}*/
 
 myApp.onPageReinit('home', function (page) {
 
@@ -87,8 +91,8 @@ function voltar(){
 
 //atualiza submenu
 
-$.ajax({
-    url: $server+"Gerar_json.php?idCidade=1&op=countoferta&full=1",
+/*$.ajax({
+    url: $server+"api-app.php?idCidade=1&op=countoferta&full=1",
     dataType : "json",
     success: function(data) {
         //console.log(data);
@@ -122,7 +126,7 @@ $.ajax({
 
         }
     }
-});
+});*/
 
 //verifica se esta logado
 console.log("entrei logado");
@@ -322,6 +326,20 @@ function extrato(){
         });
     }
 }
+
+//habilita search
+$$('.icons-toobar-search').on('click', function(){
+  $$('.searchbar').toggleClass("hide");
+  $$('.sub-menu-oferta-city').toggleClass("hide");
+})
+//busca palavra nos convenios
+$$('.searchbar-submit').on('click', function(){
+
+  var keysearch = $(".inputsearchoferta").val();
+  ofertassearch(keysearch);
+  mainView.router.load({pageName: 'listofertas'});
+
+});
 
 $$('.button-login').on('click', function(){
 
@@ -570,7 +588,7 @@ $$('.button-form-participe').on('click', function(){
         var str_data = data.getFullYear()+'-'+(data.getMonth()+1)+'-'+data.getDate();
 
         $.ajax({
-            url: $server+"sendcontact.php?txtparticipenomepolitico="+$$nomepolitico+"&txtparticipeemaildestino="+$$emaildestino+"&txtparticipeassunto="+$$assunto+"&txtparticipenome="+$$nome+"&txtparticipeemail="+$$email+"&txtparticipemensagem="+$$mensagem+"&txtparticipetelefone="+$$telefone,
+            url: "https://bynn.es/caape/sendcontact.php?txtparticipenomepolitico="+$$nomepolitico+"&txtparticipeemaildestino="+$$emaildestino+"&txtparticipeassunto="+$$assunto+"&txtparticipenome="+$$nome+"&txtparticipeemail="+$$email+"&txtparticipemensagem="+$$mensagem+"&txtparticipetelefone="+$$telefone,
             type: "post",
             success: function(data) {
                 $('#forminserirparticipe').each (function(){
@@ -590,7 +608,7 @@ $$('.button-form-participe').on('click', function(){
 function atualizartoken(){
     console.log("atualizartoken");
     $.ajax({
-        url: $server+"Gerar_json.php?op=token&action=inserir&token="+localStorage.getItem("token"),
+        url: $server+"api-app.php?op=token&action=inserir&token="+localStorage.getItem("token"),
         dataType : "json",
         success: function(data) {
             if (data) {
@@ -655,22 +673,38 @@ function cidades(){
     myApp.showIndicator();
 
         $.ajax({
-            url: $server+"Gerar_json.php?op=cidades",
+            url: $server+"api-app.php?op=cidades",
             dataType : "json",
             success: function(data) {
                 //console.log(data);
                 var qtd = data.cidades.length;
                 var dataCidades = "";
                 var selectCidade = "";
+                var idCidadeAux = "";
                 if (data!=null) {
+
+                    if (localStorage.getItem("idCidade")=="") {
+                              selectCidade = " bg-red-dark color-white";
+                    }
+                    dataCidades += '<li class="item-content'+selectCidade+'">'+
+                                        '<a href="#" class="item-link link-cidades">'+
+                                            '<div class="item-inner">'+
+                                                '<div class="item-title" onClick="alteraCidade(\''+idCidadeAux+'\',\'Todas as cidades\')">Todas as cidades</div>'+
+                                            '</div>'+
+                                        '</a>'+
+                                    '</li>';
+
                     for (var i = 0; i < qtd; i++) {
+                        selectCidade = "";
                         if (localStorage.getItem("idCidade")==data.cidades[i].id) {
                             selectCidade = " bg-red-dark color-white";
+                            console.log(localStorage.getItem("idCidade"));
+                            console.log(data.cidades[i].id);
                         }
                         dataCidades += '<li class="item-content'+selectCidade+'">'+
                                             '<a href="#" class="item-link link-cidades">'+
                                                 '<div class="item-inner">'+
-                                                    '<div class="item-title" onClick="alteraCidade('+data.cidades[i].id+')">'+data.cidades[i].descricao+'</div>'+
+                                                    '<div class="item-title" onClick="alteraCidade('+data.cidades[i].id+',\''+data.cidades[i].descricao+'\')">'+data.cidades[i].descricao+'</div>'+
                                                 '</div>'+
                                             '</a>'+
                                         '</li>';
@@ -695,14 +729,20 @@ function ofertasHome(){
     $(".profile").addClass("bg-indigo");
     $("body").removeClass("theme-teal theme-blue theme-cyan theme-red theme-green theme-purple theme-indigo theme-amber theme-orange");
     $("body").addClass("theme-indigo");
-
+    
+    //visualizar ofertas de todas as cidades
+    if (localStorage.getItem("idCidade")=="") {
+      $(".toolbar-inner-ofertas").html("Ofertas de todas as cidades");
+    }else{
+      $(".toolbar-inner-ofertas").html("Ofertas de "+localStorage.getItem("nomeCidade"));
+    }
         $.ajax({
-            url: $server+"Gerar_json.php?idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
+            url: $server+"api-app.php?idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
             dataType : "json",
             success: function(data) {
                 //console.log(data);
                 if (data!=null) {
-                    var qtd = data.oferta.length;
+                    var qtd = data.length;
                     var imgOferta = "";
                     var dataOferta = "";
                     var opcoes = false;
@@ -711,31 +751,35 @@ function ofertasHome(){
                     var colorTheme;
                     var bgThemeTrans;
                     var idCategoria;
+                    var desconto = "";
+                    var percentual = "";
 
                     for (var i = 0; i < qtd; i++) {
-                        if (data.oferta[i].Opcoes) {
+
+                        if (data[i].Opcoes) {
                             opcoes = true;
                         }
-                        idCategoria = data.oferta[i].IdCategoria;
-                        if (idCategoria=="2") {
+
+                        idCategoria = data[i].categoria;
+                        if (idCategoria=="6") {
                             bgTheme = "bg-purple";
                             bgThemeLight = "bg-pink";
                             colorTheme = "color-purple";
                             bgThemeTrans = "bg-purple-light";
                         }
-                        if (idCategoria=="10") {
+                        if (idCategoria=="4") {
                             bgTheme = "bg-indigo";
                             bgThemeLight = "bg-blue";
                             colorTheme = "color-indigo";
                             bgThemeTrans = "bg-indigo-light";
                         }
-                        if (idCategoria=="21") {
+                        if (idCategoria=="3") {
                             bgTheme = "bg-amber";
                             bgThemeLight = "bg-yellow";
                             colorTheme = "color-amber";
                             bgThemeTrans = "bg-amber-light";
                         }
-                        if (idCategoria=="9") {
+                        if (idCategoria=="7") {
                             bgTheme = "bg-brown";
                             bgThemeLight = "bg-brown";
                             colorTheme = "color-brown";
@@ -745,40 +789,49 @@ function ofertasHome(){
                             colorTheme = "color-orange";
                             bgThemeTrans = "bg-orange-light";*/
                         }
-                        if (idCategoria=="20") {
+                        if (idCategoria=="8") {
                             bgTheme = "bg-green";
                             bgThemeLight = "bg-lightgreen";
                             colorTheme = "color-green";
                             bgThemeTrans = "bg-green-light";
                         }
-                        if (idCategoria=="11") {
+                        if (idCategoria=="2") {
                             bgTheme = "bg-red";
                             colorTheme = "color-red";
                             bgThemeLight = "bg-deeporange";
                             bgThemeTrans = "bg-red-light";
                         }
-                        if (idCategoria=="3") {
+                        if (idCategoria=="5") {
                             bgTheme = "bg-lightblue";
                             bgThemeLight = "bg-lightblue";
                             colorTheme = "color-cyan";
                             bgThemeTrans = "bg-indigo-light";
                         }
 
-                        data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
-                        data.oferta[i].ImgEmpresa[0] = data.oferta[i].ImgEmpresa[0].replace("http://","https://");
-                        imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"></div>';
+                        if (data[i].desconto!="" && data[i].desconto!="null" && data[i].desconto!=null) {
+                          if (data[i].desconto.indexOf("%")=="-1") {
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'%</div>';
+                          }else{
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'</div>';
+                          }
+                        }
 
+                        /*data[i].Img[0] = data[i].Img[0].replace("http://","https://");
+                        data[i].ImgEmpresa[0] = data[i].ImgEmpresa[0].replace("http://","https://");*/
+                        data[i].imagem1 = "https://www.caape.org.br/tim/tim.php?src=https://www.caape.org.br/wp-content/uploads/"+data[i].imagem1+"&w=222";
+                        imgOferta = '<div class="card-content"><img data-src="'+data[i].imagem1+'" class="lazy lazy-fadein" width="100%"></div>';
                         dataOferta += '<li data-index="'+i+'" class="'+bgThemeTrans+'">'+
-                                            '<a href="#ofertascont" onclick="ofertascont('+data.oferta[i].Id+','+idCategoria+','+opcoes+',\'home\');" class="item-link">'+
+                                            '<a href="#ofertascont" onclick="ofertascont('+data[i].id+','+idCategoria+','+opcoes+',\'home\');" class="item-link">'+
                                                 '<div class="card-cont ks-facebook-card">'+
                                                     imgOferta+
+                                                    desconto+
                                                     '<div class="card-content-inner">'+
-                                                        '<div class="card-content-price">'+
-                                                            '<img src="'+data.oferta[i].ImgEmpresa[0]+'">'+
-                                                        '</div>'+
+                                                        /*'<div class="card-content-price">'+
+                                                            '<img src="'+data[i].imagem1+'">'+
+                                                        '</div>'+*/
                                                         '<div class="card-content-info">'+
-                                                            '<div class="facebook-date '+colorTheme+'">'+data.oferta[i].EmpresaNome+'</div>'+
-                                                            '<div class="facebook-title">'+data.oferta[i].Titulo+'</div>'+
+                                                            '<div class="facebook-date '+colorTheme+'">'+data[i].titulo+'</div>'+
+                                                            '<div class="facebook-title">'+nl2br(truncar(data[i].texto, 150))+'</div>'+
                                                         '</div>'+
                                                     '</div>'+
                                                 '</div>'+
@@ -826,12 +879,20 @@ function ofertas(idCategoria){
         idCategoria = localStorage.getItem("idCategoria");
     }
 
+    //visualizar ofertas de todas as cidades
+    if (localStorage.getItem("idCidade")=="") {
+      $(".toolbar-inner-ofertas").html("Ofertas de Todas as cidades");
+    }else{
+      $(".toolbar-inner-ofertas").html("Ofertas de "+localStorage.getItem("nomeCidade"));
+    }
+
     var bgTheme;
     var bgThemeLight;
     var colorTheme;
     var bgThemeTrans;
 
-    if (idCategoria=="2") {
+
+    if (idCategoria=="6") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-purple");
         $("body").removeClass();
@@ -842,7 +903,7 @@ function ofertas(idCategoria){
         bgThemeTrans = "bg-purple-light";
         $$('.nameofertas').html("SAÚDE");
     }
-    if (idCategoria=="10") {
+    if (idCategoria=="4") {
         $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-indigo");
         $("body").removeClass();
@@ -853,7 +914,7 @@ function ofertas(idCategoria){
         bgThemeTrans = "bg-indigo-light";
         $$('.nameofertas').html("EDUCAÇÃO");
     }
-    if (idCategoria=="21") {
+    if (idCategoria=="3") {
         $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-amber");
         $("body").removeClass();
@@ -864,7 +925,7 @@ function ofertas(idCategoria){
         bgThemeTrans = "bg-amber-light";
         $$('.nameofertas').html("COMÉRCIO");
     }
-    if (idCategoria=="9") {
+    if (idCategoria=="7") {
         $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-brown");
         $("body").removeClass();
@@ -875,7 +936,7 @@ function ofertas(idCategoria){
         bgThemeTrans = "bg-brown-light";
         $$('.nameofertas').html("SERVIÇOS");
     }
-    if (idCategoria=="20") {
+    if (idCategoria=="8") {
         $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-green");
         $("body").removeClass();
@@ -886,7 +947,7 @@ function ofertas(idCategoria){
         bgThemeTrans = "bg-green-light";
         $$('.nameofertas').html("TURISMO");
     }
-    if (idCategoria=="11") {
+    if (idCategoria=="2") {
         $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-red");
         $("body").removeClass();
@@ -897,7 +958,7 @@ function ofertas(idCategoria){
         bgThemeTrans = "bg-red-light";
         $$('.nameofertas').html("GASTRONOMIA");
     }
-    if (idCategoria=="3") {
+    if (idCategoria=="5") {
         $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-cyan");
         $("body").removeClass();
@@ -915,57 +976,215 @@ function ofertas(idCategoria){
     $('#ofertashome-cont').html("");
 
         $.ajax({
-            url: $server+"Gerar_json.php?idCategoria="+localStorage.getItem("idCategoria")+"&idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
+            url: $server+"api-app.php?idCategoria="+localStorage.getItem("idCategoria")+"&idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
             dataType : "json",
             success: function(data) {
                 //console.log(data);
                 if (data!=null) {
-                    var qtd = data.oferta.length;
+                    var qtd = data.length;
                     var imgOferta = "";
                     var dataOferta = "";
                     var opcoes = false;
+                    var desconto = "";
+                    var percentual = "";
+
                     for (var i = 0; i < qtd; i++) {
-                        if (data.oferta[i].Opcoes) {
+                        if (data[i].Opcoes) {
                             opcoes = true;
                         }
-                        data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
-                        data.oferta[i].ImgEmpresa[0] = data.oferta[i].ImgEmpresa[0].replace("http://","https://");
-                        //imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"><div class="validade">Válido até: '+formatDate(data.oferta[i].dataValidade)+'</div><div class="desconto '+bgThemeLight+' color-white">'+Math.round(data.oferta[i].Desconto)+'%</div></div>';
-                        imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"></div>';
-                        /*dataOferta += '<li data-index="'+i+'" class="'+bgThemeTrans+'">'+
-                                            '<a href="#ofertascont" onclick="ofertascont('+data.oferta[i].Id+','+idCategoria+','+opcoes+',\'filter\');" class="item-link">'+
-                                                '<div class="card-cont ks-facebook-card">'+
-                                                    imgOferta+
-                                                    '<div class="card-content-inner">'+
-                                                        '<div class="card-content-price">'+
-                                                            '<div class="facebook-price-valor color-white '+bgTheme+'">R$ '+formatReal(getMoney(data.oferta[i].Valor))+'</div>'+
-                                                            '<div class="facebook-price-valor-promo color-white '+bgThemeLight+'">R$ '+formatReal(getMoney(data.oferta[i].ValorPromo))+'</div>'+
-                                                        '</div>'+
-                                                        '<div class="card-content-info">'+
-                                                            '<div class="facebook-date '+colorTheme+'">'+data.oferta[i].EmpresaNome+'</div>'+
-                                                            '<div class="facebook-title">'+data.oferta[i].Titulo+'</div>'+
-                                                        '</div>'+
-                                                    '</div>'+
-                                                '</div>'+
-                                            '</a>'+
-                                        '</li>';*/
+
+                        if (data[i].desconto!="" && data[i].desconto!="null" && data[i].desconto!=null) {
+                          if (data[i].desconto.indexOf("%")=="-1") {
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'%</div>';
+                          }else{
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'</div>';
+                          }
+                        }
+
+                        /*data[i].Img[0] = data[i].Img[0].replace("http://","https://");
+                        data[i].ImgEmpresa[0] = data[i].ImgEmpresa[0].replace("http://","https://");*/
+                        data[i].imagem1 = "https://www.caape.org.br/tim/tim.php?src=https://www.caape.org.br/wp-content/uploads/"+data[i].imagem1+"&w=222";
+                        imgOferta = '<div class="card-content"><img data-src="'+data[i].imagem1+'" class="lazy lazy-fadein" width="100%"></div>';
                         dataOferta += '<li data-index="'+i+'" class="'+bgThemeTrans+'">'+
-                                            '<a href="#ofertascont" onclick="ofertascont('+data.oferta[i].Id+','+idCategoria+','+opcoes+',\'home\');" class="item-link">'+
+                                            '<a href="#ofertascont" onclick="ofertascont('+data[i].id+','+idCategoria+','+opcoes+',\'home\');" class="item-link">'+
                                                 '<div class="card-cont ks-facebook-card">'+
                                                     imgOferta+
+                                                    desconto+
                                                     '<div class="card-content-inner">'+
-                                                        '<div class="card-content-price">'+
-                                                            '<img src="'+data.oferta[i].ImgEmpresa[0]+'">'+
-                                                        '</div>'+
+                                                        /*'<div class="card-content-price">'+
+                                                            '<img src="'+data[i].imagem1+'">'+
+                                                        '</div>'+*/
                                                         '<div class="card-content-info">'+
-                                                            '<div class="facebook-date '+colorTheme+'">'+data.oferta[i].EmpresaNome+'</div>'+
-                                                            '<div class="facebook-title">'+data.oferta[i].Titulo+'</div>'+
+                                                            '<div class="facebook-date '+colorTheme+'">'+data[i].titulo+'</div>'+
+                                                            '<div class="facebook-title">'+nl2br(truncar(data[i].texto, 150))+'</div>'+
                                                         '</div>'+
                                                     '</div>'+
                                                 '</div>'+
                                             '</a>'+
                                         '</li>';
+                        imgOferta = "";
+                    }
 
+                    $('#ofertashome-cont').html(dataOferta);
+                    myApp.initImagesLazyLoad(".page");
+                myApp.hideIndicator();
+                }else{
+                    myApp.hideIndicator();
+                    $('#ofertashome-cont').html("<li class='semregistro'>Nenhum registro cadastrado</li>");
+                }
+            }
+             ,error:function(data){
+                myApp.hideIndicator();
+                $('#ofertashome-cont').html("<li class='semregistro'>Nenhum registro cadastrado</li>");
+                //myApp.alert('Erro! Tente novamente.', 'Aptohome');
+             }
+        });
+}
+
+/////////////////////////////////////  ofertas search ///////////////////////
+function ofertassearch(keysearch){
+
+    $(".toolbar-inner-ofertas").html("Ofertas de Todas as cidades");
+
+    var bgTheme;
+    var bgThemeLight;
+    var colorTheme;
+    var bgThemeTrans;
+ 
+
+    myApp.showIndicator();
+    $('#ofertashome-cont').html("");
+
+        $.ajax({
+            url: $server+"api-app.php?keysearch="+keysearch+"&op=oferta",
+            dataType : "json",
+            success: function(data) {
+                //console.log(data);
+                if (data!=null) {
+                    var qtd = data.length;
+                    var imgOferta = "";
+                    var dataOferta = "";
+                    var opcoes = false;
+                    var desconto = "";
+                    var percentual = "";
+                    var idCategoria;
+
+                    for (var i = 0; i < qtd; i++) {
+
+
+                      idCategoria = data[i].categoria;
+
+                      if (idCategoria=="6") {
+                          $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+                          $(".profile").addClass("bg-purple");
+                          $("body").removeClass();
+                          $("body").addClass("theme-purple");
+                          bgTheme = "bg-purple";
+                          bgThemeLight = "bg-pink";
+                          colorTheme = "color-purple";
+                          bgThemeTrans = "bg-purple-light";
+                          $$('.nameofertas').html("SAÚDE");
+                      }
+                      if (idCategoria=="4") {
+                          $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+                          $(".profile").addClass("bg-indigo");
+                          $("body").removeClass();
+                          $("body").addClass("theme-indigo");
+                          bgTheme = "bg-indigo";
+                          bgThemeLight = "bg-blue";
+                          colorTheme = "color-indigo";
+                          bgThemeTrans = "bg-indigo-light";
+                          $$('.nameofertas').html("EDUCAÇÃO");
+                      }
+                      if (idCategoria=="3") {
+                          $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+                          $(".profile").addClass("bg-amber");
+                          $("body").removeClass();
+                          $("body").addClass("theme-amber");
+                          bgTheme = "bg-amber";
+                          bgThemeLight = "bg-yellow";
+                          colorTheme = "color-amber";
+                          bgThemeTrans = "bg-amber-light";
+                          $$('.nameofertas').html("COMÉRCIO");
+                      }
+                      if (idCategoria=="7") {
+                          $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+                          $(".profile").addClass("bg-brown");
+                          $("body").removeClass();
+                          $("body").addClass("theme-brown");
+                          bgTheme = "bg-brown";
+                          bgThemeLight = "bg-brown";
+                          colorTheme = "color-brown";
+                          bgThemeTrans = "bg-brown-light";
+                          $$('.nameofertas').html("SERVIÇOS");
+                      }
+                      if (idCategoria=="8") {
+                          $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+                          $(".profile").addClass("bg-green");
+                          $("body").removeClass();
+                          $("body").addClass("theme-green");
+                          bgTheme = "bg-green";
+                          bgThemeLight = "bg-lightgreen";
+                          colorTheme = "color-green";
+                          bgThemeTrans = "bg-green-light";
+                          $$('.nameofertas').html("TURISMO");
+                      }
+                      if (idCategoria=="2") {
+                          $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+                          $(".profile").addClass("bg-red");
+                          $("body").removeClass();
+                          $("body").addClass("theme-red");
+                          bgTheme = "bg-red";
+                          colorTheme = "color-red";
+                          bgThemeLight = "bg-deeporange";
+                          bgThemeTrans = "bg-red-light";
+                          $$('.nameofertas').html("GASTRONOMIA");
+                      }
+                      if (idCategoria=="5") {
+                          $(".profile").removeClass("bg-brown bg-red bg-cyan bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
+                          $(".profile").addClass("bg-cyan");
+                          $("body").removeClass();
+                          $("body").addClass("theme-cyan");
+                          bgTheme = "theme-cyan";
+                          bgThemeLight = "bg-cyan";
+                          colorTheme = "color-lightblue";
+                          bgThemeTrans = "bg-indigo-light";
+                          $$('.nameofertas').html("LAZER");
+                      }
+
+                        if (data[i].Opcoes) {
+                            opcoes = true;
+                        }
+
+                        if (data[i].desconto!="" && data[i].desconto!="null" && data[i].desconto!=null) {
+                          if (data[i].desconto.indexOf("%")=="-1") {
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'%</div>';
+                          }else{
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'</div>';
+                          }
+                        }
+
+                        /*data[i].Img[0] = data[i].Img[0].replace("http://","https://");
+                        data[i].ImgEmpresa[0] = data[i].ImgEmpresa[0].replace("http://","https://");*/
+                        data[i].imagem1 = "https://www.caape.org.br/tim/tim.php?src=https://www.caape.org.br/wp-content/uploads/"+data[i].imagem1+"&w=222";
+                        imgOferta = '<div class="card-content"><img data-src="'+data[i].imagem1+'" class="lazy lazy-fadein" width="100%"></div>';
+                        dataOferta += '<li data-index="'+i+'" class="'+bgThemeTrans+'">'+
+                                            '<a href="#ofertascont" onclick="ofertascont('+data[i].id+','+idCategoria+','+opcoes+',\'home\');" class="item-link">'+
+                                                '<div class="card-cont ks-facebook-card">'+
+                                                    imgOferta+
+                                                    desconto+
+                                                    '<div class="card-content-inner">'+
+                                                        /*'<div class="card-content-price">'+
+                                                            '<img src="'+data[i].imagem1+'">'+
+                                                        '</div>'+*/
+                                                        '<div class="card-content-info">'+
+                                                            '<div class="facebook-date '+colorTheme+'">'+data[i].titulo+'</div>'+
+                                                            '<div class="facebook-title">'+nl2br(truncar(data[i].texto, 150))+'</div>'+
+                                                        '</div>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</a>'+
+                                        '</li>';
                         imgOferta = "";
                     }
 
@@ -1055,7 +1274,7 @@ function meusCupons(){
 
             //baixados
             $.ajax({
-                url: $server+"Gerar_json.php?op=compra&ativo=1&userToken="+localStorage.getItem("userToken")+"&action=getCliente",
+                url: $server+"api-app.php?op=compra&ativo=1&userToken="+localStorage.getItem("userToken")+"&action=getCliente",
                 dataType : "json",
                 success: function(data) {
                     //console.log(data);
@@ -1180,7 +1399,7 @@ function meusCupons(){
 
             //usados
             $.ajax({
-                url: $server+"Gerar_json.php?op=compra&ativo=2&idCliente="+localStorage.getItem("userID")+"&action=getCliente",
+                url: $server+"api-app.php?op=compra&ativo=2&idCliente="+localStorage.getItem("userID")+"&action=getCliente",
                 dataType : "json",
                 success: function(data) {
                     //console.log(data);
@@ -1303,7 +1522,7 @@ function meusCupons(){
 
             //expirados
             $.ajax({
-                url: $server+"Gerar_json.php?op=compra&ativo=3&idCliente="+localStorage.getItem("userID")+"&action=getCliente",
+                url: $server+"api-app.php?op=compra&ativo=3&idCliente="+localStorage.getItem("userID")+"&action=getCliente",
                 dataType : "json",
                 success: function(data) {
                     //console.log(data);
@@ -1449,7 +1668,7 @@ function nl2br (str, is_xhtml) {
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
 
-$$('.scroll-submenu-oferta').on('scroll', function (e) {
+/*$$('.scroll-submenu-oferta').on('scroll', function (e) {
     if($$('.scroll-submenu-oferta').scrollTop()>269){
         $$('.sub-menu-oferta').attr("id","sub-menu-oferta-fixed");
         $$('.scroll-submenu-oferta').css('padding-top', '100px');
@@ -1457,7 +1676,7 @@ $$('.scroll-submenu-oferta').on('scroll', function (e) {
         $$('.sub-menu-oferta').removeAttr("id","sub-menu-oferta-fixed");
         $$('.scroll-submenu-oferta').removeAttr('style');
     }
-});
+});*/
 
 $$('.tab-oferta-opcoes').on('show', function () {
     var coords = $$('.scroll-submenu-oferta').offset();
@@ -1544,6 +1763,13 @@ $$('#tab1').on('show', function () {
 /////////////////////////////////////  oferta conteudo /////////////////////////
 function ofertascont(idOferta, idCategoria, opcoes, alvo){
 
+    //visualizar ofertas de todas as cidades
+    if (localStorage.getItem("idCidade")=="") {
+      $(".toolbar-inner-ofertas").html("Ofertas de todas as cidades");
+    }else{
+      $(".toolbar-inner-ofertas").html("Ofertas de "+localStorage.getItem("nomeCidade"));
+    }
+
 if (!opcoes) {
     
 
@@ -1574,7 +1800,7 @@ if (!opcoes) {
     var colorTheme;
     var bgThemeTrans;
 
-    if (idCategoria=="2") {
+    if (idCategoria=="6") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-purple");
         $("body").removeClass();
@@ -1585,7 +1811,7 @@ if (!opcoes) {
         bgThemeTrans = "bg-purple-light";
         $$('.nameofertas').html("SAÚDE");
     }
-    if (idCategoria=="10") {
+    if (idCategoria=="4") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-indigo");
         $("body").removeClass();
@@ -1596,7 +1822,7 @@ if (!opcoes) {
         bgThemeTrans = "bg-indigo-light";
         $$('.nameofertas').html("EDUCAÇÃO");
     }
-    if (idCategoria=="21") {
+    if (idCategoria=="3") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-amber");
         $("body").removeClass();
@@ -1607,7 +1833,7 @@ if (!opcoes) {
         bgThemeTrans = "bg-amber-light";
         $$('.nameofertas').html("COMÉRCIO");
     }
-    if (idCategoria=="9") {
+    if (idCategoria=="7") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-brown");
         $("body").removeClass();
@@ -1618,7 +1844,7 @@ if (!opcoes) {
         bgThemeTrans = "bg-brown-light";
         $$('.nameofertas').html("SERVIÇOS");
     }
-    if (idCategoria=="20") {
+    if (idCategoria=="8") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-green");
         $("body").removeClass();
@@ -1629,7 +1855,7 @@ if (!opcoes) {
         bgThemeTrans = "bg-green-light";
         $$('.nameofertas').html("TURISMO");
     }
-    if (idCategoria=="11") {
+    if (idCategoria=="2") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-red");
         $("body").removeClass();
@@ -1640,7 +1866,7 @@ if (!opcoes) {
         bgThemeTrans = "bg-red-light";
         $$('.nameofertas').html("GASTRONOMIA");
     }
-    if (idCategoria=="3") {
+    if (idCategoria=="5") {
         $(".profile").removeClass("bg-brown bg-cyan bg-red bg-green bg-teal bg-purple bg-red bg-indigo bg-amber bg-orange");
         $(".profile").addClass("bg-cyan");
         $("body").removeClass();
@@ -1663,82 +1889,93 @@ if (!opcoes) {
     $(".speed-dial").removeClass("speed-dial-opened");
     
         $.ajax({
-            url: $server+"Gerar_json.php?idOferta="+idOferta+"&op=oferta",
+            url: $server+"api-app.php?idOferta="+idOferta+"&op=oferta",
             dataType : "json",
             success: function(data) {
 
                     $$('.scroll-submenu-oferta').scrollTop(0);
                     $$('.sub-menu-oferta').removeAttr("id","sub-menu-oferta-fixed");
                     $$('.scroll-submenu-oferta').removeAttr('style');
-                    var qtd = data.oferta.length;
+                    var qtd = data.length;
                     var imgOferta = "";
                     var dataOferta = "";
                     var dataLocal = "";
+                    var desconto = "";
+                    var percentual = "";
+
                     for (var i = 0; i < qtd; i++) {
-                        data.oferta[i].ImgEmpresa[0] = data.oferta[i].ImgEmpresa[0].replace("http://","https://");
-                        //imgOferta = '<div class="card-content"><img data-src="'+data.oferta[i].Img[0]+'" class="lazy lazy-fadein" width="100%"><div class="validade">Válido até: '+formatDate(data.oferta[i].dataValidade)+'</div><div class="desconto '+bgThemeLight+' color-white">'+Math.round(data.oferta[i].Desconto)+'%</div></div>';
-                        imgOferta = '<div class="card-content">'+
-                                    '<div class="swiper-container swiper-ofertascont">'+
-                                        '<div class="swiper-pagination"></div>'+
-                                        '<div class="swiper-wrapper">';
-                                        for (var e = 0; e < data.oferta[i].Img.length; e++) {
-                                            data.oferta[i].Img[e] = data.oferta[i].Img[e].replace("http://","https://");
-                                            imgOferta += '<div class="swiper-slide"><img data-src="'+data.oferta[i].Img[e]+'" class="swiper-lazy" width="100%"><span class="preloader"><span class="preloader-inner"><span class="preloader-inner-gap"></span><span class="preloader-inner-left"><span class="preloader-inner-half-circle"></span></span><span class="preloader-inner-right"><span class="preloader-inner-half-circle"></span></span></span></span></div>';
-                                        }
-                        imgOferta +=    '</div>'+
-                                    '</div>'+
-                                '</div>';
+                        
+                        if (data[i].desconto!="" && data[i].desconto!="null" && data[i].desconto!=null) {
+                          if (data[i].desconto.indexOf("%")=="-1") {
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'%</div>';
+                          }else{
+                            desconto = '<div class="desconto '+bgTheme+' color-white">'+data[i].desconto+'</div>';
+                          }
+                        }
+
+                        data[i].imagem1 = "https://www.caape.org.br/tim/tim.php?src=https://www.caape.org.br/wp-content/uploads/"+data[i].imagem1+"&w=222";
+                        imgOferta = '<div class="card-content"><img data-src="'+data[i].imagem1+'" class="lazy lazy-fadein" width="100%"></div>';
 
                         dataOferta += 
                                                 '<div class="card-cont ks-facebook-card">'+
                                                     imgOferta+
+                                                    desconto+
                                                     '<div class="card-content-inner '+bgThemeTrans+'">'+
-                                                        '<div class="card-content-price">'+
-                                                            '<img src="'+data.oferta[i].ImgEmpresa[0]+'">'+
-                                                        '</div>'+
                                                         '<div class="card-content-info">'+
-                                                            '<div class="facebook-date '+colorTheme+'">'+data.oferta[i].EmpresaNome+'</div>'+
-                                                            '<div class="facebook-title">'+data.oferta[i].Titulo+'</div>'+
+                                                            '<div class="facebook-date '+colorTheme+'">'+data[i].titulo+'</div>'+
                                                         '</div>'+
                                                         '<div class="clear"></div>'+
                                                     '</div>'+
                                                 '</div>';
                         dataLocal += '<div class="local-container">'+
                                         '<div class="local-end">'+
-                                            '<div class="local-bairro '+colorTheme+'">'+data.oferta[i].EmpresaBairro+'</div>'+
-                                            '<div class="local-rua">'+data.oferta[i].EmpresaEndereco+', '+data.oferta[i].EmpresaNumero+', '+data.oferta[i].EmpresaCidade+', '+data.oferta[i].EmpresaEstado+'</div>'+
+                                            /*'<div class="local-bairro '+colorTheme+'">'+data[i].EmpresaBairro+'</div>'+*/
+                                            '<div class="local-rua">'+data[i].localizacao+'</div>'+
                                         '</div>'+
 
                                         '<div class="clear"></div>'+
                                     '</div>'+
                                     '<div class="local-map">'+
                                         '<a href="#">'+
-                                            '<img src="https://maps.googleapis.com/maps/api/staticmap?size=480x300&zoom=18&markers=icon:https://www.bynn.es/caape/admin/img/maker-caape.png|'+data.oferta[i].EmpresaEndereco+','+data.oferta[i].EmpresaNumero+','+data.oferta[i].EmpresaBairro+','+data.oferta[i].EmpresaCidade+','+data.oferta[i].EmpresaEstado+'&key=AIzaSyAB8ZuJzAX2m3xRhNhXFu9b654LvOgPOHg">'+
+                                            '<img src="https://maps.googleapis.com/maps/api/staticmap?size=480x300&zoom=18&markers=icon:https://www.bynn.es/caape/admin/img/maker-caape.png|'+data[i].localizacao+'&key=AIzaSyAB8ZuJzAX2m3xRhNhXFu9b654LvOgPOHg">'+
                                         '</a>'+
                                     '</div>';
 
                         imgOferta = "";
                         $('#ofertascont-cont').html(dataOferta);
-                        $('.descricao-oferta').html(nl2br(data.oferta[i].Descricao));
-                        $('.regras-oferta').html(nl2br(data.oferta[i].Regras));
+                        $('.descricao-oferta').html(nl2br(data[i].texto));
+                        //$('.regras-oferta').html(nl2br(data[i].Regras));
                         $('.local-oferta').html(dataLocal);
 
-                        $('.speed-dial-buttons .fone').attr('onclick','window.open(\"tel:'+data.oferta[i].EmpresaTel+'\","_system")');
-                        $('.speed-dial-buttons .ir').attr('onclick','window.open(\"https://www.google.com/maps/search/?api=1&query='+data.oferta[i].EmpresaEndereco+','+data.oferta[i].EmpresaNumero+','+data.oferta[i].EmpresaBairro+','+data.oferta[i].EmpresaCidade+','+data.oferta[i].EmpresaEstado+'\","_system")');
-                        $('.speed-dial-buttons .share').attr('onclick','window.open(\"mailto:'+data.oferta[i].Empresa_email+'\","_system")');
-                        $('.local-map a').attr('onclick','window.open(\"https://www.google.com/maps/search/?api=1&query='+data.oferta[i].EmpresaEndereco+','+data.oferta[i].EmpresaNumero+','+data.oferta[i].EmpresaBairro+','+data.oferta[i].EmpresaCidade+','+data.oferta[i].EmpresaEstado+'\","_system")');
+                        // cria link de email ou site
+                        var linkopen = "";
+                        if (data[i].link!="" && data[i].link!=null) {
+                          if (data[i].link.indexOf("@")!="-1") {
+                            linkopen = "mailto:"+data[i].link;
+                          }else{
+                            if (data[i].link.indexOf("http")!="-1") {
+                              linkopen = data[i].link;
+                            }else{
+                              linkopen = "http://"+data[i].link;
+                            }
+                          }
+                        }
+                        $('.speed-dial-buttons .fone').attr('onclick','window.open(\"tel:'+data[i].telefone+'\","_system")');
+                        $('.speed-dial-buttons .ir').attr('onclick','window.open(\"https://www.google.com/maps/search/?api=1&query='+data[i].localizacao+'\","_system")');
+                        $('.speed-dial-buttons .share').attr('onclick','window.open(\"'+linkopen+'\","_system")');
+                        $('.local-map a').attr('onclick','window.open(\"https://www.google.com/maps/search/?api=1&query='+data[i].localizacao+'\","_system")');
 
                         //$$('.nameofertascont').html(data.oferta[i].EmpresaNome);
                         myApp.initImagesLazyLoad(".page");
                         
-                        var baixarCupom = '<a href="#" id="baixarCupom" onClick="baixarCupom('+data.oferta[i].Id+')" class="button-action button button-big button-fill button-raised color-green"><i class="fa fa-download"></i> SALVAR CUPOM</a>';
+                        var baixarCupom = '<a href="#" id="baixarCupom" onClick="baixarCupom('+data[i].id+')" class="button-action button button-big button-fill button-raised color-green"><i class="fa fa-download"></i> SALVAR CUPOM</a>';
                         var usarCupom = "";
                         //$('.button-cupom').html(baixarCupom);
 
                         /*if (localStorage.getItem("userID")) {
 
                             $.ajax({
-                                url: $server+"Gerar_json.php?op=compra&idOferta="+idOferta+"&idCliente="+localStorage.getItem("userID")+"&action=getOfertaCliente",
+                                url: $server+"api-app.php?op=compra&idOferta="+idOferta+"&idCliente="+localStorage.getItem("userID")+"&action=getOfertaCliente",
                                 dataType : "json",
                                 success: function(data) {
                                     if (data) {
@@ -1819,7 +2056,7 @@ function baixarCupom(id){
 
     //if (localStorage.getItem("userID")) {
             $.ajax({
-                url: $server+"Gerar_json.php?op=compra&idOferta="+id+"&idCidade=1&userToken="+localStorage.getItem("userToken")+"&name="+localStorage.getItem("name")+"&action=add",
+                url: $server+"api-app.php?op=compra&idOferta="+id+"&idCidade=1&userToken="+localStorage.getItem("userToken")+"&name="+localStorage.getItem("name")+"&action=add",
                 dataType : "json",
                 success: function(data) {
                     if (data) {
@@ -1860,7 +2097,7 @@ function  usarCupom(id,userID){
         if (!result.cancelled) {
             
             $.ajax({
-                url: $server+"Gerar_json.php?op=compra&idCupom="+id+"&vendedor="+result.text+"&idCliente="+localStorage.getItem("userID")+"&action=usarCupom",
+                url: $server+"api-app.php?op=compra&idCupom="+id+"&vendedor="+result.text+"&idCliente="+localStorage.getItem("userID")+"&action=usarCupom",
                 dataType : "json",
                 success: function(data) {
                     if (data==1) {
@@ -1884,7 +2121,7 @@ function  usarCupom(id,userID){
 function devCupom(id,eq){
         myApp.confirm('Deseja realmente apagar o cupom?', function () {
             $.ajax({
-                url: $server+"Gerar_json.php?op=compra&idCupom="+id+"&userToken="+localStorage.getItem("userToken")+"&action=devCupom",
+                url: $server+"api-app.php?op=compra&idCupom="+id+"&userToken="+localStorage.getItem("userToken")+"&action=devCupom",
                 dataType : "json",
                 success: function(data) {
                     myApp.swipeoutDelete($$('li.ofertasList').eq($("li.ofertasList[data-index="+eq+"]").index()));
@@ -2339,35 +2576,36 @@ ptrContent.on('refresh', function (e) {
 
 /* list noticias */
 function noticias() {
-    var url = $serverCau + "?json=get_category_posts&count=10&id=1";
+    var url = $server+"api-app.php?op=noticias";
     $("#noticias-cont").empty();
     
     myApp.showIndicator();
-    url+= "&data=" + new Date().getTime();
 
     $.ajax({
         url: url,
         dataType : "json",
         success: function(data) {
-            console.log("noticias");
-            var qtd = data.posts.length;
+            //console.log(data);
+            var qtd = data.length;
             var imgNoticias = "";
             var dataNoticias = "";
+            var imagem1 = "";
             for (var i = 0; i < qtd; i++) {
 
-                if (data.posts[i].thumbnail_images) {
-                    imgNoticias = '<div class="card-content"><img src="'+data.posts[i].thumbnail_images["medium"]["url"]+'" width="100%"></div>';
+                if (data[i].imagem1) {
+                    imagem1 = "https://www.caape.org.br/wp-content/uploads/"+data[i].imagem1;
+                    imgNoticias = '<div class="card-content"><img src="'+imagem1+'" width="100%"></div>';
                 }else{
                     imgNoticias = '<div class="card-content"><img src="images/sem_foto_cont.jpg" width="100%"></div>';
                 }
-                dataNoticias += '<li>'+
-                                    '<a href="#noticiascont" onclick="noticiascont('+data.posts[i].id+');" class="item-link">'+
+                dataNoticias += '<li class="notlist">'+
+                                    '<a href="#noticiascont" onclick="noticiascont('+data[i].id+');" class="item-link">'+
                                         '<div class="card-cont ks-facebook-card">'+
                                             '<div class="card-header no-padding">'+
                                                 imgNoticias+
                                                 '<div class="card-content-inner">'+
-                                                    '<div class="noticias-date">'+formata_data_extenso(data.posts[i].date)+'</div>'+
-                                                    '<p class="noticias-title">'+data.posts[i].title_plain+'</p>'+
+                                                    '<div class="noticias-date">'+formata_data_extenso(data[i].data)+'</div>'+
+                                                    '<p class="noticias-title">'+data[i].titulo+'</p>'+
                                                 '</div>'+
                                             '</div>'+
                                         '</div>'+
@@ -2385,18 +2623,20 @@ function noticias() {
 function noticiascont(id) {
     myApp.showIndicator();
     $(".noticiascont-cont").empty();
-    var url = $serverCau + "?json=get_post&post_id=" + id;
-    url+= "&data=" + new Date().getTime();
-
+    var url = $server+"api-app.php?noticiasid="+id+"&op=noticias";
 
     $.getJSON(url, function (data) {
     var noticiascontcont = "";
     var noticiascontimg = "";
     var imgZoom;
+    var imagem1;
+    var texto;
 
         //$(alvo).html(JSON.stringify(data))
 
-        if (data.post.thumbnail){
+        if (data[0].imagem1){
+
+            imagem1 = "https://www.caape.org.br/wp-content/uploads/"+data[0].imagem1;
 
             myPhotoBrowserPropostacont = myApp.photoBrowser({
                 theme: 'dark',
@@ -2405,21 +2645,24 @@ function noticiascont(id) {
                 spaceBetween: 0,
                 navbar: true,
                 toolbar: false,
-                photos : [data.post.thumbnail_images.full.url],
+                photos : [imagem1],
                 type: 'popup'
             });
 
             imgZoom = "onclick=myPhotoBrowserPropostacont.open();";
             noticiascontimg = '<div id="thumbPostCont">'+
                                 '<i '+imgZoom+' class="fa fa-search-plus fa-3x"></i>'+
-                                '<img src="' + data.post.thumbnail_images["full"]["url"] + '" '+imgZoom+'>'+
+                                '<img src="' + imagem1 + '" '+imgZoom+'>'+
                             '</div>';
         }
-
+            texto = data[0].texto.replace(/\"#BASE#/g, "https://www.caape.org.br/");
+            texto = texto.replace(/\h/g, "h");
+            texto = texto.replace(/[\\"]/g, '')
+            //texto = texto.replace("\"", " ");
             noticiascontcont += noticiascontimg+
-            '<div class="containerPostCont"><div id="titPostCont">' + data.post.title_plain + '</div>'+
-            '<div id="datePostCont">' + formata_data_extenso(data.post.date) + '</div>'+
-            '<div id="postCont">' + data.post.content + '</div></div>';
+            '<div class="containerPostCont"><div id="titPostCont">' + data[0].titulo + '</div>'+
+            '<div id="datePostCont">' + formata_data_extenso(data[0].data) + '</div>'+
+            '<div id="postCont">' + texto + '</div></div>';
 
             $(".noticiascont-cont").html(noticiascontcont);
             myApp.hideIndicator();
@@ -2486,8 +2729,12 @@ function limpar()
     input.replaceWith(input.val('').clone(true));
 }
 //////////////////////////// Alterar de cidade ///////////////////////////////////////////////////
-function alteraCidade(id){
+function alteraCidade(id,nome){
     localStorage.setItem("idCidade", id);
+
+    localStorage.setItem("nomeCidade", nome.toUpperCase());
+    $(".toolbar-inner span").html(nome.toUpperCase());
+
     mainView.router.load({pageName: 'filter'});
     //window.location = "index.html";
 
@@ -2518,22 +2765,43 @@ function getLocation(){
                   console.info(response);
 
                   $.ajax({
-                      url: $server+"Gerar_json.php?op=cidades",
+                      url: $server+"api-app.php?op=cidades",
                       dataType : "json",
                       success: function(data) {
                           //console.log(data);
                           var qtd = data.cidades.length;
                           var dataCidades = "";
                           var selectCidade = "";
+                          var varcidadeaux = false;
                           if (data!=null) {
                               for (var i = 0; i < qtd; i++) {
-                                console.log("cidade cordenada = "+response.address.city.toUpperCase());
+                                
                                 console.log("cidade base = "+data.cidades[i].descricao.toUpperCase());
-                                if (response.address.city.toUpperCase()==data.cidades[i].descricao.toUpperCase()) {
+                                var cidade;
+                                if (!response.address.city) {
+                                  cidade = response.address.state_district;
+                                }else{
+                                  cidade = response.address.city;
+                                }
+                                console.log("cidade cordenada = "+cidade.toUpperCase());
+                                if (cidade.toUpperCase()==data.cidades[i].descricao.toUpperCase()) {
                                   localStorage.setItem("idCidade", data.cidades[i].id);
+                                  localStorage.setItem("nomeCidade", data.cidades[i].descricao.toUpperCase());
+                                  $(".toolbar-inner span").html(data.cidades[i].descricao.toUpperCase());
                                   console.log("encontrei cidade");
+                                  varcidadeaux = true;
                                 }else{
                                   console.log("Não tem cidade cadastrada");
+                                  //localStorage.setItem("idCidade", data.cidades[i].id);
+                                  //if (!localStorage.getItem("nomeCidade")) {
+                                    if (varcidadeaux==false) {
+                                      localStorage.setItem("nomeCidade", "Todas as cidades");
+                                      localStorage.setItem("idCidade", "");
+                                      $(".toolbar-inner span").html(cidade.toUpperCase());
+                                    }
+                                  //}else{
+                                    //$(".toolbar-inner span").html(localStorage.getItem("nomeCidade"));
+                                  //}
                                 }
                               }
                           }
@@ -2557,13 +2825,20 @@ function maps(){
     ofertasListMap = [];
     ofertasMap = [];
 
+    //visualizar ofertas de todas as cidades
+    if (localStorage.getItem("idCidade")=="") {
+      $(".toolbar-inner-ofertas").html("Ofertas de todas as cidades");
+    }else{
+      $(".toolbar-inner-ofertas").html("Ofertas de "+localStorage.getItem("nomeCidade"));
+    }
+
     $.ajax({
-        url: $server+"Gerar_json.php?idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
+        url: $server+"api-app.php?idCidade="+localStorage.getItem("idCidade")+"&op=oferta",
         dataType : "json",
         success: function(data) {
             //console.log(data);
             if (data!=null) {
-                var qtd = data.oferta.length;
+                var qtd = data.length;
                 var imgOferta = "";
                 var dataOferta = "";
                 var opcoes = false;
@@ -2572,27 +2847,28 @@ function maps(){
 
                 for (var i = 0; i < qtd; i++) {
 
-                    if (data.oferta[i].Opcoes) {
+                    if (data[i].Opcoes) {
                         opcoes = true;
                     }
                 
-                    idCategoria = data.oferta[i].IdCategoria;
-                    data.oferta[i].Img[0] = data.oferta[i].Img[0].replace("http://","https://");
+                    idCategoria = data[i].categoria;
+                    data[i].imagem1 = "https://www.caape.org.br/tim/tim.php?src=https://www.caape.org.br/wp-content/uploads/"+data[i].imagem1+"&w=222";
 
-                    info = '<a href="#ofertascont" onclick="ofertascont('+data.oferta[i].Id+','+idCategoria+','+opcoes+',\'home\');">'+
+                    info = '<a href="#ofertascont" onclick="ofertascont('+data[i].id+','+idCategoria+','+opcoes+',\'home\');">'+
                                 '<div style="display:block;max-width:360px;height:80px;overflow: hidden;">'+
                                     '<div style="width:80px;height:80px;float:left;overflow: auto;">'+
-                                        '<img src="'+data.oferta[i].Img[0]+'" style="height:80px;padding-right:5px">'+
+                                        '<img src="'+data[i].imagem1+'" style="padding-right: 5px;vertical-align: middle;position: relative;top: 50%;transform: translateY(-50%);display: block;margin: 0 auto;max-width: 90% !important;max-height: 100% !important;height: auto;text-align: center;">'+
                                     '</div>'+
                                     '<div style="max-width:100px;height:80px;float:left;margin-left:5px;">'+
-                                        '<strong>'+data.oferta[i].EmpresaNome.substring(0, 20)+'</strong><br>'+
-                                        data.oferta[i].Titulo.substring(0, 40)+'<br>'+
+                                        '<strong>'+data[i].titulo.substring(0, 20)+'</strong><br>'+
+                                        data[i].texto.substring(0, 60)+
                                     '</div>'+
                                 '</div>'+
                             '</a>';
+
                     ofertasListMap.push(info);
-                    ofertasListMap.push(data.oferta[i].Latitude);
-                    ofertasListMap.push(data.oferta[i].Longitude);
+                    ofertasListMap.push(data[i].latitude);
+                    ofertasListMap.push(data[i].longitude);
                     ofertasListMap.push(i);
                     ofertasListMap.push(idCategoria);
                     servidor = "dentro";
@@ -2649,68 +2925,263 @@ function ofertasMaps(){
         
 /////////////////////////// push ////////////////////////////
 
-document.addEventListener('app.Ready', onDeviceReady, true);
+if ($$testelocal==false) {
+  document.addEventListener('app.Ready', onDeviceReady, true);
+}
 function onDeviceReady() {
     console.log("onDeviceReady");
 
-    /*var push = PushNotification.init({
-        android: {
-            senderID: "214666097431",
-            icon: "icon-notification",
-            iconColor: "#004a73"
-        },
-        ios: {
-            senderID: "214666097431",
-            gcmSandbox: "true", // false para producao true para desenvolvimento
-            alert: "true",
-            sound: "true",
-            badge: "false"
-        },
-        windows: {}
-    });
-    push.on('registration', function(data) {
-        console.log('APARELHO REGISTRADO:' + data.registrationId);
-        localStorage.setItem("token", data.registrationId);
-        atualizartoken();
-    });
-    
-    push.on('notification', function(data) {
-
-        //$('#push').html(data);
-        if (data.additionalData.foreground) {
-
-            console.log('CAPTURADO PUSH COM APP ABERTO!');
-            if (data.title==data.additionalData.summaryText) {
-                data.additionalData.summaryText="";
-            }
-
-            myApp.addNotification({
-                title: data.title,
-                subtitle: data.additionalData.summaryText,
-                message: data.message,
-                closeIcon: false,
-                media: '<img src='+data.additionalData.picture+'>',
+            var push = PushNotification.init({
+                android: {
+                    senderID: $$senderID,
+                    icon: "iconnotification"
+                },
+                ios: {
+                    senderID: $$senderID,
+                    gcmSandbox: "false", // false para producao true para desenvolvimento
+                    alert: "true",
+                    sound: "true",
+                    badge: "false"
+                },
+                windows: {}
             });
-        } else if (data.additionalData.coldstart){
+            push.on('registration', function(data) {
+                console.log('APARELHO REGISTRADO:' + data.registrationId);
+                localStorage.setItem("token", data.registrationId);
 
-                console.log('CAPTURADO PUSH COM APP EM COLDSTART!');
-        } else{
+                console.log("atualizartoken");
 
-                console.log('CAPTURADO PUSH COM APP EM BACKGROUND!');  
-        }
+                $.ajax($server+'api-app.php?op=token&token="+localStorage.getItem("token")', {
+                    type: "post",
+                    data: "action=token&token="+localStorage.getItem("token"),
+                })
+                .fail(function() {
+                //myApp.alert('Erro! Tente novamente.');
+                })     
+                .done(function(data) {
+                    //myApp.alert('Sucesso!', 'Rádio 93 FM');
+                    console.log("Token gravado: "+localStorage.getItem("token"));
+                });
 
-        console.log(data);
-        console.log('TITULO: ' + data.title);
-        console.log('SUBTITULO: ' + data.additionalData.summaryText);
-        console.log('MEDIA: ' + data.additionalData.picture);
-        console.log('MENSAGEM: ' + data.message);
-        console.log('INFO: ' + data.additionalData.info);
-    });
+            });
+            
+            push.on('notification', function(data) {
 
-    push.on('error', function(e) {
-        console.log(e.message);
-        //$('#push').html(e.message);
-    });*/
+                //$('#push').html(data);
+                if (data.additionalData.foreground) {
+
+                    switch( data.additionalData.info ){
+
+                        case 'comunportaria':
+                            comunportariahome();
+                        break;
+
+                        case 'alertadechegada':
+                            alertadechegadahome();
+                        break;
+
+                        case 'alertaportaria':
+                            visitantealerthome();
+                        break;
+
+                        case 'searchhomeportaria':
+                            searchhomeportaria();
+                        break;
+                    }
+
+                    if (data.title==data.additionalData.summaryText) {
+                        data.additionalData.summaryText="";
+                    }
+
+
+                    // seleciona som da notificação
+                    var sound;
+                    if(device.platform.toLowerCase() === "android"){
+                        //sound = "/android_asset/www/sounds/notification-android.mp3";
+                        sound = "https://www.aptohome.com.br/sounds/notification-android.mp3";
+                        console.log("sound android: " + sound);
+                    }else{
+                        /*var path = window.location.pathname;
+                        var sizefilename = path.length - (path.lastIndexOf("/")+1);
+                        path = path.substr( path, path.length - sizefilename );*/
+                        sound = "https://www.aptohome.com.br/sounds/notification-ios.mp3";
+                        console.log("sound ios: " + sound);
+                    }
+                    var media = new Media(sound, mediaSuccess, mediaError);
+
+                    function mediaSuccess() {
+                        console.log('Media Success');
+                    }
+                    function mediaError(e) {
+                        console.log('Media Error');
+                        console.log(JSON.stringify(e));
+                    }
+                    // play som notificação
+                    media.play();
+
+                    myApp.addNotification({
+                        title: data.title,
+                        subtitle: data.additionalData.summaryText,
+                        message: data.message,
+                        closeIcon: false,
+                        media: '<img src='+data.additionalData.picture+'>',
+                        onClick: function () { 
+                            switch( data.additionalData.info ){
+                                case 'comuncomunicado':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comuncomunicadocont(data.additionalData.id,true);
+                                break;
+
+                                case 'comunmorador':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comunmoradorcont(data.additionalData.id,true);
+                                break;
+
+                                case 'comunportaria':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comunportariacont(data.additionalData.id,true);
+                                break;
+
+                                case 'transparenciadecontas':
+                                mainView.router.load({pageName: 'transparenciadecontascont'});
+                                transparenciadecontascont(data.additionalData.id,true);
+                                break;
+
+                                case 'livroocorrencias':
+                                mainView.router.load({pageName: 'livroocorrenciascont'});
+                                livroocorrenciascont(data.additionalData.id,true);
+                                break;
+
+                                case 'agendamentodeespaco':
+                                mainView.router.load({pageName: 'espacocont'});
+                                espacocont(data.additionalData.id,true);
+                                break;
+
+                                case 'alertadechegada':
+                                if (data.additionalData.id) {
+                                    mainView.router.load({pageName: 'alertadechegadacont'});
+                                    alertadechegadacont(data.additionalData.id,true);
+                                }
+                                break;
+
+                                case 'alertaportaria':
+                                mainView.router.load({pageName: 'alertaportariahomecont'});
+                                alertaportariacont(data.additionalData.id,true);
+                                break;
+
+                                case 'enquete':
+                                mainView.router.load({pageName: 'enquetescont'});
+                                enquetescont(data.additionalData.id,true);
+                                break;
+                            }
+                        }
+                    });
+
+                    console.log('CAPTURADO PUSH COM APP ABERTO!');
+                } else if (data.additionalData.coldstart){
+                            switch( data.additionalData.info ){
+                                case 'comuncomunicado':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comuncomunicadocont(data.additionalData.id,true);
+                                break;
+
+                                case 'comunmorador':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comunmoradorcont(data.additionalData.id,true);
+                                break;
+
+                                case 'comunportaria':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comunportariacont(data.additionalData.id,true);
+                                break;
+
+                                case 'transparenciadecontas':
+                                mainView.router.load({pageName: 'transparenciadecontascont'});
+                                transparenciadecontascont(data.additionalData.id,true);
+                                break;
+
+                                case 'livroocorrencias':
+                                mainView.router.load({pageName: 'livroocorrenciascont'});
+                                livroocorrenciascont(data.additionalData.id,true);
+                                break;
+
+                                case 'agendamentodeespaco':
+                                mainView.router.load({pageName: 'espacocont'});
+                                espacocont(data.additionalData.id,true);
+                                break;
+
+                                case 'alertadechegada':
+                                mainView.router.load({pageName: 'alertadechegadacont'});
+                                alertadechegadacont(data.additionalData.id,true);
+                                break;
+
+                                case 'alertaportaria':
+                                mainView.router.load({pageName: 'alertaportariahomecont'});
+                                alertaportariacont(data.additionalData.id,true);
+                                break;
+
+                                case 'enquete':
+                                mainView.router.load({pageName: 'enquetescont'});
+                                enquetescont(data.additionalData.id,true);
+                                break;
+                            }
+
+                        console.log('CAPTURADO PUSH COM APP EM COLDSTART!');
+                } else{
+                            switch( data.additionalData.info ){
+                                case 'comuncomunicado':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comuncomunicadocont(data.additionalData.id,true);
+                                break;
+
+                                case 'comunmorador':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comunmoradorcont(data.additionalData.id,true);
+                                break;
+
+                                case 'comunportaria':
+                                mainView.router.load({pageName: 'comunicadocont'});
+                                comunportariacont(data.additionalData.id,true);
+                                break;
+
+                                case 'transparenciadecontas':
+                                mainView.router.load({pageName: 'transparenciadecontascont'});
+                                transparenciadecontascont(data.additionalData.id,true);
+                                break;
+
+                                case 'livroocorrencias':
+                                mainView.router.load({pageName: 'livroocorrenciascont'});
+                                livroocorrenciascont(data.additionalData.id,true);
+                                break;
+
+                                case 'agendamentodeespaco':
+                                mainView.router.load({pageName: 'espacocont'});
+                                espacocont(data.additionalData.id,true);
+                                break;
+
+                                case 'alertadechegada':
+                                mainView.router.load({pageName: 'alertadechegadacont'});
+                                alertadechegadacont(data.additionalData.id,true);
+                                break;
+
+                                case 'alertaportaria':
+                                mainView.router.load({pageName: 'alertaportariahomecont'});
+                                alertaportariacont(data.additionalData.id,true);
+                                break;
+
+                                case 'enquete':
+                                mainView.router.load({pageName: 'enquetescont'});
+                                enquetescont(data.additionalData.id,true);
+                                break;
+                            }
+                        console.log('CAPTURADO PUSH COM APP EM BACKGROUND!');  
+                }
+            });
+
+            push.on('error', function(e) {
+                console.log(e.message);
+                //$('#push').html(e.message);
+            });
 
     setTimeout("getLocation()",2000);
 }
@@ -2827,4 +3298,23 @@ function formata_data_extenso(strDate)
     diaext = dia + " de " + meses[mes-1] + " de " + ano;
     return diaext;
 
+}
+function truncar(texto,limite){
+  if(texto.length>limite){  
+    limite--;
+    last = texto.substr(limite-1,1);
+    while(last!=' ' && limite > 0){
+      limite--;
+      last = texto.substr(limite-1,1);
+    }
+    last = texto.substr(limite-2,1);
+    if(last == ',' || last == ';'  || last == ':'){
+       texto = texto.substr(0,limite-2) + '...';
+    } else if(last == '.' || last == '?' || last == '!'){
+       texto = texto.substr(0,limite-1);
+    } else {
+       texto = texto.substr(0,limite-1) + '...';
+    }
+  }
+  return texto;
 }
