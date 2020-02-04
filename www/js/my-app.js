@@ -35,7 +35,7 @@ var $$senderID = "314829403235";
 var $$testelocal = false;
 
 if ($$testelocal==false) {
-  onDeviceReady();
+  //onDeviceReady();
 }
 
 if (localStorage.getItem("email")) {
