@@ -2951,7 +2951,7 @@ function onDeviceReady() {
 
                 console.log("atualizartoken");
 
-                $.ajax($server+'api-app.php?op=token&token="+localStorage.getItem("token")', {
+                $.ajax($server+'api-app.php?op=token&token='+localStorage.getItem("token"), {
                     type: "post",
                     data: "action=token&token="+localStorage.getItem("token"),
                 })
