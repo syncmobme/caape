@@ -1909,6 +1909,7 @@ if (!opcoes) {
                           localStorage.setItem("idCidade", data[i].subseccionais);
                           localStorage.setItem("nomeCidade", data[i].titulosub.toUpperCase());
                           $(".toolbar-inner-ofertas").html("Ofertas de "+data[i].titulosub.toUpperCase());
+                          $(".toolbar-inner span").html(data[i].titulosub.toUpperCase());
                         }
                         
                         if (data[i].desconto!="" && data[i].desconto!="null" && data[i].desconto!=null) {
