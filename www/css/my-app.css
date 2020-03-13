@@ -383,10 +383,9 @@ display: block;
 	width: 100%;
 }
 .nameHome img{
-width: 170px;
+width: 120px;
     top: 11px;
-	margin-left: -7px;
-	position: relative;
+    position: relative;
 }
 .button-action{
     height: 60px!important;
@@ -584,6 +583,7 @@ a.tab-link.active{
 }
 .navbar-inner .center{
 	left: inherit!important;
+	margin: 0!important;
 }
 .navbar-inner{
 	/*background: #004a73;
@@ -1138,6 +1138,10 @@ display: block;
 
 }
 /* instagram */
+#fotos-cont{
+	margin: 0 auto!important;
+    width: 320px;
+}
 #fotos-cont li {
     width: 50%;
     float: left;
@@ -1154,7 +1158,7 @@ display: block;
     object-fit: cover;
 }
 #fotos-cont li a img {
-    width: 100%;
+    width: 150px;
     height: 150px;
 }
 .instagram_profile{

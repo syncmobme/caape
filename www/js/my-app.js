@@ -49,6 +49,13 @@ if (localStorage.getItem("email")) {
 /*if (!localStorage.getItem("idCidade")) {
     localStorage.setItem("idCidade","1");
 }*/
+$$('#postCont a').on('click', function(e){
+  e.preventDefault();
+  //console.log("click");
+  //console.log($(this).attr("href"));
+  openURL($(this).attr("href"));
+});
+
 
 myApp.onPageReinit('home', function (page) {
 
@@ -129,7 +136,7 @@ function voltar(){
 console.log("entrei logado");
 
 if ($$testelocal==false) {
-  //onDeviceReady();
+  onDeviceReady();
 }
 
 if (!localStorage.getItem("tokenAnuidade")) {
@@ -2705,7 +2712,7 @@ function instagram(){
     $('#fotos-cont').spectragram('getUserFeed',{
         complete : myCallbackFunc(),
         max: 20,
-        size: "medium"
+        size: "small"
     });
 
 }
@@ -2790,6 +2797,9 @@ function getLocation(){
                                 }else{
                                   cidade = response.address.city;
                                 }
+                                if (cidade.indexOf("Região Geográfica Intermediária do")> -1) {
+                                  cidade = cidade.replace("Região Geográfica Intermediária do ", "");
+                                }
                                 console.log("cidade cordenada = "+cidade.toUpperCase());
                                 if (cidade.toUpperCase()==data.cidades[i].descricao.toUpperCase()) {
                                   localStorage.setItem("idCidade", data.cidades[i].id);
@@ -2863,7 +2873,7 @@ function maps(){
 
                     info = '<a href="#ofertascont" onclick="ofertascont('+data[i].id+','+idCategoria+','+opcoes+',\'home\');">'+
                                 '<div style="display:block;max-width:360px;height:80px;overflow: hidden;">'+
-                                    '<div style="width:80px;height:80px;float:left;overflow: auto;">'+
+                                    '<div style="width:35%;height:80px;float:left;overflow: auto;">'+
                                         '<img src="'+data[i].imagem1+'" style="padding-right: 5px;vertical-align: middle;position: relative;top: 50%;transform: translateY(-50%);display: block;margin: 0 auto;max-width: 90% !important;max-height: 100% !important;height: auto;text-align: center;">'+
                                     '</div>'+
                                     '<div style="max-width:100px;height:80px;float:left;margin-left:5px;">'+
@@ -2903,7 +2913,7 @@ function ofertasMaps(){
     }
 
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
+        zoom: 15,
         center: new google.maps.LatLng(localStorage.getItem("userLatitude"),localStorage.getItem("userLongitude")),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
