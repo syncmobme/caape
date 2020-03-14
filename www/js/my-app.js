@@ -2955,7 +2955,7 @@ function ofertasMaps(){
   function onLoad() {
     console.log("onload")
     if ($$testelocal==false) {
-      document.addEventListener('deviceready', onDeviceReady, false);
+     // document.addEventListener('deviceready', onDeviceReady, false);
     }
   }
 
