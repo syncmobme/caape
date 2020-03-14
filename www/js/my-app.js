@@ -2885,7 +2885,7 @@ function maps(){
                                     '<div style="width:35%;height:80px;float:left;overflow: auto;">'+
                                         '<img src="'+data[i].imagem1+'" style="padding-right: 5px;vertical-align: middle;position: relative;top: 50%;transform: translateY(-50%);display: block;margin: 0 auto;max-width: 90% !important;max-height: 100% !important;height: auto;text-align: center;">'+
                                     '</div>'+
-                                    '<div style="max-width:100px;height:80px;float:left;margin-left:5px;">'+
+                                    '<div style="width:calc(65% - 5px);height:80px;float:left;margin-left:5px;">'+
                                         '<strong>'+data[i].titulo.substring(0, 20)+'</strong><br>'+
                                         data[i].texto.substring(0, 60)+
                                     '</div>'+
@@ -2969,7 +2969,7 @@ function onDeviceReady() {
                 },
                 ios: {
                     senderID: $$senderID,
-                    gcmSandbox: "true", // false para producao true para desenvolvimento
+                    gcmSandbox: "false", // false para producao true para desenvolvimento
                     alert: "true",
                     sound: "true",
                     badge: "false"
