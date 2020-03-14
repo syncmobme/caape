@@ -2757,7 +2757,7 @@ function alteraCidade(id,nome){
 
 function getLocation(){
     console.log("getLocation");
-    navigator.geolocation.getCurrentPosition(onSuccess);
+    navigator.geolocation.getCurrentPosition(onSuccess,onError);
         function onSuccess(pos){
             console.log(pos.coords.latitude+" - "+pos.coords.longitude);
             localStorage.setItem("userLatitude", pos.coords.latitude);
@@ -2821,6 +2821,10 @@ function getLocation(){
                                   //}
                                 }
                               }
+                          }else{
+                            localStorage.setItem("nomeCidade", "Todas as cidades");
+                            localStorage.setItem("idCidade", "");
+                            $(".toolbar-inner span").html("TODAS AS CIDADES");
                           }
                       }
                   });
@@ -2829,6 +2833,11 @@ function getLocation(){
                 console.info(err, msg);
             });
 
+        }
+        function onError(err){
+            localStorage.setItem("nomeCidade", "Todas as cidades");
+            localStorage.setItem("idCidade", "");
+            $(".toolbar-inner span").html("TODAS AS CIDADES");
         }
 }
 
