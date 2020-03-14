@@ -31,6 +31,6 @@
 	<key>GOOGLE_APP_ID</key>
 	<string>1:314829403235:ios:20f3054b0a5f4f5c193456</string>
 	<key>DATABASE_URL</key>
-	<string>https://caape-7f19b.firebaseio.com</string>
+	<string>https://caape-7f19b.firebaseio.com</string> 
 </dict>
 </plist>
