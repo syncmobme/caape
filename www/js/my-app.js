@@ -2764,7 +2764,7 @@ function getLocation(){
             localStorage.setItem("userLongitude", pos.coords.longitude);
 
             $.ajax({
-                url: 'http://nominatim.openstreetmap.org/reverse?',
+                url: 'https://nominatim.openstreetmap.org/reverse?',
                 crossOrigin: true,
                 dataType: 'json',
                 data: {
@@ -2969,7 +2969,7 @@ function onDeviceReady() {
                 },
                 ios: {
                     senderID: $$senderID,
-                    gcmSandbox: "false", // false para producao true para desenvolvimento
+                    gcmSandbox: "true", // false para producao true para desenvolvimento
                     alert: "true",
                     sound: "true",
                     badge: "false"
